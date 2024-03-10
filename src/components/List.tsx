@@ -1,14 +1,15 @@
 import Item from './Item';
 
-const List = () => {
-  const item = {
-    id: 'string',
-    name: 'string',
-    packed: true,
-  };
+type ItemsProps = {
+  items: Item[];
+};
+
+const List = ({ items }: ItemsProps) => {
   return (
     <ul>
-      <Item {...item} />
+      {items.map((item) => (
+        <Item key={item.id} item={item} />
+      ))}
     </ul>
   );
 };

@@ -1,10 +1,8 @@
 type ItemProps = {
-  id: string;
-  name: string;
-  packed: boolean;
+  item: Item;
 };
 
-const Item = (item: ItemProps) => {
+const Item = ({ item }: ItemProps) => {
   return (
     <li>
       <input
