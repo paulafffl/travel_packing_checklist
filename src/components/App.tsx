@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
-import List from './List';
 import { ItemsContext } from '../context';
+import List from './List';
+import NewItem from './NewItem';
 
 function App() {
   const { items } = useContext(ItemsContext);
   return (
     <main>
       <h1>Travel Packing List</h1>
+      <NewItem />
       <List items={items} />
     </main>
   );

@@ -8,6 +8,7 @@ import {
 
 type ItemsState = {
   items: Item[];
+  add: (name: string) => void;
   remove: (id: string) => void;
   update: (id: string, updates: WithoutId) => void;
 };
@@ -20,6 +21,11 @@ export const ItemsContext = createContext({} as ItemsState);
 const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [items, setItems] = useState(getInitialItems());
 
+  const add = (name: string) => {
+    const item = createItem(name);
+    setItems([...items, item]);
+  };
+
   const remove = (id: string) => {
     setItems(removeItem(items, id));
   };
@@ -30,6 +36,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const value: ItemsState = {
     items,
+    add,
     remove,
     update,
   };
