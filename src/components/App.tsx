@@ -7,7 +7,7 @@ function App() {
   const { packedItems, unpackedItems } = useContext(ItemsContext);
   return (
     <main className="main-margin">
-      <h1>Travel Packing List</h1>
+      <h1> 🧳 Travel Packing List</h1>
       <NewItem />
       <List title="Unpacked Items" items={unpackedItems} />
       <List title="Packed Items" items={packedItems} />
