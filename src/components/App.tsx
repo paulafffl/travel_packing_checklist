@@ -6,7 +6,7 @@ import NewItem from './NewItem';
 function App() {
   const { items } = useContext(ItemsContext);
   return (
-    <main>
+    <main className="main-margin">
       <h1>Travel Packing List</h1>
       <NewItem />
       <List items={items} />

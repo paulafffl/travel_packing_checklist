@@ -28,6 +28,7 @@ const Item = ({ item }: ItemProps) => {
         value={item.name}
         id={`checkbox-editing-${item.id}`}
         className={clsx({ hidden: !editing })}
+        size={item.name.length}
         onChange={(event) => update(item.id, { name: event.target.value })}
       />
       <div className="g'py-0 text-sm', ap-2 ml-auto flex">

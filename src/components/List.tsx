@@ -6,7 +6,7 @@ type ItemsProps = {
 
 const List = ({ items }: ItemsProps) => {
   return (
-    <section className="w-full bg-white p-8">
+    <section>
       <ul>
         {items.map((item) => (
           <Item key={item.id} item={item} />
