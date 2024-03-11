@@ -35,3 +35,9 @@ export const updateItem = (
     return item;
   });
 };
+
+export const removeItem = (items: Readonly<Item[]>, id: string) => {
+  return items.filter((item) => {
+    return item.id !== id;
+  });
+};

@@ -8,7 +8,7 @@ type ItemProps = {
 
 const Item = ({ item }: ItemProps) => {
   const [editing, setEditing] = useState(false);
-  const { update } = useContext(ItemsContext);
+  const { update, remove } = useContext(ItemsContext);
 
   return (
     <li className="flex items-center gap-2">
@@ -32,11 +32,18 @@ const Item = ({ item }: ItemProps) => {
       />
       <div className="g'py-0 text-sm', ap-2 ml-auto flex">
         <button
-          className="px-2 py-0 text-xs"
+          className="ml-2 px-2 py-1 text-xs"
           aria-label={`Edit "${item.name}"`}
           onClick={() => setEditing(!editing)}
         >
           {editing ? 'Save' : 'Rename'}
+        </button>
+        <button
+          className="ml-2 px-2 py-1 text-xs"
+          aria-label={`Delete "${item.name}"`}
+          onClick={() => remove(item.id)}
+        >
+          Delete
         </button>
       </div>
     </li>
