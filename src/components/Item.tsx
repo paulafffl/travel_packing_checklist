@@ -16,11 +16,18 @@ const Item = ({ item }: ItemProps) => {
         type="checkbox"
         checked={item.packed}
         id={`checkbox-item-${item.id}`}
+        onKeyDown={(e) =>
+          e.key === 'Enter' && update(item.id, { packed: !item.packed })
+        }
         onChange={() => update(item.id, { packed: !item.packed })}
       />
       <label
         htmlFor={`checkbox-item-${item.id}`}
         className={clsx({ hidden: editing })}
+        onKeyDown={(e) =>
+          e.key === 'Enter' && update(item.id, { packed: !item.packed })
+        }
+        tabIndex={0}
       >
         {item.name}
       </label>
