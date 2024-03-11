@@ -24,3 +24,14 @@ let items = [
 export const getInitialItems = (): Item[] => {
   return items;
 };
+
+export const updateItem = (
+  items: Item[],
+  id: string,
+  updates: Partial<Item>,
+) => {
+  return items.map((item) => {
+    if (item.id === id) return { ...item, ...updates };
+    return item;
+  });
+};
