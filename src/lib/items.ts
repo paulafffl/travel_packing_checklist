@@ -1,11 +1,23 @@
 import { v4 as id } from 'uuid';
 
 export const createItem = (name: string): Item => {
-  return {
+  const newItem = {
     id: id(),
     name,
     packed: false,
   };
+
+  // Retrieve existing items from local storage, or initialize an empty array if none exist
+  const existingItemsJson = localStorage.getItem('items');
+  let existingItems: Item[] = [];
+  if (existingItemsJson) {
+    existingItems = JSON.parse(existingItemsJson);
+  }
+
+  const updatedItems = [...existingItems, newItem];
+  localStorage.setItem('items', JSON.stringify(updatedItems));
+
+  return newItem;
 };
 
 let items = [
@@ -43,19 +55,25 @@ export const getInitialItems = (): Item[] => {
   return items;
 };
 
+const saveItemsToLocalStorage = (items: Item[]) => {
+  localStorage.setItem('items', JSON.stringify(items));
+};
+
 export const updateItem = (
   items: Item[],
   id: string,
   updates: Partial<Item>,
 ) => {
-  return items.map((item) => {
+  const updatedItems = items.map((item) => {
     if (item.id === id) return { ...item, ...updates };
     return item;
   });
+  saveItemsToLocalStorage(updatedItems);
+  return updatedItems;
 };
 
 export const removeItem = (items: Readonly<Item[]>, id: string) => {
-  return items.filter((item) => {
-    return item.id !== id;
-  });
+  const updatedItems = items.filter((item) => item.id !== id);
+  saveItemsToLocalStorage(updatedItems);
+  return updatedItems;
 };
