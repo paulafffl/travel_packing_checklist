@@ -1,5 +1,46 @@
 import { v4 as id } from 'uuid';
 
+const createDefaultItems = (): Item[] => {
+  return [
+    '⛺ Tent',
+    '🛌 Sleeping Bag',
+    '➖ Insulating Mat',
+    '🔨 Hammer',
+    '🔦 Solar light',
+    '🚿 Solar shower',
+    '🪝 Hook',
+    '🪣 Water container',
+    '🔶 Travel Towel',
+    '🧻 Toilet Roll',
+    '🐜 Repellent',
+    '🥾 Wellie',
+    '🧦 Wellie Socks',
+    '🌧️ Poncho',
+    '🎒 Waterproof Bag',
+    '🔌 3 USB Socket',
+    '✨ Bio Glitter',
+    '🎟️ Festival Ticket',
+    '💵 Cash',
+    '🍴 Cutlery',
+    '🍱 Bento box',
+    '🥤 Straw',
+    '🧽 Sponge',
+    '🧼 Cloth',
+    '🍵 Mug',
+    '😷 Facemask',
+    '🧂 Seasonings',
+  ].map((name) => ({
+    id: id(),
+    name,
+    packed: false,
+  }));
+};
+
+const getStoredItems = (): Item[] => {
+  const storedItems = localStorage.getItem('items');
+  return storedItems ? JSON.parse(storedItems) : createDefaultItems();
+};
+
 export const createItem = (name: string): Item => {
   const newItem = {
     id: id(),
@@ -7,51 +48,15 @@ export const createItem = (name: string): Item => {
     packed: false,
   };
 
-  // Retrieve existing items from local storage, or initialize an empty array if none exist
-  const existingItemsJson = localStorage.getItem('items');
-  let existingItems: Item[] = [];
-  if (existingItemsJson) {
-    existingItems = JSON.parse(existingItemsJson);
-  }
-
-  const updatedItems = [...existingItems, newItem];
+  const storedItems = getStoredItems();
+  const updatedItems = [...storedItems, newItem];
   localStorage.setItem('items', JSON.stringify(updatedItems));
 
   return newItem;
 };
 
-let items = [
-  '⛺ Tent',
-  '🛌 Sleeping Bag',
-  '➖ Insulating Mat',
-  '🔨 Hammer',
-  '🔦 Solar light',
-  '🚿 Solar shower',
-  '🪝 Hook',
-  '🪣 Water container',
-  '🔶 Travel Towel',
-  '🧻 Toilet Roll',
-  '🐜 Repellent',
-  '🥾 Wellie',
-  '🧦 Wellie Socks',
-  '🌧️ Poncho',
-  '🎒 Waterproof Bag',
-  '🔌 3 USB Socket',
-  '✨ Bio Glitter',
-  '🎟️ Festival Ticket',
-  '💵 Cash',
-  '🍴 Cutlery',
-  '🍱 Bento box',
-  '🥤 Straw',
-  '🧽 Sponge',
-  '🧼 Cloth',
-  '🍵 Mug',
-  '😷 Facemask',
-  '🧂 Seasonings',
-].map(createItem);
-
 export const getInitialItems = (): Item[] => {
-  return items;
+  return getStoredItems();
 };
 
 const saveItemsToLocalStorage = (items: Item[]) => {
