@@ -6,11 +6,13 @@ type ItemsProps = {
 
 const List = ({ items }: ItemsProps) => {
   return (
-    <ul>
-      {items.map((item) => (
-        <Item key={item.id} item={item} />
-      ))}
-    </ul>
+    <section className="w-full bg-white p-8">
+      <ul>
+        {items.map((item) => (
+          <Item key={item.id} item={item} />
+        ))}
+      </ul>
+    </section>
   );
 };
 

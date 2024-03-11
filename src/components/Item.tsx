@@ -11,7 +11,7 @@ const Item = ({ item }: ItemProps) => {
   const { update } = useContext(ItemsContext);
 
   return (
-    <li>
+    <li className="flex items-center gap-2">
       <input
         type="checkbox"
         checked={item.packed}
@@ -30,12 +30,13 @@ const Item = ({ item }: ItemProps) => {
         className={clsx({ hidden: !editing })}
         onChange={(event) => update(item.id, { name: event.target.value })}
       />
-      <div>
+      <div className="g'py-0 text-sm', ap-2 ml-auto flex">
         <button
-          aria-label={`Rename-${item.name}`}
+          className="px-2 py-0 text-xs"
+          aria-label={`Edit "${item.name}"`}
           onClick={() => setEditing(!editing)}
         >
-          {editing ? 'Update' : 'Rename'}
+          {editing ? 'Save' : 'Rename'}
         </button>
       </div>
     </li>
