@@ -21,6 +21,10 @@ h1 {
   @apply text-4xl font-bold;
 }
 
+h2 {
+  @apply mb-3 font-bold uppercase;
+}
+
 input {
   @apply rounded-sm bg-primary-200 py-1 pl-2 pr-0 placeholder-primary-400 accent-primary-600 transition-all ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 hover:bg-primary-200 hover:accent-primary-700 focus:bg-primary-50 disabled:border-slate-500 disabled:bg-slate-100 disabled:placeholder-slate-400;
 }

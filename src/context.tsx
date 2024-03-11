@@ -8,6 +8,8 @@ import {
 
 type ItemsState = {
   items: Item[];
+  packedItems: Item[];
+  unpackedItems: Item[];
   add: (name: string) => void;
   remove: (id: string) => void;
   update: (id: string, updates: WithoutId) => void;
@@ -20,6 +22,9 @@ export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [items, setItems] = useState(getInitialItems());
+
+  const packedItems = items.filter((item) => item.packed);
+  const unpackedItems = items.filter((item) => !item.packed);
 
   const add = (name: string) => {
     const item = createItem(name);
@@ -36,6 +41,8 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const value: ItemsState = {
     items,
+    unpackedItems,
+    packedItems,
     add,
     remove,
     update,
