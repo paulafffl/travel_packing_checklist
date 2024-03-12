@@ -13,6 +13,8 @@ type ItemsState = {
   add: (name: string) => void;
   remove: (id: string) => void;
   update: (id: string, updates: WithoutId) => void;
+  packAllItems: () => void;
+  unpackAllItems: () => void;
 };
 
 type PartialItem = Partial<Item>;
@@ -39,6 +41,14 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setItems(updateItem(items, id, updates));
   };
 
+  const packAllItems = () => {
+    return setItems(items.map((item) => ({ ...item, packed: true })));
+  };
+
+  const unpackAllItems = () => {
+    return setItems(items.map((item) => ({ ...item, packed: false })));
+  };
+
   const value: ItemsState = {
     items,
     unpackedItems,
@@ -46,6 +56,8 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     add,
     remove,
     update,
+    packAllItems,
+    unpackAllItems,
   };
   return (
     <ItemsContext.Provider value={value}>{children}</ItemsContext.Provider>
