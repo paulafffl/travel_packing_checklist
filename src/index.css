@@ -20,7 +20,7 @@ code {
 }
 
 h1 {
-  @apply text-4xl font-bold;
+  @apply pb-4 text-4xl font-bold;
 }
 
 h2 {
@@ -43,7 +43,7 @@ button[type='submit'] {
 }
 
 section {
-  @apply mx-auto my-8 bg-white p-6;
+  @apply mx-auto mt-10 bg-white p-6;
 }
 
 .main-margin {
