@@ -11,9 +11,9 @@ const List = ({ title, items }: ItemsProps) => {
   const { packAllItems, unpackAllItems } = useContext(ItemsContext);
   const packed = title === 'Packed Items';
   return (
-    <section className="flex-grow">
+    <section className="w-full">
       <h2>{title}</h2>
-      <ul>
+      <ul className="flex flex-col">
         {items.map((item) => (
           <Item key={item.id} item={item} />
         ))}
