@@ -31,7 +31,8 @@ const NewItem = () => {
           type="submit"
           disabled={!newItem}
         >
-          + Add
+          <span className="material-symbols-outlined text-sm">add</span>
+          Add
         </button>
       </form>
     </section>

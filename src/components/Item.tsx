@@ -40,7 +40,9 @@ const Item = ({ item }: ItemProps) => {
       />
       <div className="g'py-0 text-sm', ap-2 ml-auto flex">
         <button
-          className="ml-2 px-1.5 py-1 text-xs"
+          className={`ml-2 px-1.5 py-1 text-xs ${
+            !editing && 'bg-teal-400 hover:bg-teal-500'
+          }`}
           aria-label={`Edit "${item.name}"`}
           onClick={() => setEditing(!editing)}
         >
@@ -49,7 +51,7 @@ const Item = ({ item }: ItemProps) => {
           </span>
         </button>
         <button
-          className="ml-2 px-1.5 py-1 text-xs"
+          className="ml-2 bg-rose-400  px-1.5 py-1 text-xs hover:bg-rose-500"
           aria-label={`Delete "${item.name}"`}
           onClick={() => remove(item.id)}
         >

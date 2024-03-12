@@ -28,18 +28,18 @@ h2 {
 }
 
 input {
-  @apply rounded-sm bg-primary-200 py-1 pl-2 pr-0 placeholder-primary-400 accent-primary-600 transition-all ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 hover:bg-primary-200 hover:accent-primary-700 focus:bg-primary-50 disabled:border-slate-500 disabled:bg-slate-100 disabled:placeholder-slate-400;
+  @apply rounded-sm border-2 border-primary-300 bg-white py-1 pl-2 pr-0 placeholder-slate-500 accent-primary-600 outline-none transition-all ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 hover:bg-primary-200 hover:accent-primary-700 focus:bg-primary-50 disabled:border-slate-500 disabled:bg-slate-100 disabled:placeholder-slate-400;
 }
 
 label {
-  @apply p-1;
+  @apply border-2 border-transparent p-1;
 }
 
 button,
 button[type='button'],
 button[type='reset'],
 button[type='submit'] {
-  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-4 py-2 uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-200 active:bg-primary-300 disabled:bg-gray-400 disabled:text-white disabled:opacity-50;
+  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-4 py-2 uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-500 active:bg-primary-300 disabled:bg-slate-500 disabled:text-white disabled:opacity-50;
 }
 
 section {
