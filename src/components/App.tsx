@@ -9,7 +9,7 @@ function App() {
     <main className="main-margin">
       <h1> 🧳 Travel Packing List</h1>
       <NewItem />
-      <div className="flex flex-col gap-10 md:flex-row">
+      <div className="flex flex-col gap-x-10 md:flex-row">
         <List title="Unpacked Items" items={unpackedItems} />
         <List title="Packed Items" items={packedItems} />
       </div>
