@@ -34,7 +34,7 @@ const Item = ({ item }: ItemProps) => {
       <input
         value={item.name}
         id={`checkbox-editing-${item.id}`}
-        className={clsx({ hidden: !editing })}
+        className={clsx('overflow-scroll', { hidden: !editing })}
         size={item.name.length}
         onChange={(event) => update(item.id, { name: event.target.value })}
       />
