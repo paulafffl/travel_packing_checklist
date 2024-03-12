@@ -9,8 +9,10 @@ function App() {
     <main className="main-margin">
       <h1> 🧳 Travel Packing List</h1>
       <NewItem />
-      <List title="Unpacked Items" items={unpackedItems} />
-      <List title="Packed Items" items={packedItems} />
+      <div className="flex flex-wrap gap-x-10">
+        <List title="Unpacked Items" items={unpackedItems} />
+        <List title="Packed Items" items={packedItems} />
+      </div>
     </main>
   );
 }
