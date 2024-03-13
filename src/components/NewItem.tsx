@@ -3,8 +3,9 @@ import { ItemsContext } from '../context';
 import { listSummer } from '../lib/lists';
 
 const NewItem = () => {
-  const { addItem, addList } = useContext(ItemsContext);
+  const { addItem, addList, removeList } = useContext(ItemsContext);
   const [newItem, setNewItem] = useState('');
+  const [listedSummer, setListedSummer] = useState(false);
   return (
     <section>
       <form
@@ -37,11 +38,22 @@ const NewItem = () => {
         </button>
       </form>
       <button
-        className="px-2 py-1"
+        className="mt-4 px-2 py-1"
         aria-label={`Add List for SUMMER`}
-        onClick={() => addList(listSummer)}
+        onClick={() => {
+          if (!listedSummer) {
+            addList(listSummer);
+            setListedSummer(true);
+          } else {
+            removeList(listSummer);
+            setListedSummer(false);
+          }
+        }}
       >
-        + 🌞 SUMMER LIST
+        <span className="material-symbols-outlined mr-1 text-base font-bold">
+          {!listedSummer ? 'add' : 'delete'}
+        </span>
+        🌞 SUMMER LIST
       </button>
     </section>
   );

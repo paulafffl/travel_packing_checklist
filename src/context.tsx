@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useState } from 'react';
-import { createItem, getInitialItems, removeItem, updateItem } from './lib/items';
+import { createItem, getInitialItems, updateItem, deleteItems } from './lib/items';
 
 type ItemsState = {
   items: Item[];
@@ -8,7 +8,8 @@ type ItemsState = {
   unpackedItems: Item[];
   addItem: (name: string) => void;
   addList: (names: string[]) => void;
-  remove: (id: string) => void;
+  removeItem: (id: string) => void;
+  removeList: (ids: string[]) => void;
   update: (id: string, updates: WithoutId) => void;
   packAllItems: () => void;
   unpackAllItems: () => void;
@@ -36,8 +37,14 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setItems([...items, ...newItems]);
   };
 
-  const remove = (id: string) => {
-    setItems(removeItem(items, id));
+  const removeItem = (id: string) => {
+    setItems(deleteItems(items, id));
+  };
+
+  const removeList = (names: string[]) => {
+    const itemsToRemove = items.filter((item) => names.includes(item.name));
+    const ids = itemsToRemove.map((item) => item.id);
+    setItems(deleteItems(items, ids));
   };
 
   const update = (id: string, updates: WithoutId) => {
@@ -59,7 +66,8 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     packedItems,
     addItem,
     addList,
-    remove,
+    removeItem,
+    removeList,
     update,
     packAllItems,
     unpackAllItems,

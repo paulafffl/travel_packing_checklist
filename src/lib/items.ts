@@ -45,8 +45,10 @@ export const updateItem = (items: Item[], id: string, updates: Partial<Item>) =>
   return updatedItems;
 };
 
-export const removeItem = (items: Readonly<Item[]>, id: string) => {
-  const updatedItems = items.filter((item) => item.id !== id);
+export const deleteItems = (items: Readonly<Item[]>, ids: string | string[]) => {
+  const updatedItems = items.filter((item) =>
+    Array.isArray(ids) ? !ids.includes(item.id) : item.id !== ids,
+  );
   saveItemsToLocalStorage(updatedItems);
   return updatedItems;
 };
