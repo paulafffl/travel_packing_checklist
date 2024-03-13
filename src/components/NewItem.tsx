@@ -1,11 +1,13 @@
 import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
 import { listSummer } from '../lib/lists';
+import AddList from './AddList';
 
 const NewItem = () => {
-  const { addItem, addList, removeList } = useContext(ItemsContext);
+  const { addItem } = useContext(ItemsContext);
   const [newItem, setNewItem] = useState('');
   const [listedSummer, setListedSummer] = useState(false);
+
   return (
     <section>
       <form
@@ -37,24 +39,12 @@ const NewItem = () => {
           Add
         </button>
       </form>
-      <button
-        className="mt-4 px-2 py-1"
-        aria-label={`Add List for SUMMER`}
-        onClick={() => {
-          if (!listedSummer) {
-            addList(listSummer);
-            setListedSummer(true);
-          } else {
-            removeList(listSummer);
-            setListedSummer(false);
-          }
-        }}
-      >
-        <span className="material-symbols-outlined mr-1 text-base font-bold">
-          {!listedSummer ? 'add' : 'delete'}
-        </span>
-        🌞 SUMMER LIST
-      </button>
+      <AddList
+        list={listSummer}
+        name={'🌞 SUMMER LIST'}
+        listedState={listedSummer}
+        listedSetState={setListedSummer}
+      />
     </section>
   );
 };
