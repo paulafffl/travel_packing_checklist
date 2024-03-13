@@ -1,35 +1,8 @@
 import { v4 as id } from 'uuid';
+import { listDefault } from './lists';
 
-const createDefaultItems = (): Item[] => {
-  return [
-    '⛺ Tent',
-    '🛌 Sleeping Bag',
-    '➖ Insulating Mat',
-    '🔨 Hammer',
-    '🔦 Solar light',
-    '🚿 Solar shower',
-    '🪝 Hook',
-    '🪣 Water container',
-    '🔶 Travel Towel',
-    '🧻 Toilet Roll',
-    '🐜 Repellent',
-    '🥾 Wellie',
-    '🧦 Wellie Socks',
-    '🌧️ Poncho',
-    '🎒 Waterproof Bag',
-    '🔌 3 USB Socket',
-    '✨ Bio Glitter',
-    '🎟️ Festival Ticket',
-    '💵 Cash',
-    '🍴 Cutlery',
-    '🍱 Bento box',
-    '🥤 Straw',
-    '🧽 Sponge',
-    '🧼 Cloth',
-    '🍵 Mug',
-    '😷 Facemask',
-    '🧂 Seasonings',
-  ].map((name) => ({
+export const createDefaultItems = (): Item[] => {
+  return listDefault.map((name) => ({
     id: id(),
     name,
     packed: false,
@@ -63,11 +36,7 @@ const saveItemsToLocalStorage = (items: Item[]) => {
   localStorage.setItem('items', JSON.stringify(items));
 };
 
-export const updateItem = (
-  items: Item[],
-  id: string,
-  updates: Partial<Item>,
-) => {
+export const updateItem = (items: Item[], id: string, updates: Partial<Item>) => {
   const updatedItems = items.map((item) => {
     if (item.id === id) return { ...item, ...updates };
     return item;

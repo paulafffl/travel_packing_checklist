@@ -1,17 +1,13 @@
 import { PropsWithChildren, createContext, useState } from 'react';
-import {
-  createItem,
-  getInitialItems,
-  removeItem,
-  updateItem,
-} from './lib/items';
+import { createItem, getInitialItems, removeItem, updateItem } from './lib/items';
 
 type ItemsState = {
   items: Item[];
   totalItems: number;
   packedItems: Item[];
   unpackedItems: Item[];
-  add: (name: string) => void;
+  addItem: (name: string) => void;
+  addList: (names: string[]) => void;
   remove: (id: string) => void;
   update: (id: string, updates: WithoutId) => void;
   packAllItems: () => void;
@@ -30,9 +26,14 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const packedItems = items.filter((item) => item.packed);
   const unpackedItems = items.filter((item) => !item.packed);
 
-  const add = (name: string) => {
+  const addItem = (name: string) => {
     const item = createItem(name);
     setItems([...items, item]);
+  };
+
+  const addList = (names: string[]) => {
+    const newItems = names.map((name) => createItem(name));
+    setItems([...items, ...newItems]);
   };
 
   const remove = (id: string) => {
@@ -56,15 +57,14 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     totalItems,
     unpackedItems,
     packedItems,
-    add,
+    addItem,
+    addList,
     remove,
     update,
     packAllItems,
     unpackAllItems,
   };
-  return (
-    <ItemsContext.Provider value={value}>{children}</ItemsContext.Provider>
-  );
+  return <ItemsContext.Provider value={value}>{children}</ItemsContext.Provider>;
 };
 
 export default ItemsProvider;

@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
+import { listSummer } from '../lib/lists';
 
 const NewItem = () => {
-  const { add } = useContext(ItemsContext);
+  const { addItem, addList } = useContext(ItemsContext);
   const [newItem, setNewItem] = useState('');
   return (
     <section>
@@ -11,7 +12,7 @@ const NewItem = () => {
         className="flex flex-col sm:flex-row"
         onSubmit={(e) => {
           e.preventDefault();
-          add(newItem);
+          addItem(newItem);
           setNewItem('');
         }}
       >
@@ -27,7 +28,7 @@ const NewItem = () => {
         <button
           id="new-item-submit"
           className="px-2 py-1"
-          aria-label={`Add ${newItem}`}
+          aria-label={`Add Item ${newItem}`}
           type="submit"
           disabled={!newItem}
         >
@@ -35,6 +36,13 @@ const NewItem = () => {
           Add
         </button>
       </form>
+      <button
+        className="px-2 py-1"
+        aria-label={`Add List for SUMMER`}
+        onClick={() => addList(listSummer)}
+      >
+        + 🌞 SUMMER LIST
+      </button>
     </section>
   );
 };
