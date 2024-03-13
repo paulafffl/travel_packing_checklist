@@ -26,12 +26,12 @@ const NewItem = () => {
         />
         <button
           id="new-item-submit"
-          className="px-2 py-1 text-xs"
+          className="px-2 py-1"
           aria-label={`Add ${newItem}`}
           type="submit"
           disabled={!newItem}
         >
-          <span className="material-symbols-outlined text-sm">add</span>
+          <span className="material-symbols-outlined text-base font-bold">add</span>
           Add
         </button>
       </form>
