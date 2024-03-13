@@ -10,6 +10,8 @@ A client-side responsive front-end React application to assist a user when trave
 
 ## Deployment
 
-1. Run `npm run build` to build the app for production.
-1. Run `cd build` to switch to build directory
-1. Run `surge` to deploy
+• Run `npm run deploy`. This script will:
+
+1. build the application
+2. run the postbuild.js to set the CNAME file (where it states the domain name)
+3. deploy the build directory using the Surge CLI
