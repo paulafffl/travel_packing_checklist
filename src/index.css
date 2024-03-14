@@ -53,11 +53,14 @@ button[type='submit'] {
 }
 
 section {
-  @apply mx-auto mt-10 bg-white p-6;
+  @apply mx-auto mt-6 bg-white p-6 sm:mt-8 sm:px-7;
 }
 
 .main-margin {
-  margin: 10vh 10vw;
+  margin: 10vh 20vw;
+  @media (max-width: 1024px) {
+    margin: 10vh 10vw;
+  }
 }
 
 @media (max-width: 640px) {
