@@ -27,7 +27,7 @@ const AddList = ({ list, name, listedState, listedSetState }: ItemProps) => {
       <span className="material-symbols-outlined mr-1 text-base font-bold">
         {!listedState ? 'add' : 'delete'}
       </span>
-      {name}
+      {name} LIST
     </button>
   );
 };
