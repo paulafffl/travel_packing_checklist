@@ -1,8 +1,8 @@
 import { v4 as id } from 'uuid';
-import { listDefault } from './lists';
+import { listToiletries } from './lists';
 
 export const createDefaultItems = (): Item[] => {
-  return listDefault.map((name) => ({
+  return listToiletries.map((name) => ({
     id: id(),
     name,
     packed: false,
