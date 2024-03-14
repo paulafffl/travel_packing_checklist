@@ -36,16 +36,14 @@ const Item = ({ item }: ItemProps) => {
       />
       <div className="g'py-0 text-sm', ap-2 ml-auto flex">
         <button
-          className={`button-with-icon ml-2 px-1.5 py-1 text-xs ${
-            !editing && 'bg-teal-400 hover:bg-teal-500'
-          }`}
+          className={`ml-2 px-1.5 py-1 text-xs ${!editing && 'bg-teal-400 hover:bg-teal-500'}`}
           aria-label={`Edit "${item.name}"`}
           onClick={() => setEditing(!editing)}
         >
           <span className="material-symbols-outlined text-sm">{editing ? 'save' : 'edit'}</span>
         </button>
         <button
-          className="button-with-icon ml-2 bg-rose-400  px-1.5 py-1 text-xs hover:bg-rose-500"
+          className=" ml-2 bg-rose-400  px-1.5 py-1 text-xs hover:bg-rose-500"
           aria-label={`Delete "${item.name}"`}
           onClick={() => removeItem(item.id)}
         >
