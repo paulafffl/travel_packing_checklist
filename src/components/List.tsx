@@ -38,7 +38,7 @@ const List = ({ title, items }: ItemsProps) => {
         <p className="mt-2 text-slate-500">{message()}</p>
       ) : (
         <button
-          className="my-4 w-full"
+          className="button-with-icon my-4 w-full"
           onClick={() => (packed ? unpackAllItems() : packAllItems())}
         >
           <span className="material-symbols-outlined">{packed ? 'upload' : 'download'}</span>{' '}

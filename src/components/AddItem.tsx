@@ -26,7 +26,7 @@ const AddItem = () => {
       />
       <button
         id="new-item-submit"
-        className="px-2 py-1"
+        className="button-with-icon px-2 py-1"
         aria-label={`Add Item ${newItem}`}
         type="submit"
         disabled={!newItem}

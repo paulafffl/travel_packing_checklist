@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { ItemsContext } from '../context';
 import List from './List';
 import AddSection from './AddSection';
+import '../lib/iconsLoader.js';
 
 function App() {
   const { packedItems, unpackedItems } = useContext(ItemsContext);
