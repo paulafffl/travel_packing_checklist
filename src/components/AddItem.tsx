@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
+import Icon from './Icon';
 
 const AddItem = () => {
   const { addItem } = useContext(ItemsContext);
@@ -26,13 +27,12 @@ const AddItem = () => {
       />
       <button
         id="new-item-submit"
-        className=" px-2 py-1"
         aria-label={`Add Item ${newItem}`}
         type="submit"
         disabled={!newItem}
       >
-        <span className="material-symbols-outlined text-base font-bold">add</span>
-        Add
+        <Icon symbol="add" />
+        <span className="ml-1">Add</span>
       </button>
     </form>
   );

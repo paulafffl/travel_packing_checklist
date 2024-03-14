@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
+import Icon from './Icon';
 
 type ItemProps = {
   item: Item;
@@ -36,18 +37,18 @@ const Item = ({ item }: ItemProps) => {
       />
       <div className="g'py-0 text-sm', ap-2 ml-auto flex">
         <button
-          className={`ml-2 px-1.5 py-1 text-xs ${!editing && 'bg-teal-400 hover:bg-teal-500'}`}
+          className={`px-2 py-1 text-xs ${!editing && 'bg-teal-400 hover:bg-teal-500'}`}
           aria-label={`Edit "${item.name}"`}
           onClick={() => setEditing(!editing)}
         >
-          <span className="material-symbols-outlined text-sm">{editing ? 'save' : 'edit'}</span>
+          <Icon symbol={editing ? 'save' : 'edit'} />
         </button>
         <button
-          className=" ml-2 bg-rose-400  px-1.5 py-1 text-xs hover:bg-rose-500"
+          className="ml-2 bg-rose-400 px-2 py-1 text-xs hover:bg-rose-500"
           aria-label={`Delete "${item.name}"`}
           onClick={() => removeItem(item.id)}
         >
-          <span className="material-symbols-outlined text-sm">delete</span>{' '}
+          <Icon symbol="delete" />
         </button>
       </div>
     </li>

@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { ItemsContext } from '../context';
+import Icon from './Icon';
 
 type ItemProps = {
   list: string[];
@@ -12,7 +13,7 @@ const AddList = ({ list, name, listedState, listedSetState }: ItemProps) => {
   const { addList, removeList } = useContext(ItemsContext);
   return (
     <button
-      className=" mr-5 mt-4 py-1 pl-2 pr-3"
+      className="mr-5 mt-4 py-1 pl-2 pr-3"
       aria-label={`Add List for ${name}`}
       onClick={() => {
         if (!listedState) {
@@ -24,10 +25,8 @@ const AddList = ({ list, name, listedState, listedSetState }: ItemProps) => {
         }
       }}
     >
-      <span className="material-symbols-outlined mr-1 text-base font-bold">
-        {!listedState ? 'add' : 'delete'}
-      </span>
-      {name}
+      <Icon symbol={listedState ? 'remove' : 'add'} />
+      <span className="ml-1">{name}</span>
     </button>
   );
 };

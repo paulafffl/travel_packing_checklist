@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { ItemsContext } from '../context';
 import Item from './Item';
+import Icon from './Icon';
 
 type ItemsProps = {
   items: Item[];
@@ -38,11 +39,11 @@ const List = ({ title, items }: ItemsProps) => {
         <p className="mt-2 text-slate-500">{message()}</p>
       ) : (
         <button
-          className=" my-4 w-full"
+          className="my-4 w-full"
           onClick={() => (packed ? unpackAllItems() : packAllItems())}
         >
-          <span className="material-symbols-outlined">{packed ? 'upload' : 'download'}</span>{' '}
-          {packed ? 'Unpack all items' : 'Pack all items'}
+          <Icon symbol={packed ? 'upload' : 'download'} />
+          <span className="ml-1">{packed ? 'Unpack all items' : 'Pack all items'}</span>
         </button>
       )}
     </section>
