@@ -74,11 +74,3 @@ section {
     border-radius: 2vw;
   }
 }
-
-.button-with-icon {
-  visibility: hidden;
-}
-
-.button-with-icon.loaded {
-  visibility: visible;
-}
