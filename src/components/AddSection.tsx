@@ -32,13 +32,13 @@ const AddSection = () => {
       <AddItem />
       <AddList
         list={listToiletries}
-        name={'👝 Toiletries'}
+        name={'🛁 Toiletries'}
         listedState={listedToiletries}
         listedSetState={setListedToiletries}
       />
       <AddList
         list={listZeroWaste}
-        name={'♻️ Zero Waste'}
+        name={'💚 Zero Waste'}
         listedState={listedZeroWaste}
         listedSetState={setListedZeroWaste}
       />
