@@ -30,19 +30,6 @@ export const listZeroWaste = [
   '🧂 Seasonings',
 ];
 
-export const listClothes = [
-  '👕 Shirts',
-  '👚 Tops',
-  '👖 Trousers',
-  '🩳 Shorts / Skirt',
-  '👗 Jumpsuit / Dress',
-  '🧥 Coat / Jacket',
-  '🩲 Underwear',
-  '🧦 Socks',
-  '🧘 Sportswear',
-  '😴 Pyjamas',
-];
-
 export const listFood = [
   '🍫 Protein bar',
   '🍩 Sweets',
@@ -51,17 +38,6 @@ export const listFood = [
   '🍎 Fruits',
   '🥪 Sandwich',
 ];
-
-export const listSummer = [
-  '🧴 Sun Protector',
-  '🏖️ Beach Towel',
-  '👙 Swimwear',
-  '🕶️ Sun Glasses',
-  '🩴 Flipflops',
-  '🧢 Hat',
-];
-
-export const listWinter = ['🧤 Gloves', '🪖 Beanie', '🧣 Scarf', '🧥 Sweater', '🧦 Warm socks'];
 
 export const listTech = [
   '📱 Phone + charger',
@@ -97,6 +73,47 @@ export const listEssentials = [
   '🚍 Bus Tickets',
 ];
 
+export const listReadyToGo = [
+  '🪴 Water plants',
+  '🗑️ Take out trash',
+  '🧊 Get chilled food',
+  '🔥 Turn off heating',
+  '💡 Turn off lights',
+  '📝 Review checklist',
+  '🚪 Look door',
+];
+
+export const listClothes = [
+  '👕 Shirts',
+  '👚 Tops',
+  '👖 Trousers',
+  '🩳 Shorts / Skirt',
+  '👗 Jumpsuit / Dress',
+  '🧥 Coat / Jacket',
+  '🩲 Underwear',
+  '🧦 Socks',
+  '🧘 Sportswear',
+  '😴 Pyjamas',
+];
+
+export const listSummer = [
+  '🧴 Sun Protector',
+  '🏖️ Beach Towel',
+  '👙 Swimwear',
+  '🕶️ Sun Glasses',
+  '🩴 Flipflops',
+  '🧢 Hat',
+];
+
+export const listWinter = [
+  '🧤 Gloves',
+  '🧣 Scarf',
+  '🪖 Beanie',
+  '🧦 Winter socks',
+  '🧶 Sweater',
+  '🥼 Winter Coat',
+];
+
 export const listCamping = [
   '⛺ Tent',
   '🛌 Sleeping Bag',
@@ -117,14 +134,4 @@ export const listCamping = [
   '✨ Bio Glitter',
   '🎟️ Festival Ticket',
   '💵 Cash',
-];
-
-export const readyToGo = [
-  '🪴 Water plants',
-  '🗑️ Take out trash',
-  '🧊 Get chilled food',
-  '🔥 Turn off heating',
-  '💡 Turn off lights',
-  '📝 Review checklist',
-  '🚪 Look door',
 ];

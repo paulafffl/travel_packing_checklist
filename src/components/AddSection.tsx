@@ -1,34 +1,94 @@
 import { useState } from 'react';
-import { listSummer, listWinter, listZeroWaste } from '../lib/lists';
+import {
+  listCamping,
+  listClothes,
+  listEssentials,
+  listFood,
+  listReadyToGo,
+  listSummer,
+  listTech,
+  listToiletries,
+  listWinter,
+  listZeroWaste,
+} from '../lib/lists';
 import AddItem from './AddItem';
 import AddList from './AddList';
 
 const AddSection = () => {
+  const [listedToiletries, setListedToiletries] = useState(false);
+  const [listedZeroWaste, setListedZeroWaste] = useState(false);
+  const [listedFood, setListedFood] = useState(false);
+  const [listedTech, setListedTech] = useState(false);
+  const [listedEssentials, setListedEssentials] = useState(false);
+  const [listedReadyToGo, setListedReadyToGo] = useState(false);
+  const [listedClothes, setListedClothes] = useState(false);
   const [listedSummer, setListedSummer] = useState(false);
   const [listedWinter, setListedWinter] = useState(false);
-  const [listedZeroWaste, setListedZeroWaste] = useState(false);
+  const [listedCamping, setListedCamping] = useState(false);
 
   return (
     <section>
       <h2> ADD ITEMS </h2>
       <AddItem />
       <AddList
+        list={listToiletries}
+        name={'👝 Toiletries'}
+        listedState={listedToiletries}
+        listedSetState={setListedToiletries}
+      />
+      <AddList
+        list={listZeroWaste}
+        name={'♻️ Zero Waste'}
+        listedState={listedZeroWaste}
+        listedSetState={setListedZeroWaste}
+      />
+      <AddList
+        list={listFood}
+        name={'🍎 Food'}
+        listedState={listedFood}
+        listedSetState={setListedFood}
+      />
+      <AddList
+        list={listTech}
+        name={'💻 Tech'}
+        listedState={listedTech}
+        listedSetState={setListedTech}
+      />
+      <AddList
+        list={listEssentials}
+        name={'🎒 Essentials'}
+        listedState={listedEssentials}
+        listedSetState={setListedEssentials}
+      />
+      <AddList
+        list={listReadyToGo}
+        name={'🚪 Ready To Go'}
+        listedState={listedReadyToGo}
+        listedSetState={setListedReadyToGo}
+      />
+      <AddList
+        list={listClothes}
+        name={'👕 Clothes'}
+        listedState={listedClothes}
+        listedSetState={setListedClothes}
+      />
+      <AddList
         list={listSummer}
-        name={'🌞 SUMMER'}
+        name={'🌞 Summer'}
         listedState={listedSummer}
         listedSetState={setListedSummer}
       />
       <AddList
         list={listWinter}
-        name={'❄️ WINTER'}
+        name={'❄️ Winter'}
         listedState={listedWinter}
         listedSetState={setListedWinter}
       />
       <AddList
-        list={listZeroWaste}
-        name={'♻️ ZeroWaste'}
-        listedState={listedZeroWaste}
-        listedSetState={setListedZeroWaste}
+        list={listCamping}
+        name={'🏕️ Camping'}
+        listedState={listedCamping}
+        listedSetState={setListedCamping}
       />
     </section>
   );
