@@ -12,8 +12,8 @@ const AddList = ({ list, name, listedState, listedSetState }: ItemProps) => {
   const { addList, removeList } = useContext(ItemsContext);
   return (
     <button
-      className="mt-4 px-2 py-1"
-      aria-label={`Add List for SUMMER`}
+      className="mr-5 mt-4 py-1 pl-2 pr-3"
+      aria-label={`Add List for ${name}`}
       onClick={() => {
         if (!listedState) {
           addList(list);
@@ -27,7 +27,7 @@ const AddList = ({ list, name, listedState, listedSetState }: ItemProps) => {
       <span className="material-symbols-outlined mr-1 text-base font-bold">
         {!listedState ? 'add' : 'delete'}
       </span>
-      {name} LIST
+      {name}
     </button>
   );
 };

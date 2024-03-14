@@ -61,3 +61,15 @@ section {
 .main-margin {
   margin: 10vh 10vw;
 }
+
+@media (max-width: 640px) {
+  .scrollbar::-webkit-scrollbar {
+    width: 1.5vw;
+    background-color: rgb(219, 207, 239);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #2dd4bf;
+    border-radius: 2vw;
+  }
+}

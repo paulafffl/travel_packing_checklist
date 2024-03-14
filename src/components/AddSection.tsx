@@ -15,7 +15,7 @@ import AddItem from './AddItem';
 import AddList from './AddList';
 
 const AddSection = () => {
-  const [listedToiletries, setListedToiletries] = useState(false);
+  const [listedToiletries, setListedToiletries] = useState(true);
   const [listedZeroWaste, setListedZeroWaste] = useState(false);
   const [listedFood, setListedFood] = useState(false);
   const [listedTech, setListedTech] = useState(false);
@@ -27,15 +27,9 @@ const AddSection = () => {
   const [listedCamping, setListedCamping] = useState(false);
 
   return (
-    <section>
+    <section className={'scrollbar h-[40vh] overflow-y-auto sm:h-auto'}>
       <h2> ADD ITEMS </h2>
       <AddItem />
-      <AddList
-        list={listToiletries}
-        name={'🛁 Toiletries'}
-        listedState={listedToiletries}
-        listedSetState={setListedToiletries}
-      />
       <AddList
         list={listZeroWaste}
         name={'💚 Zero Waste'}
@@ -89,6 +83,12 @@ const AddSection = () => {
         name={'🏕️ Camping'}
         listedState={listedCamping}
         listedSetState={setListedCamping}
+      />
+      <AddList
+        list={listToiletries}
+        name={'🛁 Toiletries'}
+        listedState={listedToiletries}
+        listedSetState={setListedToiletries}
       />
     </section>
   );
