@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ItemsContext } from '../context';
 import {
   listCamping,
   listClothes,
@@ -15,16 +16,17 @@ import AddItem from './AddItem';
 import AddList from './AddList';
 
 const AddSection = () => {
-  const [listedToiletries, setListedToiletries] = useState(true);
-  const [listedZeroWaste, setListedZeroWaste] = useState(false);
-  const [listedFood, setListedFood] = useState(false);
-  const [listedTech, setListedTech] = useState(false);
-  const [listedEssentials, setListedEssentials] = useState(false);
-  const [listedReadyToGo, setListedReadyToGo] = useState(false);
-  const [listedClothes, setListedClothes] = useState(false);
-  const [listedSummer, setListedSummer] = useState(false);
-  const [listedWinter, setListedWinter] = useState(false);
-  const [listedCamping, setListedCamping] = useState(false);
+  const { addedList } = useContext(ItemsContext);
+  const [listedToiletries, setListedToiletries] = useState(addedList(listToiletries));
+  const [listedZeroWaste, setListedZeroWaste] = useState(addedList(listZeroWaste));
+  const [listedFood, setListedFood] = useState(addedList(listFood));
+  const [listedTech, setListedTech] = useState(addedList(listTech));
+  const [listedEssentials, setListedEssentials] = useState(addedList(listEssentials));
+  const [listedReadyToGo, setListedReadyToGo] = useState(addedList(listReadyToGo));
+  const [listedClothes, setListedClothes] = useState(addedList(listClothes));
+  const [listedSummer, setListedSummer] = useState(addedList(listSummer));
+  const [listedWinter, setListedWinter] = useState(addedList(listWinter));
+  const [listedCamping, setListedCamping] = useState(addedList(listCamping));
 
   return (
     <section className={'scrollbar h-[40vh] overflow-y-auto sm:h-auto'}>

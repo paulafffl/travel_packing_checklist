@@ -10,6 +10,7 @@ type ItemsState = {
   addList: (names: string[]) => void;
   removeItem: (id: string) => void;
   removeList: (ids: string[]) => void;
+  addedList: (names: string[]) => boolean;
   update: (id: string, updates: WithoutId) => void;
   packAllItems: () => void;
   unpackAllItems: () => void;
@@ -35,6 +36,10 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const addList = (names: string[]) => {
     const newItems = names.map((name) => createItem(name));
     setItems([...items, ...newItems]);
+  };
+
+  const addedList = (names: string[]) => {
+    return names.every((name) => items.find((item) => item.name === name));
   };
 
   const removeItem = (id: string) => {
@@ -68,6 +73,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     addList,
     removeItem,
     removeList,
+    addedList,
     update,
     packAllItems,
     unpackAllItems,
