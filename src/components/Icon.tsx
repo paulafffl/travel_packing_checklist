@@ -8,7 +8,10 @@ interface IconProps {
 const Icon: React.FC<IconProps> = ({ symbol = 'add', color = 'white' }) => {
   const iconToBeDisplayed = () => {
     if (symbol === 'add') {
-      return <span className="mb-0.5 mr-1 p-0 text-lg leading-none">{'+'}</span>;
+      return <span className="mb-0.5 p-0 text-xl leading-none">{'+'}</span>;
+    }
+    if (symbol === 'remove') {
+      return <span className="mb-0.5 px-0.5 text-xl leading-none">{'-'}</span>;
     } else {
       let pathD = '';
       switch (symbol) {
@@ -28,12 +31,16 @@ const Icon: React.FC<IconProps> = ({ symbol = 'add', color = 'white' }) => {
           pathD =
             'M440-320v-326L336-542l-56-58 200-200 200 200-56 58-104-104v326h-80ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z';
           break;
+        case 'save':
+          pathD =
+            'M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z';
+          break;
         default:
           break;
       }
       return (
         <svg
-          className="mb-0.5 mr-1 h-4 w-4"
+          className="mb-1 mt-0.5 h-4 w-4 p-0"
           xmlns="http://www.w3.org/2000/svg"
           height="24"
           viewBox="0 -960 960 960"
