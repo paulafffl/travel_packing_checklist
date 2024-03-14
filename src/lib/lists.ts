@@ -13,6 +13,7 @@ export const listToiletries = [
   '💦 Moisturizer',
   '💊 Vitamins / Pills',
   '🩹 Eco Bandage',
+  '🪒 Razor',
   '💅 Nail file',
   '🩸 Period Cup / Pants',
 ];
