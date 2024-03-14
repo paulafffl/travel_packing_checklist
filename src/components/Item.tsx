@@ -37,14 +37,14 @@ const Item = ({ item }: ItemProps) => {
       />
       <div className="g'py-0 text-sm', ap-2 ml-auto flex">
         <button
-          className={`px-2 py-1 text-xs ${!editing && 'bg-teal-400 hover:bg-teal-500'}`}
+          className={`px-2 py-1 text-xs ${!editing && 'color-palette-green'}`}
           aria-label={`Edit "${item.name}"`}
           onClick={() => setEditing(!editing)}
         >
           <Icon symbol={editing ? 'save' : 'edit'} />
         </button>
         <button
-          className="ml-2 bg-rose-400 px-2 py-1 text-xs hover:bg-rose-500"
+          className="color-palette-red ml-2 px-2 py-1 text-xs"
           aria-label={`Delete "${item.name}"`}
           onClick={() => removeItem(item.id)}
         >
