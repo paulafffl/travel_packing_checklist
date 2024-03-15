@@ -30,12 +30,12 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const addItem = (name: string) => {
     const item = createItem(name);
-    setItems([...items, item]);
+    setItems([item, ...items]);
   };
 
   const addList = (names: string[]) => {
     const newItems = names.map((name) => createItem(name));
-    setItems([...items, ...newItems]);
+    setItems([...newItems, ...items]);
   };
 
   const addedList = (names: string[]) => {
