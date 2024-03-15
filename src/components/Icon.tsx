@@ -40,7 +40,7 @@ const Icon: React.FC<IconProps> = ({ symbol = 'add', color = 'white' }) => {
       }
       return (
         <svg
-          className="mb-1 mt-0.5 h-4 w-4 p-0"
+          className="mb-0.5 mt-0 h-4 w-4 p-0"
           xmlns="http://www.w3.org/2000/svg"
           height="24"
           viewBox="0 -960 960 960"
