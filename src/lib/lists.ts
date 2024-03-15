@@ -42,7 +42,7 @@ export const listFood = [
 
 export const listTech = [
   '📱 Phone + charger',
-  '🔋 Power bank + charger',
+  '🔋 Power bank + usb',
   '💻 Laptop + charger',
   '🔊 Speaker + charger',
   '🔌 Plug Adapter',
