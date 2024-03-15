@@ -12,7 +12,7 @@ export const listToiletries = [
   '💋 Lip balm SPF',
   '💦 Moisturizer',
   '💊 Vitamins / Pills',
-  '🩹 Eco Bandage',
+  '🩹 Bandage',
   '🪒 Razor',
   '💅 Nail file',
   '🩸 Period Cup / Pants',
@@ -130,7 +130,7 @@ export const listCamping = [
   '🧦 Wellie socks',
   '🌧️ Poncho',
   '🎒 Waterproof bag',
-  '✨ Bio glitter',
+  '✨ Eco-friendly glitter',
   '🎟️ Festival ticket',
   '💵 Cash',
 ];
