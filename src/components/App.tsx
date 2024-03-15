@@ -13,6 +13,18 @@ function App() {
         <List title="Unpacked Items" items={unpackedItems} />
         <List title="Packed Items" items={packedItems} />
       </div>
+      <footer>
+        Built by
+        <a
+          className="ml-1 underline"
+          href="https://www.linkedin.com/in/paulafernandeslima/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Paula Lima
+        </a>
+        , with ❤️
+      </footer>
     </main>
   );
 }
