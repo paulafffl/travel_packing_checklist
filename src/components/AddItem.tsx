@@ -55,7 +55,7 @@ const AddItem = () => {
   return (
     <form
       id="new-item"
-      className="flex flex-col sm:flex-row"
+      className="flex w-full"
       onSubmit={(e) => {
         e.preventDefault();
         if (!existingInList()) {
@@ -67,7 +67,7 @@ const AddItem = () => {
       <Toaster />
       <input
         id="new-item-name"
-        className="mb-2 flex-grow sm:mb-0 sm:mr-2"
+        className="w-full overflow-scroll"
         type="search"
         placeholder="New Item"
         value={newItem}
@@ -76,12 +76,13 @@ const AddItem = () => {
       />
       <button
         id="new-item-submit"
+        style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
         aria-label={`Add Item ${newItem}`}
         type="submit"
         disabled={!newItem}
       >
         <Icon symbol="add" />
-        <span className="ml-1">Add</span>
+        <span className="ml-1 hidden sm:block">Add</span>
       </button>
     </form>
   );
