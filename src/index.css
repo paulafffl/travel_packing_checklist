@@ -8,16 +8,10 @@
   unicode-range: U+2600-27BF;
 }
 
-:root {
-  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  --font-secondary: Inter var, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji,
-    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-}
-
 body {
   margin: 0;
-  font-family: var(--font-primary);
+  font-family: 'Poppins', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(237, 238, 245);
@@ -28,12 +22,11 @@ code {
 }
 
 h1 {
-  @apply pb-4 text-4xl font-bold;
+  @apply pb-4 text-3xl font-extrabold;
 }
 
 h2 {
   @apply mb-3 font-bold uppercase;
-  font-family: var(--font-secondary);
 }
 
 input {
@@ -49,7 +42,6 @@ button[type='button'],
 button[type='reset'],
 button[type='submit'] {
   @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-4 py-2 font-semibold uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-500 active:bg-primary-300 disabled:bg-slate-500 disabled:text-white disabled:opacity-50;
-  font-family: var(--font-secondary);
 }
 
 section {
