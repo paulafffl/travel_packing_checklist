@@ -8,10 +8,10 @@ interface IconProps {
 const Icon: React.FC<IconProps> = ({ symbol = 'add', color = 'white' }) => {
   const iconToBeDisplayed = () => {
     if (symbol === 'add') {
-      return <span className="mb-0.5 p-0 text-xl leading-none">{'+'}</span>;
+      return <span className="mb-0 text-base leading-none sm:mb-0.5 sm:text-xl">{'+'}</span>;
     }
     if (symbol === 'remove') {
-      return <span className="mb-0.5 px-0.5 text-xl leading-none">{'-'}</span>;
+      return <span className="mb-0 text-base leading-none sm:mb-0.5 sm:text-xl">{'-'}</span>;
     } else {
       let pathD = '';
       switch (symbol) {
