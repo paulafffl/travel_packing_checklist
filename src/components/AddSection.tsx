@@ -57,16 +57,16 @@ const AddSection = () => {
         listedSetState={setListedEssentials}
       />
       <AddList
-        list={listLeaving}
-        name={'🚪 Leaving'}
-        listedState={listedLeaving}
-        listedSetState={setListedLeaving}
-      />
-      <AddList
         list={listClothes}
         name={'👕 Clothes'}
         listedState={listedClothes}
         listedSetState={setListedClothes}
+      />
+      <AddList
+        list={listLeaving}
+        name={'🚪 Leaving'}
+        listedState={listedLeaving}
+        listedSetState={setListedLeaving}
       />
       <AddList
         list={listSummer}

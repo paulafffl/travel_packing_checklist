@@ -1,5 +1,5 @@
 export const listToiletries = [
-  '🧴 Alcohol gel',
+  '🧴 Hand sanitiser',
   '🌸 Deodorant',
   '🦷 Toothpaste',
   '🪥 Toothbrush',
@@ -22,12 +22,12 @@ export const listZeroWaste = [
   '🍴 Cutlery',
   '🍱 Bento box',
   '🥤 Straw',
-  '☕ Thermal Cup',
+  '☕ Thermal cup',
   '🧽 Sponge',
-  '🧼 Dish Soap',
+  '🧼 Dish soap',
   '🔶 Cloth',
   '🍵 Mug',
-  '😷 Facemask',
+  '😷 Face mask',
   '🧂 Seasonings',
 ];
 
@@ -42,14 +42,13 @@ export const listFood = [
 
 export const listTech = [
   '📱 Phone + charger',
-  '🔋 Power bank + usb',
+  '🔋 Power bank + USB',
   '💻 Laptop + charger',
   '🔊 Speaker + charger',
   '🔌 Plug Adapter',
   '📷 Camera',
   '🔥 Sex toys + charger',
   '💨 Vape + charger',
-  '🎧 Earplug splitter',
 ];
 
 export const listEssentials = [
@@ -57,7 +56,7 @@ export const listEssentials = [
   '🛂 Passport',
   '💳 Credit card',
   '🔑 Keys',
-  '🥽 Eye Mask',
+  '🥽 Eye mask',
   '🎧 Earphones',
   '👂 Earplugs',
   '🍶 Water bottle',
@@ -68,10 +67,10 @@ export const listEssentials = [
   '📓 Notebook',
   '👟 Sneaker',
   '🥾 Boots',
-  '🚊 Train Tickets',
-  '🚢 Boat Tickets',
-  '🛩 Airplane Tickets',
-  '🚍 Bus Tickets',
+  '🚊 Train tickets',
+  '🚢 Boat tickets',
+  '✈️ Airplane tickets',
+  '🚍 Bus tickets',
 ];
 
 export const listLeaving = [
@@ -98,11 +97,11 @@ export const listClothes = [
 ];
 
 export const listSummer = [
-  '🧴 Sun Protector',
-  '🏖️ Beach Towel',
+  '🧴 Sun protector',
+  '🏖️ Beach towel',
   '👙 Swimwear',
-  '🕶️ Sun Glasses',
-  '🩴 Flipflops',
+  '😎 Sunglasses',
+  '🩴 Flip-flops',
   '🧢 Hat',
 ];
 
@@ -112,27 +111,26 @@ export const listWinter = [
   '🪖 Beanie',
   '🧦 Winter socks',
   '🧶 Sweater',
-  '🥼 Winter Coat',
+  '🥼 Winter coat',
 ];
 
 export const listCamping = [
   '⛺ Tent',
-  '🛌 Sleeping Bag',
-  '➖ Insulating Mat',
+  '🛌 Sleeping bag',
+  '➖ Insulating mat',
   '🔨 Hammer',
   '🔦 Solar light',
   '🚿 Solar shower',
   '🪝 Hook',
   '🪣 Water container',
-  '🔶 Travel Towel',
-  '🧻 Toilet Roll',
+  '🔶 Travel towel',
+  '🧻 Toilet roll',
   '🐜 Repellent',
-  '🥾 Wellie',
-  '🧦 Wellie Socks',
+  '🥾 Wellies',
+  '🧦 Wellie socks',
   '🌧️ Poncho',
-  '🎒 Waterproof Bag',
-  '🔌 3 USB Socket',
-  '✨ Bio Glitter',
-  '🎟️ Festival Ticket',
+  '🎒 Waterproof bag',
+  '✨ Bio glitter',
+  '🎟️ Festival ticket',
   '💵 Cash',
 ];
