@@ -29,7 +29,7 @@ const AddSection = () => {
   const [listedCamping, setListedCamping] = useState(addedList(listCamping));
 
   return (
-    <section className={'scrollbar h-[42vh] overflow-y-auto sm:h-auto'}>
+    <section className={'scrollbar h-[44vh] overflow-y-auto sm:h-auto'}>
       <h2> ADD ITEMS </h2>
       <AddItem />
       <AddList
@@ -81,16 +81,16 @@ const AddSection = () => {
         listedSetState={setListedWinter}
       />
       <AddList
-        list={listCamping}
-        name={'🏕️ Camping'}
-        listedState={listedCamping}
-        listedSetState={setListedCamping}
-      />
-      <AddList
         list={listToiletries}
         name={'🛁 Toiletries'}
         listedState={listedToiletries}
         listedSetState={setListedToiletries}
+      />
+      <AddList
+        list={listCamping}
+        name={'🏕️ Camping'}
+        listedState={listedCamping}
+        listedSetState={setListedCamping}
       />
     </section>
   );

@@ -36,10 +36,10 @@ const List = ({ title, items }: ItemsProps) => {
         ))}
       </ul>
       {items.length === 0 ? (
-        <p className="mt-2 text-slate-500">{message()}</p>
+        <p className="mt-0 text-slate-500 sm:mt-2">{message()}</p>
       ) : (
         <button
-          className="my-4 w-full"
+          className="my-4 mb-0 w-full"
           onClick={() => (packed ? unpackAllItems() : packAllItems())}
         >
           <Icon symbol={packed ? 'upload' : 'download'} />

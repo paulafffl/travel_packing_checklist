@@ -55,7 +55,7 @@ const AddItem = () => {
   return (
     <form
       id="new-item"
-      className="flex w-full"
+      className="mb-1 flex w-full"
       onSubmit={(e) => {
         e.preventDefault();
         if (!existingInList()) {
