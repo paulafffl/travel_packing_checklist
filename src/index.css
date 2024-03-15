@@ -65,17 +65,12 @@ section {
   }
 }
 
-@media (max-width: 640px) {
-  .scrollbar::-webkit-scrollbar {
-    width: 1.5vw;
-    height: 1.5vw;
-    background-color: rgb(219, 207, 239);
-  }
+::-webkit-scrollbar {
+  @apply w-2 bg-slate-300;
+}
 
-  .scrollbar::-webkit-scrollbar-thumb {
-    background-color: #2dd4bf;
-    border-radius: 2vw;
-  }
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-teal-400;
 }
 
 footer {
