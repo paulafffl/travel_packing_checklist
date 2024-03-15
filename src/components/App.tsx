@@ -7,9 +7,7 @@ function App() {
   const { packedItems, unpackedItems } = useContext(ItemsContext);
   return (
     <main className="main-margin">
-      <h1 className="text-left sm:text-center">
-        🧳Travel <span className="whitespace-nowrap">Packing Checklist</span>
-      </h1>
+      <h1>{`🧳Travel Packing\u00A0Checklist`}</h1>
       <AddSection />
       <div className="flex flex-col gap-x-10 md:flex-row">
         <List title="Unpacked Items" items={unpackedItems} />

@@ -15,6 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(237, 238, 245);
+  @apply text-sm sm:text-base;
 }
 
 code {
@@ -22,7 +23,8 @@ code {
 }
 
 h1 {
-  @apply pb-4 text-3xl font-extrabold;
+  @apply pb-4 text-left font-extrabold leading-tight sm:text-center;
+  font-size: 2.1rem;
 }
 
 h2 {
@@ -59,7 +61,7 @@ section {
 .main-margin {
   margin: 10vh 20vw;
   @media (max-width: 1024px) {
-    margin: 10vh 10vw;
+    margin: 10vh 8vw;
   }
 }
 
