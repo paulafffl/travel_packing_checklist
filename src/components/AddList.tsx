@@ -13,7 +13,7 @@ const AddList = ({ list, name, listedState, listedSetState }: ItemProps) => {
   const { addList, removeList } = useContext(ItemsContext);
   return (
     <button
-      className={`mr-2 mt-3 px-2 py-1 sm:mr-5 sm:mt-4 sm:pl-2 sm:pr-3 ${
+      className={`mr-2 mt-3 px-2 sm:mr-5 sm:mt-4 sm:pl-2 sm:pr-3 ${
         listedState && 'color-palette-red'
       }`}
       aria-label={`Add List for ${name}`}

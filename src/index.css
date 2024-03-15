@@ -43,7 +43,7 @@ button,
 button[type='button'],
 button[type='reset'],
 button[type='submit'] {
-  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-4 py-2 font-semibold uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-500 active:bg-primary-300 disabled:bg-slate-500 disabled:text-white disabled:opacity-50;
+  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-4 py-1 font-semibold uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-500 active:bg-primary-300 disabled:bg-slate-500 disabled:text-white disabled:opacity-50;
 }
 
 section {
