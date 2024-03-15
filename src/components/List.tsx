@@ -28,7 +28,9 @@ const List = ({ title, items }: ItemsProps) => {
     <section className="w-full">
       <h2>
         {title}
-        {packed && <span className="text-slate-400">{` (${items.length} / ${totalItems})`}</span>}
+        {totalItems > 0 && (
+          <span className="lowercase text-slate-400">{` ( ${items.length} out of ${totalItems} )`}</span>
+        )}
       </h2>
       <ul className="flex flex-col">
         {items.map((item) => (
