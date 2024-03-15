@@ -74,7 +74,7 @@ export const listEssentials = [
   '🚍 Bus Tickets',
 ];
 
-export const listReadyToGo = [
+export const listLeaving = [
   '🪴 Water plants',
   '🗑️ Take out trash',
   '🧊 Get chilled food',

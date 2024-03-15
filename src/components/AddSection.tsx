@@ -5,7 +5,7 @@ import {
   listClothes,
   listEssentials,
   listFood,
-  listReadyToGo,
+  listLeaving,
   listSummer,
   listTech,
   listToiletries,
@@ -22,14 +22,14 @@ const AddSection = () => {
   const [listedFood, setListedFood] = useState(addedList(listFood));
   const [listedTech, setListedTech] = useState(addedList(listTech));
   const [listedEssentials, setListedEssentials] = useState(addedList(listEssentials));
-  const [listedReadyToGo, setListedReadyToGo] = useState(addedList(listReadyToGo));
+  const [listedLeaving, setListedLeaving] = useState(addedList(listLeaving));
   const [listedClothes, setListedClothes] = useState(addedList(listClothes));
   const [listedSummer, setListedSummer] = useState(addedList(listSummer));
   const [listedWinter, setListedWinter] = useState(addedList(listWinter));
   const [listedCamping, setListedCamping] = useState(addedList(listCamping));
 
   return (
-    <section className={'scrollbar h-[40vh] overflow-y-auto sm:h-auto'}>
+    <section className={'scrollbar h-[42vh] overflow-y-auto sm:h-auto'}>
       <h2> ADD ITEMS </h2>
       <AddItem />
       <AddList
@@ -57,10 +57,10 @@ const AddSection = () => {
         listedSetState={setListedEssentials}
       />
       <AddList
-        list={listReadyToGo}
-        name={'🚪 Ready To Go'}
-        listedState={listedReadyToGo}
-        listedSetState={setListedReadyToGo}
+        list={listLeaving}
+        name={'🚪 Leaving'}
+        listedState={listedLeaving}
+        listedSetState={setListedLeaving}
       />
       <AddList
         list={listClothes}
