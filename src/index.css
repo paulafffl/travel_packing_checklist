@@ -32,7 +32,7 @@ h2 {
 }
 
 input {
-  @apply rounded-sm border-2 border-primary-300 bg-white py-1 pl-2 pr-0 placeholder-slate-500 accent-primary-600 outline-none transition-all ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 hover:bg-primary-200 hover:accent-primary-700 focus:bg-primary-50 disabled:border-slate-500 disabled:bg-slate-100 disabled:placeholder-slate-400;
+  @apply rounded-sm border-2 border-primary-300 bg-white py-1 pl-2 pr-0 placeholder-slate-500 accent-primary-600 outline-none transition-all transition-opacity duration-200 ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 hover:bg-primary-200 hover:accent-primary-700 focus:bg-primary-50 disabled:border-slate-500 disabled:bg-slate-100 disabled:placeholder-slate-400;
 }
 
 input[type='checkbox'] {

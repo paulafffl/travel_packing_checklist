@@ -10,6 +10,12 @@ type ItemProps = {
 const Item = ({ item }: ItemProps) => {
   const [editing, setEditing] = useState(false);
   const { update, removeItem } = useContext(ItemsContext);
+  const [visible, setVisible] = useState(true);
+
+  const handleCheckboxChange = () => {
+    setVisible(false);
+    setTimeout(() => update(item.id, { packed: !item.packed }), 300);
+  };
 
   return (
     <li className="flex items-center">
@@ -17,8 +23,9 @@ const Item = ({ item }: ItemProps) => {
         type="checkbox"
         checked={item.packed}
         id={`checkbox-item-${item.id}`}
-        onKeyDown={(e) => e.key === 'Enter' && update(item.id, { packed: !item.packed })}
-        onChange={() => update(item.id, { packed: !item.packed })}
+        className={visible ? 'opacity-100' : 'opacity-0'}
+        onKeyDown={(e) => e.key === 'Enter' && handleCheckboxChange()}
+        onChange={handleCheckboxChange}
         tabIndex={0}
       />
       <label htmlFor={`checkbox-item-${item.id}`} className={'hidden'}>
@@ -27,7 +34,11 @@ const Item = ({ item }: ItemProps) => {
       <input
         value={item.name}
         id={`checkbox-editing-${item.id}`}
-        className={clsx('overflow-scroll', editing ? 'mx-2' : 'border-white bg-white')}
+        className={clsx(
+          'overflow-scroll',
+          editing ? 'mx-2' : 'border-white bg-white',
+          visible ? 'opacity-100' : 'opacity-0',
+        )}
         size={item.name.length}
         onKeyDown={(e) => e.key === 'Enter' && setEditing(!editing)}
         onChange={(event) => update(item.id, { name: event.target.value })}

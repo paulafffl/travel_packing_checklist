@@ -43,9 +43,6 @@ const AddItem = () => {
         const listNAME = listName.substring(4).toUpperCase(); // Name of the array without "list"
         toast(
           `👋 This already exists in ${listNAME}. \n➕\u00A0Add the  list to see it and more! 👀`,
-          {
-            position: 'bottom-center',
-          },
         );
         return listNAME;
       }
