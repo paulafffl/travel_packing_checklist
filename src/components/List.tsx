@@ -20,7 +20,7 @@ const List = ({ title, items }: ItemsProps) => {
       messageDisplayed =
         totalItems > 0
           ? "👜 All packed, you're ready for your next travel! 🙌"
-          : '📝 Add items to start a checklist';
+          : '📝 Start a checklist from items above';
     }
     return messageDisplayed;
   };
