@@ -36,7 +36,7 @@ input {
 }
 
 input[type='checkbox'] {
-  @apply z-10 ring-violet-500 focus:outline-violet-500 focus-visible:ring-2;
+  @apply z-10 mr-1 ring-violet-500 focus:outline-violet-500 focus-visible:ring-2;
 }
 
 label {

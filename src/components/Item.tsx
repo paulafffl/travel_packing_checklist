@@ -18,7 +18,7 @@ const Item = ({ item }: ItemProps) => {
   };
 
   return (
-    <li className="flex items-center">
+    <li className="flex items-center gap-2">
       <input
         type="checkbox"
         checked={item.packed}
@@ -35,8 +35,8 @@ const Item = ({ item }: ItemProps) => {
         value={item.name}
         id={`checkbox-editing-${item.id}`}
         className={clsx(
-          'overflow-scroll',
-          editing ? 'mx-2' : 'border-white bg-white',
+          'overflow-scroll pl-0 focus:pl-2',
+          editing ? ' pl-2' : 'border-white bg-white',
           visible ? 'opacity-100' : 'opacity-0',
         )}
         size={item.name.length}
