@@ -19,13 +19,9 @@ const Item = ({ item }: ItemProps) => {
         id={`checkbox-item-${item.id}`}
         onKeyDown={(e) => e.key === 'Enter' && update(item.id, { packed: !item.packed })}
         onChange={() => update(item.id, { packed: !item.packed })}
+        tabIndex={0}
       />
-      <label
-        htmlFor={`checkbox-item-${item.id}`}
-        className={clsx({ hidden: editing })}
-        onKeyDown={(e) => e.key === 'Enter' && update(item.id, { packed: !item.packed })}
-        // tabIndex={0}
-      >
+      <label htmlFor={`checkbox-item-${item.id}`} className={clsx({ hidden: editing })}>
         {item.name}
       </label>
       <input
