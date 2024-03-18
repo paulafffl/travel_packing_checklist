@@ -76,7 +76,7 @@ section {
 }
 
 ::-webkit-scrollbar {
-  @apply w-2 bg-slate-300;
+  @apply w-1.5 bg-slate-300 sm:w-2;
 }
 
 ::-webkit-scrollbar-thumb {
