@@ -35,8 +35,9 @@ const AddItem = () => {
 
     for (const [listName, list] of Object.entries(lists)) {
       const match = list.find((item) => {
-        const trimmedInput = newItem.trim().toLowerCase();
-        return item.trim().toLowerCase().includes(trimmedInput);
+        const itemWithoutEmoji = item.toLowerCase().slice(2).trim();
+        const trimmedInput = newItem.toLowerCase().trim();
+        return itemWithoutEmoji.startsWith(trimmedInput);
       });
       if (match) {
         const listNAME = listName.substring(4).toUpperCase(); // Name of the array without "list"

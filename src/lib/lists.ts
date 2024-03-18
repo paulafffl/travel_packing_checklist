@@ -20,7 +20,7 @@ export const listToiletries = [
 
 export const listZeroWaste = [
   '🍴 Cutlery',
-  '🍱 Bento box',
+  '🍱 Lunch box',
   '🥤 Straw',
   '☕ Thermal cup',
   '🧽 Sponge',
@@ -88,7 +88,7 @@ export const listClothes = [
   '👚 Tops',
   '👖 Trousers',
   '🩳 Shorts / Skirt',
-  '👗 Jumpsuit / Dress',
+  '👗 Dress',
   '🧥 Coat / Jacket',
   '🩲 Underwear',
   '🧦 Socks',
@@ -97,7 +97,7 @@ export const listClothes = [
 ];
 
 export const listSummer = [
-  '🧴 Sun protector',
+  '🧴 Sun lotion',
   '🏖️ Beach towel',
   '👙 Swimwear',
   '😎 Sunglasses',
