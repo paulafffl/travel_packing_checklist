@@ -108,10 +108,10 @@ export const listSummer = [
 export const listWinter = [
   '🧤 Gloves',
   '🧣 Scarf',
-  '🪖 Beanie',
+  '⛄ Beanie',
   '🧦 Winter socks',
   '🧶 Sweater',
-  '🥼 Winter coat',
+  '🧥 Winter coat',
 ];
 
 export const listCamping = [
