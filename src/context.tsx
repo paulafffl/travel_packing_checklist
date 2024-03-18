@@ -55,9 +55,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const update = (id: string, updates: WithoutId) => {
     setItems(updateItem(items, id, updates));
-    toast(`✅ Item packed`, {
-      position: 'bottom-center',
-    });
+    updates.packed && toast(`✅ Item packed`, { position: 'bottom-center' });
   };
 
   const packAllItems = () => {
