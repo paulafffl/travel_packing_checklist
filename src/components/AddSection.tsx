@@ -29,9 +29,10 @@ const AddSection = () => {
   const [listedCamping, setListedCamping] = useState(addedList(listCamping));
 
   return (
-    <section className={'max-h-[44vh] overflow-y-auto sm:h-auto'}>
+    <section className={'max-h-[60vh] overflow-y-auto sm:h-auto'}>
       <h2> ADD ITEMS </h2>
       <AddItem />
+      <p className="mt-4 text-slate-500">{'Or add group of items from lists below'}</p>
       <AddList
         list={listZeroWaste}
         name={'💚 Zero Waste'}

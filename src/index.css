@@ -23,7 +23,7 @@ code {
 }
 
 h1 {
-  @apply pb-2 text-left font-extrabold leading-tight sm:text-center;
+  @apply text-left font-extrabold leading-tight sm:pb-2 sm:text-center;
   font-size: 2.1rem;
 }
 
@@ -65,7 +65,7 @@ section {
 .main-margin {
   margin: 10vh 20vw;
   @media (max-width: 1024px) {
-    margin: 8vh 8vw;
+    margin: 7vh 8vw;
   }
 }
 

@@ -67,7 +67,7 @@ const AddItem = () => {
         id="new-item-name"
         className="w-full overflow-scroll"
         type="search"
-        placeholder="New Item"
+        placeholder="Type new item here"
         value={newItem}
         autoFocus
         onChange={(e) => setNewItem(e.target.value)}
