@@ -1,17 +1,8 @@
 import { v4 as id } from 'uuid';
-import { listToiletries } from './lists';
-
-export const createDefaultItems = (): Item[] => {
-  return listToiletries.map((name) => ({
-    id: id(),
-    name,
-    packed: false,
-  }));
-};
 
 const getStoredItems = (): Item[] => {
   const storedItems = localStorage.getItem('items');
-  return storedItems ? JSON.parse(storedItems) : createDefaultItems();
+  return storedItems ? JSON.parse(storedItems) : [];
 };
 
 export const createItem = (name: string): Item => {
