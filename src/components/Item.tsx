@@ -24,7 +24,7 @@ const Item = ({ item }: ItemProps) => {
         htmlFor={`checkbox-item-${item.id}`}
         className={clsx({ hidden: editing })}
         onKeyDown={(e) => e.key === 'Enter' && update(item.id, { packed: !item.packed })}
-        tabIndex={0}
+        // tabIndex={0}
       >
         {item.name}
       </label>

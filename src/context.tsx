@@ -1,5 +1,6 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 import { createItem, getInitialItems, updateItem, deleteItems } from './lib/items';
+import toast, { Toaster } from 'react-hot-toast';
 
 type ItemsState = {
   items: Item[];
@@ -54,6 +55,9 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const update = (id: string, updates: WithoutId) => {
     setItems(updateItem(items, id, updates));
+    toast(`✅ Item packed`, {
+      position: 'bottom-center',
+    });
   };
 
   const packAllItems = () => {
@@ -78,7 +82,11 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     packAllItems,
     unpackAllItems,
   };
-  return <ItemsContext.Provider value={value}>{children}</ItemsContext.Provider>;
+  return (
+    <ItemsContext.Provider value={value}>
+      {children} <Toaster />
+    </ItemsContext.Provider>
+  );
 };
 
 export default ItemsProvider;
