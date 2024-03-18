@@ -12,7 +12,7 @@ const Item = ({ item }: ItemProps) => {
   const { update, removeItem } = useContext(ItemsContext);
 
   return (
-    <li className="flex items-center gap-2">
+    <li className="flex items-center">
       <input
         type="checkbox"
         checked={item.packed}
@@ -21,14 +21,15 @@ const Item = ({ item }: ItemProps) => {
         onChange={() => update(item.id, { packed: !item.packed })}
         tabIndex={0}
       />
-      <label htmlFor={`checkbox-item-${item.id}`} className={clsx({ hidden: editing })}>
+      <label htmlFor={`checkbox-item-${item.id}`} className={'hidden'}>
         {item.name}
       </label>
       <input
         value={item.name}
         id={`checkbox-editing-${item.id}`}
-        className={clsx('overflow-scroll', { hidden: !editing })}
+        className={clsx('overflow-scroll', editing ? 'mx-2' : 'border-white bg-white')}
         size={item.name.length}
+        onKeyDown={(e) => e.key === 'Enter' && setEditing(!editing)}
         onChange={(event) => update(item.id, { name: event.target.value })}
       />
       <div className="g'py-0 text-sm', ap-2 ml-auto flex">
