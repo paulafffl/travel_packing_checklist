@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface IconProps {
+type IconProps = {
   symbol?: string;
   color?: string;
-}
+};
 
-const Icon: React.FC<IconProps> = ({ symbol = 'add', color = 'white' }) => {
+const Icon = ({ symbol = 'add', color = 'white' }: IconProps) => {
   const iconToBeDisplayed = () => {
     if (symbol === 'add') {
       return <span className="mb-0 text-base leading-none sm:mb-0.5 sm:text-xl">{'+'}</span>;

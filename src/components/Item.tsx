@@ -3,18 +3,14 @@ import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
 import Icon from './Icon';
 
-type ItemProps = {
-  item: Item;
-};
-
-const Item = ({ item }: ItemProps) => {
+const Item = ({ item }: { item: Item }) => {
   const [editing, setEditing] = useState(false);
-  const { update, removeItem } = useContext(ItemsContext);
+  const { updateAsObj, removeItemAsObj } = useContext(ItemsContext);
   const [visible, setVisible] = useState(true);
 
   const handleCheckboxChange = () => {
     setVisible(false);
-    setTimeout(() => update(item.id, { packed: !item.packed }), 300);
+    setTimeout(() => updateAsObj(item.id, { packed: !item.packed }), 300);
   };
 
   return (
@@ -41,7 +37,7 @@ const Item = ({ item }: ItemProps) => {
         )}
         size={item.name.length}
         onKeyDown={(e) => e.key === 'Enter' && setEditing(!editing)}
-        onChange={(event) => update(item.id, { name: event.target.value })}
+        onChange={(event) => updateAsObj(item.id, { name: event.target.value })}
       />
       <div className="g'py-0 text-sm', ap-2 ml-auto flex">
         <button
@@ -54,7 +50,7 @@ const Item = ({ item }: ItemProps) => {
         <button
           className="color-palette-red ml-2 px-1.5 text-xs"
           aria-label={`Delete "${item.name}"`}
-          onClick={() => removeItem(item.id)}
+          onClick={() => removeItemAsObj(item.id)}
         >
           <Icon symbol="delete" />
         </button>

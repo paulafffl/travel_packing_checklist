@@ -16,7 +16,7 @@ import {
 } from '../lib/lists';
 
 const AddItem = () => {
-  const { addItem } = useContext(ItemsContext);
+  const { addItemAsObj } = useContext(ItemsContext);
   const [newItem, setNewItem] = useState('');
 
   const existingInList = () => {
@@ -57,7 +57,7 @@ const AddItem = () => {
       onSubmit={(e) => {
         e.preventDefault();
         if (!existingInList()) {
-          addItem(newItem);
+          addItemAsObj(newItem);
           setNewItem('');
         }
       }}

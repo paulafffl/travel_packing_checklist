@@ -16,17 +16,7 @@ import AddItem from './AddItem';
 import AddList from './AddList';
 
 const AddSection = () => {
-  const { addedList } = useContext(ItemsContext);
-  const [listedToiletries, setListedToiletries] = useState(addedList(listToiletries));
-  const [listedZeroWaste, setListedZeroWaste] = useState(addedList(listZeroWaste));
-  const [listedFood, setListedFood] = useState(addedList(listFood));
-  const [listedTech, setListedTech] = useState(addedList(listTech));
-  const [listedEssentials, setListedEssentials] = useState(addedList(listEssentials));
-  const [listedLeaving, setListedLeaving] = useState(addedList(listLeaving));
-  const [listedClothes, setListedClothes] = useState(addedList(listClothes));
-  const [listedSummer, setListedSummer] = useState(addedList(listSummer));
-  const [listedWinter, setListedWinter] = useState(addedList(listWinter));
-  const [listedCamping, setListedCamping] = useState(addedList(listCamping));
+  const { addedListAsObj } = useContext(ItemsContext);
 
   return (
     <section className={'max-h-[60vh] overflow-y-auto sm:h-auto'}>
@@ -35,63 +25,63 @@ const AddSection = () => {
       <p className="mt-4 text-slate-500">{'Or add group of items from lists below'}</p>
       <AddList
         list={listZeroWaste}
+        listName={'listZeroWaste'}
         name={'💚 Zero Waste'}
-        listedState={listedZeroWaste}
-        listedSetState={setListedZeroWaste}
+        listedState={addedListAsObj('listZeroWaste')}
       />
       <AddList
         list={listFood}
+        listName={'listFood'}
         name={'🍎 Food'}
-        listedState={listedFood}
-        listedSetState={setListedFood}
+        listedState={addedListAsObj('listFood')}
       />
       <AddList
         list={listTech}
-        name={'💻 Tech'}
-        listedState={listedTech}
-        listedSetState={setListedTech}
+        listName={'listTech'}
+        name={'⚡ Tech'}
+        listedState={addedListAsObj('listTech')}
       />
       <AddList
         list={listEssentials}
+        listName={'listEssentials'}
         name={'🎒 Essentials'}
-        listedState={listedEssentials}
-        listedSetState={setListedEssentials}
+        listedState={addedListAsObj('listEssentials')}
       />
       <AddList
         list={listClothes}
+        listName={'listClothes'}
         name={'👕 Clothes'}
-        listedState={listedClothes}
-        listedSetState={setListedClothes}
+        listedState={addedListAsObj('listClothes')}
       />
       <AddList
         list={listLeaving}
+        listName={'listLeaving'}
         name={'🚪 Leaving'}
-        listedState={listedLeaving}
-        listedSetState={setListedLeaving}
+        listedState={addedListAsObj('listLeaving')}
       />
       <AddList
         list={listSummer}
-        name={'🌞 Summer'}
-        listedState={listedSummer}
-        listedSetState={setListedSummer}
+        listName={'listSummer'}
+        name={'☀️ Summer'}
+        listedState={addedListAsObj('listSummer')}
       />
       <AddList
         list={listWinter}
+        listName={'listWinter'}
         name={'❄️ Winter'}
-        listedState={listedWinter}
-        listedSetState={setListedWinter}
+        listedState={addedListAsObj('listWinter')}
       />
       <AddList
         list={listToiletries}
+        listName={'listToiletries'}
         name={'🛁 Toiletries'}
-        listedState={listedToiletries}
-        listedSetState={setListedToiletries}
+        listedState={addedListAsObj('listToiletries')}
       />
       <AddList
         list={listCamping}
+        listName={'listCamping'}
         name={'🏕️ Camping'}
-        listedState={listedCamping}
-        listedSetState={setListedCamping}
+        listedState={addedListAsObj('listCamping')}
       />
     </section>
   );

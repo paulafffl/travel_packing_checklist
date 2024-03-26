@@ -1,45 +1,59 @@
 import { v4 as id } from 'uuid';
 
-const getStoredItems = (): Item[] => {
-  const storedItems = localStorage.getItem('items');
-  return storedItems ? JSON.parse(storedItems) : [];
+const getStoredItemsAsObj = (): ItemAsObj => {
+  const storedItems = localStorage.getItem('itemsAsObj');
+  return storedItems ? JSON.parse(storedItems) : {};
 };
 
-export const createItem = (name: string): Item => {
+export const createItemAsObj = (name: string, listName: string): Item => {
   const newItem = {
     id: id(),
     name,
     packed: false,
   };
 
-  const storedItems = getStoredItems();
-  const updatedItems = [...storedItems, newItem];
-  localStorage.setItem('items', JSON.stringify(updatedItems));
+  const storedItemsJSON = localStorage.getItem('itemsAsObj');
+  let storedItems: ItemAsObj = storedItemsJSON ? JSON.parse(storedItemsJSON) : {};
+
+  storedItems.hasOwnProperty(listName)
+    ? storedItems[listName].push(newItem)
+    : (storedItems[listName] = [newItem]);
+  localStorage.setItem('itemsAsObj', JSON.stringify(storedItems));
 
   return newItem;
 };
 
-export const getInitialItems = (): Item[] => {
-  return getStoredItems();
+export const getInitialItemsAsObj = (): ItemAsObj => {
+  return getStoredItemsAsObj();
 };
 
-const saveItemsToLocalStorage = (items: Item[]) => {
-  localStorage.setItem('items', JSON.stringify(items));
+const saveItemsToLocalStorageAsObj = (items: ItemAsObj) => {
+  localStorage.setItem('itemsAsObj', JSON.stringify(items));
 };
 
-export const updateItem = (items: Item[], id: string, updates: Partial<Item>) => {
-  const updatedItems = items.map((item) => {
-    if (item.id === id) return { ...item, ...updates };
-    return item;
+export const updateItemAsObj = (items: ItemAsObj, id: string, updates: Partial<Item>) => {
+  const updatedItems: ItemAsObj = {};
+  Object.entries(items).forEach(([list, itemList]) => {
+    updatedItems[list] = itemList.map((item) => (item.id === id ? { ...item, ...updates } : item));
   });
-  saveItemsToLocalStorage(updatedItems);
+  saveItemsToLocalStorageAsObj(updatedItems);
   return updatedItems;
 };
 
-export const deleteItems = (items: Readonly<Item[]>, ids: string | string[]) => {
-  const updatedItems = items.filter((item) =>
-    Array.isArray(ids) ? !ids.includes(item.id) : item.id !== ids,
-  );
-  saveItemsToLocalStorage(updatedItems);
+export const deleteItemAsObj = (items: ItemAsObj, id: string) => {
+  const updatedItems: ItemAsObj = {};
+  Object.entries(items).forEach(([list, itemList]) => {
+    updatedItems[list] = itemList.filter((item) => item.id !== id);
+  });
+  saveItemsToLocalStorageAsObj(updatedItems);
+  return updatedItems;
+};
+
+export const deleteItemsAsObj = (items: ItemAsObj, listName: string) => {
+  const updatedItems: ItemAsObj = { ...items };
+  if (listName in updatedItems) {
+    delete updatedItems[listName];
+    saveItemsToLocalStorageAsObj(updatedItems);
+  }
   return updatedItems;
 };

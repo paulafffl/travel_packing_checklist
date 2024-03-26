@@ -1,20 +1,25 @@
 import { PropsWithChildren, createContext, useState } from 'react';
-import { createItem, getInitialItems, updateItem, deleteItems } from './lib/items';
+import {
+  createItemAsObj,
+  getInitialItemsAsObj,
+  updateItemAsObj,
+  deleteItemAsObj,
+  deleteItemsAsObj,
+} from './lib/items';
 import toast, { Toaster } from 'react-hot-toast';
 
 type ItemsState = {
-  items: Item[];
-  totalItems: number;
-  packedItems: Item[];
-  unpackedItems: Item[];
-  addItem: (name: string) => void;
-  addList: (names: string[]) => void;
-  removeItem: (id: string) => void;
-  removeList: (ids: string[]) => void;
-  addedList: (names: string[]) => boolean;
-  update: (id: string, updates: WithoutId) => void;
-  packAllItems: () => void;
-  unpackAllItems: () => void;
+  listsAsObj: ItemAsObj;
+  packedItemsAsObj: (list: string) => Item[];
+  unpackedItemsAsObj: (list: string) => Item[];
+  addItemAsObj: (name: string, listName?: string) => void;
+  addListAsObj: (names: string[], listName: string) => void;
+  removeItemAsObj: (id: string) => void;
+  removeListAsObj: (listName: string) => void;
+  addedListAsObj: (listName: string) => boolean;
+  updateAsObj: (id: string, updates: WithoutId) => void;
+  packAllItemsAsObj: () => void;
+  unpackAllItemsAsObj: () => void;
 };
 
 type PartialItem = Partial<Item>;
@@ -23,61 +28,68 @@ type WithoutId = Omit<PartialItem, 'id'>;
 export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
-  const [items, setItems] = useState(getInitialItems());
+  const [listsAsObj, setItemsAsObj] = useState(getInitialItemsAsObj());
 
-  const totalItems = items.length;
-  const packedItems = items.filter((item) => item.packed);
-  const unpackedItems = items.filter((item) => !item.packed);
+  const packedItemsAsObj = (list: string) => listsAsObj[list]?.filter((item) => item.packed);
+  const unpackedItemsAsObj = (list: string) => listsAsObj[list]?.filter((item) => !item.packed);
 
-  const addItem = (name: string) => {
-    const item = createItem(name);
-    setItems([item, ...items]);
+  const addItemAsObj = (name: string, listName = 'listAdditionals') => {
+    const newItem = createItemAsObj(name, listName);
+    setItemsAsObj((prevObj) => ({
+      ...prevObj,
+      [listName]: [...(prevObj[listName] || []), newItem],
+    }));
   };
 
-  const addList = (names: string[]) => {
-    const newItems = names.map((name) => createItem(name));
-    setItems([...newItems, ...items]);
+  const addListAsObj = (names: string[], listName: string) => {
+    const newItemsAsObj = names.map((item) => createItemAsObj(item, listName));
+    setItemsAsObj({ [listName]: newItemsAsObj, ...listsAsObj });
   };
 
-  const addedList = (names: string[]) => {
-    return names.every((name) => items.find((item) => item.name === name));
+  const addedListAsObj = (listName: string) => {
+    return listsAsObj.hasOwnProperty(listName);
   };
 
-  const removeItem = (id: string) => {
-    setItems(deleteItems(items, id));
+  const removeItemAsObj = (id: string) => {
+    setItemsAsObj(deleteItemAsObj(listsAsObj, id));
   };
 
-  const removeList = (names: string[]) => {
-    const itemsToRemove = items.filter((item) => names.includes(item.name));
-    const ids = itemsToRemove.map((item) => item.id);
-    setItems(deleteItems(items, ids));
+  const removeListAsObj = (listName: string) => {
+    setItemsAsObj(deleteItemsAsObj(listsAsObj, listName));
   };
 
-  const update = (id: string, updates: WithoutId) => {
-    setItems(updateItem(items, id, updates));
+  const updateAsObj = (id: string, updates: WithoutId) => {
+    setItemsAsObj(updateItemAsObj(listsAsObj, id, updates));
   };
 
-  const packAllItems = () => {
-    return setItems(items.map((item) => ({ ...item, packed: true })));
+  const packAllItemsAsObj = () => {
+    const updatedItems: ItemAsObj = {};
+    Object.entries(listsAsObj).forEach(([list, itemList]) => {
+      updatedItems[list] = itemList.map((item) => ({ ...item, packed: true }));
+    });
+    setItemsAsObj(updatedItems);
   };
 
-  const unpackAllItems = () => {
-    return setItems(items.map((item) => ({ ...item, packed: false })));
+  const unpackAllItemsAsObj = () => {
+    const updatedItems: ItemAsObj = {};
+    Object.entries(listsAsObj).forEach(([list, itemList]) => {
+      updatedItems[list] = itemList.map((item) => ({ ...item, packed: false }));
+    });
+    setItemsAsObj(updatedItems);
   };
 
   const value: ItemsState = {
-    items,
-    totalItems,
-    unpackedItems,
-    packedItems,
-    addItem,
-    addList,
-    removeItem,
-    removeList,
-    addedList,
-    update,
-    packAllItems,
-    unpackAllItems,
+    listsAsObj,
+    unpackedItemsAsObj,
+    packedItemsAsObj,
+    addItemAsObj,
+    addListAsObj,
+    removeItemAsObj,
+    removeListAsObj,
+    addedListAsObj,
+    updateAsObj,
+    packAllItemsAsObj,
+    unpackAllItemsAsObj,
   };
   return (
     <ItemsContext.Provider value={value}>
