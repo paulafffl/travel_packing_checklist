@@ -62,7 +62,7 @@ section {
   @apply bg-rose-400 hover:bg-rose-500;
 }
 
-.main-margin {
+.outer-margin {
   margin: 10vh 20vw;
   @media (max-width: 1024px) {
     margin: 7vh 8vw;

@@ -3,13 +3,17 @@ import AddSection from './AddSection';
 
 function App() {
   return (
-    <main className="main-margin">
-      <h1>{`🧳Travel Packing\u00A0Checklist`}</h1>
-      <AddSection />
-      <div className="flex flex-col gap-x-10 md:flex-row">
-        <List title="Unpacked Items" />
-        <List title="Packed Items" />
-      </div>
+    <div className="outer-margin">
+      <header>
+        <h1>{`🧳Travel Packing\u00A0Checklist`}</h1>
+      </header>
+      <main>
+        <AddSection />
+        <div className="flex flex-col gap-x-10 md:flex-row">
+          <List title="Unpacked Items" />
+          <List title="Packed Items" />
+        </div>
+      </main>
       <footer>
         Built by
         <a
@@ -22,7 +26,7 @@ function App() {
         </a>
         , with ❤️
       </footer>
-    </main>
+    </div>
   );
 }
 
