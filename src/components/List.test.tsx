@@ -4,7 +4,7 @@ import List from './List';
 import { ItemsContext } from '../context';
 
 const mockContextValue = {
-  listsAsObj: {
+  listsObj: {
     list1: [{ id: '1', name: 'Item 1', packed: true }],
     list2: [{ id: '2', name: 'Item 2', packed: false }],
   },

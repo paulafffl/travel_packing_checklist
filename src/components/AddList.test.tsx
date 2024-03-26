@@ -4,7 +4,7 @@ import { ItemsContext } from '../context';
 import AddList from './AddList';
 
 const mockContextValue = {
-  listsAsObj: {},
+  listsObj: {},
   packedItemsAsObj: jest.fn(),
   unpackedItemsAsObj: jest.fn(),
   addItemAsObj: jest.fn(),

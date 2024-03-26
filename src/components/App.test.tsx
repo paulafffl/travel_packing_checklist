@@ -4,7 +4,7 @@ import App from './App';
 import { ItemsContext } from '../context'; // Assuming this is the correct path to your context
 
 const mockContextValue = {
-  listsAsObj: {},
+  listsObj: {},
   packedItemsAsObj: jest.fn(),
   unpackedItemsAsObj: jest.fn(),
   addItemAsObj: jest.fn(),

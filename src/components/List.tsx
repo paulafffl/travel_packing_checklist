@@ -4,22 +4,17 @@ import Item from './Item';
 import Emoji from './Emoji';
 
 const List = ({ title }: { title: string }) => {
-  const {
-    listsAsObj,
-    packAllItemsAsObj,
-    unpackAllItemsAsObj,
-    packedItemsAsObj,
-    unpackedItemsAsObj,
-  } = useContext(ItemsContext);
+  const { listsObj, packAllItemsAsObj, unpackAllItemsAsObj, packedItemsAsObj, unpackedItemsAsObj } =
+    useContext(ItemsContext);
   const packed = title === 'Packed Items';
 
   const countItemsInList = () =>
-    Object.values(listsAsObj).flatMap((list) =>
+    Object.values(listsObj).flatMap((list) =>
       list.filter((item) => item.packed === (packed === true)),
     ).length;
 
   const countItemsInTotal = () =>
-    Object.values(listsAsObj).reduce((sum, list) => sum + list.length, 0);
+    Object.values(listsObj).reduce((sum, list) => sum + list.length, 0);
 
   const displayMessage = () => {
     let messageDisplayed = '';
@@ -56,7 +51,7 @@ const List = ({ title }: { title: string }) => {
           <span className="lowercase text-slate-400">{` ( ${countItemsInList()} out of ${countItemsInTotal()} )`}</span>
         )}
       </h2>
-      {Object.keys(listsAsObj).map((list) => (
+      {Object.keys(listsObj).map((list) => (
         <div key={list}>
           {displaySectionName(list)}
           <ul className="flex flex-col">
