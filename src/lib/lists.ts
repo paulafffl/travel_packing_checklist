@@ -131,6 +131,7 @@ export const listCamping = [
   '🪣 Water container',
   '🔶 Travel towel',
   '🧻 Toilet roll',
+  '⛑️ First Aid Kit',
   '🐜 Repellent',
   '🥾 Wellies',
   '🧦 Wellie socks',
@@ -138,5 +139,4 @@ export const listCamping = [
   '🎒 Waterproof bag',
   '✨ Eco-friendly glitter',
   '🎟️ Festival ticket',
-  '⛑️ First Aid Kit',
 ];
