@@ -35,6 +35,9 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const addItemAsObj = (name: string, listName = 'listAdditionals') => {
     const newItem = createItemAsObj(name, listName);
+    toast('👇 Item added to your Additionals List', {
+      position: 'bottom-center',
+    });
     setItemsAsObj((prevObj) => ({
       ...prevObj,
       [listName]: [...(prevObj[listName] || []), newItem],
