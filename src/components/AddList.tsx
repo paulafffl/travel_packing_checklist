@@ -17,13 +17,7 @@ const AddList = ({ list, name, listedState, listName = 'listName' }: ItemProps) 
         listedState && 'color-palette-red'
       }`}
       aria-label={`Add List for ${name}`}
-      onClick={() => {
-        if (!listedState) {
-          addListAsObj(list, listName);
-        } else {
-          removeListAsObj(listName);
-        }
-      }}
+      onClick={() => (!listedState ? addListAsObj(list, listName) : removeListAsObj(listName))}
     >
       <Icon symbol={listedState ? 'remove' : 'add'} />
       <span className="m-0.5 sm:m-1">{name}</span>

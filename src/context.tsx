@@ -28,7 +28,7 @@ type WithoutId = Omit<PartialItem, 'id'>;
 export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
-  const [listsAsObj, setItemsAsObj] = useState(getInitialItemsAsObj());
+  const [listsAsObj, setListsAsObj] = useState(getInitialItemsAsObj());
 
   const packedItemsAsObj = (list: string) => listsAsObj[list]?.filter((item) => item.packed);
   const unpackedItemsAsObj = (list: string) => listsAsObj[list]?.filter((item) => !item.packed);
@@ -38,7 +38,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     toast('👇 Item added to your Additionals List', {
       position: 'bottom-center',
     });
-    setItemsAsObj((prevObj) => ({
+    setListsAsObj((prevObj) => ({
       ...prevObj,
       [listName]: [...(prevObj[listName] || []), newItem],
     }));
@@ -46,7 +46,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const addListAsObj = (names: string[], listName: string) => {
     const newItemsAsObj = names.map((item) => createItemAsObj(item, listName));
-    setItemsAsObj({ [listName]: newItemsAsObj, ...listsAsObj });
+    setListsAsObj({ [listName]: newItemsAsObj, ...listsAsObj });
   };
 
   const addedListAsObj = (listName: string) => {
@@ -54,15 +54,15 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   };
 
   const removeItemAsObj = (id: string) => {
-    setItemsAsObj(deleteItemAsObj(listsAsObj, id));
+    setListsAsObj(deleteItemAsObj(listsAsObj, id));
   };
 
   const removeListAsObj = (listName: string) => {
-    setItemsAsObj(deleteItemsAsObj(listsAsObj, listName));
+    setListsAsObj(deleteItemsAsObj(listsAsObj, listName));
   };
 
   const updateAsObj = (id: string, updates: WithoutId) => {
-    setItemsAsObj(updateItemAsObj(listsAsObj, id, updates));
+    setListsAsObj(updateItemAsObj(listsAsObj, id, updates));
   };
 
   const packAllItemsAsObj = () => {
@@ -70,7 +70,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     Object.entries(listsAsObj).forEach(([list, itemList]) => {
       updatedItems[list] = itemList.map((item) => ({ ...item, packed: true }));
     });
-    setItemsAsObj(updatedItems);
+    setListsAsObj(updatedItems);
   };
 
   const unpackAllItemsAsObj = () => {
@@ -78,7 +78,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     Object.entries(listsAsObj).forEach(([list, itemList]) => {
       updatedItems[list] = itemList.map((item) => ({ ...item, packed: false }));
     });
-    setItemsAsObj(updatedItems);
+    setListsAsObj(updatedItems);
   };
 
   const value: ItemsState = {
