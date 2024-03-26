@@ -14,7 +14,7 @@ export const listToiletries = [
   '💊 Vitamins / Pills',
   '🩹 Bandage',
   '🪒 Razor',
-  '💅 Nail file',
+  '💅 Nail File / Clipper',
   '🩸 Period Cup / Pants',
 ];
 
@@ -32,11 +32,11 @@ export const listZeroWaste = [
 ];
 
 export const listFood = [
+  '🍌 Fruits',
   '🍫 Protein bar',
-  '🍩 Sweets',
   '🍿 Savouries',
+  '🍩 Sweets',
   '🥐 Breakfast',
-  '🍎 Fruits',
   '🥪 Sandwich',
 ];
 
@@ -44,9 +44,11 @@ export const listTech = [
   '📱 Phone + charger',
   '🔋 Power bank + USB',
   '💻 Laptop + charger',
+  '🎧 Earphones',
   '🔊 Speaker + charger',
   '🔌 Plug Adapter',
-  '📷 Camera',
+  '⌚ Watch + charger',
+  '📷 Camera + charger',
   '🔥 Sex toys + charger',
   '💨 Vape + charger',
 ];
@@ -54,10 +56,11 @@ export const listTech = [
 export const listEssentials = [
   '📇 ID',
   '🛂 Passport',
-  '💳 Credit card',
+  '💳 Cards',
+  '💵 Cash',
   '🔑 Keys',
+  '👓 Glasses / Lens',
   '🥽 Eye mask',
-  '🎧 Earphones',
   '👂 Earplugs',
   '🍶 Water bottle',
   '🧥 Raincoat',
@@ -65,6 +68,7 @@ export const listEssentials = [
   '👝 Fanny pack',
   '✏️ Pencil',
   '📓 Notebook',
+  '🔒 Padlock',
   '👟 Sneaker',
   '🥾 Boots',
   '🚊 Train tickets',
@@ -84,15 +88,16 @@ export const listLeaving = [
 ];
 
 export const listClothes = [
-  '👕 Shirts',
-  '👚 Tops',
   '👖 Trousers',
   '🩳 Shorts / Skirt',
   '👗 Dress',
+  '👔 Shirts',
+  '👚 Tops',
   '🧥 Coat / Jacket',
   '🩲 Underwear',
   '🧦 Socks',
   '🧘 Sportswear',
+  '🕺 Party outfit',
   '😴 Pyjamas',
 ];
 
@@ -119,7 +124,8 @@ export const listCamping = [
   '🛌 Sleeping bag',
   '➖ Insulating mat',
   '🔨 Hammer',
-  '🔦 Solar light',
+  '🔦 Torch',
+  '💡 Solar light',
   '🚿 Solar shower',
   '🪝 Hook',
   '🪣 Water container',
@@ -132,5 +138,5 @@ export const listCamping = [
   '🎒 Waterproof bag',
   '✨ Eco-friendly glitter',
   '🎟️ Festival ticket',
-  '💵 Cash',
+  '⛑️ First Aid Kit',
 ];
