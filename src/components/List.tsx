@@ -27,17 +27,15 @@ const List = ({ title }: { title: string }) => {
     Object.values(listsObj).reduce((sum, list) => sum + list.length, 0);
 
   const displayMessage = () => {
-    let messageDisplayed = '';
     if (packed) {
-      messageDisplayed = '🎒 Tick off items to see them here';
+      return countItemsInTotal() > 0
+        ? '👜 Pack items to see them here'
+        : '👆 First add items to be packed';
+    } else {
+      return countItemsInTotal() > 0
+        ? '👜 All packed and ready to travel! 🙌'
+        : '🏁 Start a checklist from items above';
     }
-    if (!packed) {
-      messageDisplayed =
-        countItemsInTotal() > 0
-          ? '👜 All packed and ready to travel! 🙌'
-          : '🏁 Start a checklist from items above';
-    }
-    return messageDisplayed;
   };
 
   const displaySectionName = (listName: string) => {

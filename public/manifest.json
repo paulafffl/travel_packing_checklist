@@ -21,5 +21,9 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "description": "Everything you could need for travel packing",
+  "categories": ["Travel", "Packing", "Checklist", "List"],
+  "lang": "en",
+  "dir": "ltr"
 }
