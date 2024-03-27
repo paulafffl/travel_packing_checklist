@@ -3,6 +3,7 @@ import { ItemsContext } from '../context';
 import Item from './Item';
 import Emoji from './Emoji';
 import Icon from './Icon';
+import toast, { Toaster } from 'react-hot-toast';
 
 const List = ({ title }: { title: string }) => {
   const {
@@ -62,7 +63,44 @@ const List = ({ title }: { title: string }) => {
           <button
             className="ml-2 bg-white px-0.5 hover:bg-rose-200"
             aria-label={`Delete "${listName}"`}
-            onClick={() => removeListAsObj(listName)}
+            onClick={() =>
+              listName === 'listAdditionals'
+                ? toast(
+                    (t) => (
+                      <div className="text-center">
+                        <p>
+                          Items you created <b>can't be restored</b> like the ones in the default
+                          lists. Do you still want to delete {`📝\u00A0Additionals`}?
+                        </p>
+                        <br />
+                        <div className="mb-2 flex w-full gap-4">
+                          <button
+                            className="color-palette-green flex-grow"
+                            onClick={() => {
+                              toast.dismiss(t.id);
+                            }}
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className="color-palette-red flex-grow"
+                            onClick={() => {
+                              removeListAsObj(listName);
+                              toast.dismiss(t.id);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    ),
+                    {
+                      duration: 9000,
+                      position: 'bottom-center',
+                    },
+                  )
+                : removeListAsObj(listName)
+            }
           >
             <Icon symbol="close" color={'red'} />
           </button>
@@ -102,6 +140,7 @@ const List = ({ title }: { title: string }) => {
           <span className="ml-1">{packed ? 'Unpack all items' : 'Pack all items'}</span>
         </button>
       )}
+      <Toaster />
     </section>
   );
 };
