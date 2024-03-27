@@ -2,10 +2,20 @@ import { useContext } from 'react';
 import { ItemsContext } from '../context';
 import Item from './Item';
 import Emoji from './Emoji';
+import Icon from './Icon';
 
 const List = ({ title }: { title: string }) => {
-  const { listsObj, packAllItemsAsObj, unpackAllItemsAsObj, packedItemsAsObj, unpackedItemsAsObj } =
-    useContext(ItemsContext);
+  const {
+    listsObj,
+    listIsShown,
+    showList,
+    hideList,
+    packAllItemsAsObj,
+    unpackAllItemsAsObj,
+    packedItemsAsObj,
+    unpackedItemsAsObj,
+    removeListAsObj,
+  } = useContext(ItemsContext);
   const packed = title === 'Packed Items';
 
   const countItemsInList = () =>
@@ -24,21 +34,41 @@ const List = ({ title }: { title: string }) => {
     if (!packed) {
       messageDisplayed =
         countItemsInTotal() > 0
-          ? "👜 All packed, you're ready for your next travel! 🙌"
-          : '📝 Start a checklist from items above';
+          ? '👜 All packed and ready to travel! 🙌'
+          : '🏁 Start a checklist from items above';
     }
     return messageDisplayed;
   };
 
-  const displaySectionName = (list: string) => {
-    const packedItems = packedItemsAsObj(list);
-    const unpackedItems = unpackedItemsAsObj(list);
+  const displaySectionName = (listName: string) => {
+    const packedItems = packedItemsAsObj(listName);
+    const unpackedItems = unpackedItemsAsObj(listName);
     if ((packed && packedItems?.length > 0) || (!packed && unpackedItems?.length > 0)) {
       return (
-        <p className={'mb-1 mt-3 border-b-2 border-slate-300 pb-1 font-bold text-primary-500'}>
-          {list.substring(4).toUpperCase()}
-          <Emoji name={list} />
-        </p>
+        <div className="mb-1 mt-2 flex items-center justify-between border-b-2 border-slate-300 pb-2">
+          <div className="flex items-center">
+            <button
+              className={`m-0 mr-1 h-5 w-5 p-0.5 px-0.5 sm:mb-0.5 ${
+                listIsShown(listName) && 'color-palette-green'
+              }`}
+              aria-label={`Add List for ${listName}`}
+              onClick={() => (listIsShown(listName) ? hideList(listName) : showList(listName))}
+            >
+              <Icon symbol={listIsShown(listName) ? 'collapse' : 'expand'} />
+            </button>
+            <Emoji name={listName} />
+            <span className="m-0.5 font-bold text-violet-500 sm:m-1">
+              {listName.substring(4).toUpperCase()}
+            </span>
+          </div>
+          <button
+            className="ml-2 bg-white px-0.5 hover:bg-rose-200"
+            aria-label={`Delete "${listName}"`}
+            onClick={() => removeListAsObj(listName)}
+          >
+            <Icon symbol="close" color={'red'} />
+          </button>
+        </div>
       );
     }
   };
@@ -54,15 +84,17 @@ const List = ({ title }: { title: string }) => {
       {Object.keys(listsObj).map((list) => (
         <div key={list}>
           {displaySectionName(list)}
-          <ul className="flex flex-col">
-            {packed
-              ? packedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)
-              : unpackedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)}
-          </ul>
+          {listIsShown(list) && displaySectionName(list) && (
+            <ul className="flex flex-col">
+              {packed
+                ? packedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)
+                : unpackedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)}
+            </ul>
+          )}
         </div>
       ))}
       {countItemsInList() === 0 ? (
-        <p className="mt-0 text-slate-500 sm:mt-2">{displayMessage()}</p>
+        <p>{displayMessage()}</p>
       ) : (
         <button
           className="my-4 mb-0 w-full sm:mb-2"

@@ -45,18 +45,4 @@ describe('AddList component', () => {
     // Ensure that addListAsObj is called with the correct arguments
     expect(mockContextValue.addListAsObj).toHaveBeenCalledWith(['item1', 'item2'], 'listName');
   });
-
-  test('invokes removeListAsObj when listed', () => {
-    const { getByText } = render(
-      <ItemsContext.Provider value={mockContextValue}>
-        <AddList list={['item1', 'item2']} name="Test List" listedState={true} />
-      </ItemsContext.Provider>,
-    );
-
-    // Click the button
-    fireEvent.click(getByText('Test List'));
-
-    // Ensure that removeListAsObj is called with the correct arguments
-    expect(mockContextValue.removeListAsObj).toHaveBeenCalledWith('listName');
-  });
 });
