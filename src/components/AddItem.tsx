@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
 import toast, { Toaster } from 'react-hot-toast';
-import Icon from './Icon';
 import {
   listCamping,
   listClothes,
@@ -53,7 +52,7 @@ const AddItem = () => {
   return (
     <form
       id="new-item"
-      className="mb-1 flex w-full"
+      className="mb-1 mt-5 flex w-full"
       onSubmit={(e) => {
         e.preventDefault();
         if (!existingInList()) {
@@ -65,9 +64,9 @@ const AddItem = () => {
       <Toaster />
       <input
         id="new-item-name"
-        className="w-full overflow-scroll"
+        className="flex-grow overflow-scroll"
         type="search"
-        placeholder="Type new item here"
+        placeholder="Or create new item here"
         value={newItem}
         autoFocus
         onChange={(e) => setNewItem(e.target.value)}
@@ -79,8 +78,9 @@ const AddItem = () => {
         type="submit"
         disabled={!newItem}
       >
-        <Icon symbol="add" />
-        <span className="ml-1 hidden sm:block">Add</span>
+        <span>
+          {`+\u00A0Add`} <span className="hidden sm:inline">New Item</span>
+        </span>
       </button>
     </form>
   );

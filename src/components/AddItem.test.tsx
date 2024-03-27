@@ -29,7 +29,7 @@ describe('AddItem component', () => {
     );
 
     // Ensure that the input and submit button are rendered
-    expect(getByPlaceholderText('Type new item here')).toBeInTheDocument();
+    expect(getByPlaceholderText('Or create new item here')).toBeInTheDocument();
     expect(getByLabelText(/Add Item/)).toBeInTheDocument();
   });
 
@@ -40,7 +40,7 @@ describe('AddItem component', () => {
       </ItemsContext.Provider>,
     );
 
-    const input = getByPlaceholderText('Type new item here');
+    const input = getByPlaceholderText('Or create new item here');
 
     // Simulate typing in the input
     fireEvent.change(input, { target: { value: 'Test item' } });
@@ -56,7 +56,7 @@ describe('AddItem component', () => {
       </ItemsContext.Provider>,
     );
 
-    const input = getByPlaceholderText('Type new item here');
+    const input = getByPlaceholderText('Or create new item here');
     const submitButton = getByLabelText(/Add Item/);
 
     // Simulate typing in the input

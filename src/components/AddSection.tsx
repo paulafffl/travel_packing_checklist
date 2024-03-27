@@ -21,68 +21,71 @@ const AddSection = () => {
   return (
     <section className={'max-h-[60vh] overflow-y-auto sm:h-auto'}>
       <h2> ADD ITEMS </h2>
+      <p>{'📝 Add group of items with lists below:'}</p>
+      <div className="flex flex-wrap gap-x-3 sm:justify-between">
+        <AddList
+          list={listEssentials}
+          listName={'listEssentials'}
+          name={'🎒 Essentials'}
+          listedState={addedListAsObj('listEssentials')}
+        />
+        <AddList
+          list={listTech}
+          listName={'listTech'}
+          name={'⚡ Tech'}
+          listedState={addedListAsObj('listTech')}
+        />
+        <AddList
+          list={listZeroWaste}
+          listName={'listZeroWaste'}
+          name={'💚 Zero Waste'}
+          listedState={addedListAsObj('listZeroWaste')}
+        />
+        <AddList
+          list={listFood}
+          listName={'listFood'}
+          name={'🍎 Food'}
+          listedState={addedListAsObj('listFood')}
+        />
+        <AddList
+          list={listClothes}
+          listName={'listClothes'}
+          name={'👕 Clothes'}
+          listedState={addedListAsObj('listClothes')}
+        />
+        <AddList
+          list={listToiletries}
+          listName={'listToiletries'}
+          name={'🛁 Toiletries'}
+          listedState={addedListAsObj('listToiletries')}
+        />
+        <AddList
+          list={listLeaving}
+          listName={'listLeaving'}
+          name={'🚪 Leaving'}
+          listedState={addedListAsObj('listLeaving')}
+        />
+        <AddList
+          list={listCamping}
+          listName={'listCamping'}
+          name={'🏕️ Camping'}
+          listedState={addedListAsObj('listCamping')}
+        />
+
+        <AddList
+          list={listWinter}
+          listName={'listWinter'}
+          name={'❄️ Winter'}
+          listedState={addedListAsObj('listWinter')}
+        />
+        <AddList
+          list={listSummer}
+          listName={'listSummer'}
+          name={'☀️ Summer'}
+          listedState={addedListAsObj('listSummer')}
+        />
+      </div>
       <AddItem />
-      <p className="mt-4 text-slate-500">{'Or add group of items from lists below'}</p>
-      <AddList
-        list={listZeroWaste}
-        listName={'listZeroWaste'}
-        name={'💚 Zero Waste'}
-        listedState={addedListAsObj('listZeroWaste')}
-      />
-      <AddList
-        list={listFood}
-        listName={'listFood'}
-        name={'🍎 Food'}
-        listedState={addedListAsObj('listFood')}
-      />
-      <AddList
-        list={listTech}
-        listName={'listTech'}
-        name={'⚡ Tech'}
-        listedState={addedListAsObj('listTech')}
-      />
-      <AddList
-        list={listEssentials}
-        listName={'listEssentials'}
-        name={'🎒 Essentials'}
-        listedState={addedListAsObj('listEssentials')}
-      />
-      <AddList
-        list={listClothes}
-        listName={'listClothes'}
-        name={'👕 Clothes'}
-        listedState={addedListAsObj('listClothes')}
-      />
-      <AddList
-        list={listLeaving}
-        listName={'listLeaving'}
-        name={'🚪 Leaving'}
-        listedState={addedListAsObj('listLeaving')}
-      />
-      <AddList
-        list={listSummer}
-        listName={'listSummer'}
-        name={'☀️ Summer'}
-        listedState={addedListAsObj('listSummer')}
-      />
-      <AddList
-        list={listWinter}
-        listName={'listWinter'}
-        name={'❄️ Winter'}
-        listedState={addedListAsObj('listWinter')}
-      />
-      <AddList
-        list={listToiletries}
-        listName={'listToiletries'}
-        name={'🛁 Toiletries'}
-        listedState={addedListAsObj('listToiletries')}
-      />
-      <AddList
-        list={listCamping}
-        listName={'listCamping'}
-        name={'🏕️ Camping'}
-        listedState={addedListAsObj('listCamping')}
-      />
     </section>
   );
 };
