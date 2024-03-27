@@ -4,7 +4,7 @@ type EmojiList = {
   [key: string]: string;
 };
 
-const listEmojis: EmojiList = {
+export const listEmojis: EmojiList = {
   listZeroWaste: '💚',
   listFood: '🍎',
   listTech: '⚡',

@@ -13,12 +13,14 @@ import {
   listWinter,
   listZeroWaste,
 } from '../lib/lists';
+import { listEmojis } from './Emoji';
 
 const AddItem = () => {
-  const { addItemAsObj } = useContext(ItemsContext);
+  const { addItemAsObj, listsObj } = useContext(ItemsContext);
   const [newItem, setNewItem] = useState('');
 
   const existingInList = () => {
+    const listAdditionals = listsObj['listAdditionals']?.map((item) => item.name);
     const lists = {
       listCamping,
       listClothes,
@@ -30,20 +32,28 @@ const AddItem = () => {
       listToiletries,
       listWinter,
       listZeroWaste,
+      listAdditionals,
     };
-
     for (const [listName, list] of Object.entries(lists)) {
-      const match = list.find((item) => {
-        const itemWithoutEmoji = item.toLowerCase().slice(2).trim();
+      const match = list?.find((item) => {
+        const nameToBeMatched =
+          listName === 'listAdditionals'
+            ? item.toLowerCase().trim()
+            : item.toLowerCase().slice(2).trim(); // Removes emojis included in default lists items
         const trimmedInput = newItem.toLowerCase().trim();
-        return itemWithoutEmoji.startsWith(trimmedInput);
+        return nameToBeMatched.startsWith(trimmedInput);
       });
       if (match) {
-        const listNAME = listName.substring(4).toUpperCase(); // Name of the array without "list"
+        const listNameOnly = listName.substring(4).toUpperCase(); // Name of the array without "list"
         toast(
-          `👋 This already exists in ${listNAME}. \n➕\u00A0Add the  list to see it and more! 👀`,
+          `👋 Item already exists in ${listEmojis[listName]}\u00A0${listNameOnly} ${
+            !Object.keys(listsObj).length ? '\nOpen that  list to see it and more! 👀' : ''
+          }`,
+          {
+            position: 'bottom-center',
+          },
         );
-        return listNAME;
+        return listNameOnly;
       }
     }
     return false;
