@@ -9,6 +9,9 @@ jest.mock('react', () => ({
 }));
 
 const mockContextValue = {
+  listIsShown: jest.fn(),
+  showList: jest.fn(),
+  hideList: jest.fn(),
   updateAsObj: jest.fn(),
   removeItemAsObj: jest.fn(),
 };

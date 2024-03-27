@@ -10,6 +10,9 @@ import toast, { Toaster } from 'react-hot-toast';
 
 type ItemsState = {
   listsObj: ItemAsObj;
+  listIsShown: (listName: string) => boolean;
+  showList: (listName: string) => void;
+  hideList: (listName: string) => void;
   packedItemsAsObj: (list: string) => Item[];
   unpackedItemsAsObj: (list: string) => Item[];
   addItemAsObj: (name: string, listName?: string) => void;
@@ -29,6 +32,7 @@ export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [listsObj, setListsObj] = useState(getInitialItemsAsObj());
+  const [listsShown, setListsShown] = useState<string[]>([]);
 
   const packedItemsAsObj = (list: string) => listsObj[list]?.filter((item) => item.packed);
   const unpackedItemsAsObj = (list: string) => listsObj[list]?.filter((item) => !item.packed);
@@ -47,10 +51,23 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const addListAsObj = (names: string[], listName: string) => {
     const newItemsAsObj = names.map((item) => createItemAsObj(item, listName));
     setListsObj({ [listName]: newItemsAsObj, ...listsObj });
+    setListsShown([...listsShown, listName]);
   };
 
   const addedListAsObj = (listName: string) => {
     return listsObj.hasOwnProperty(listName);
+  };
+
+  const listIsShown = (listName: string) => {
+    return listsShown.includes(listName);
+  };
+
+  const showList = (listName: string) => {
+    setListsShown([...listsShown, listName]);
+  };
+
+  const hideList = (listName: string) => {
+    setListsShown(listsShown.filter((name) => name !== listName));
   };
 
   const removeItemAsObj = (id: string) => {
@@ -83,6 +100,9 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const value: ItemsState = {
     listsObj,
+    listIsShown,
+    showList,
+    hideList,
     unpackedItemsAsObj,
     packedItemsAsObj,
     addItemAsObj,

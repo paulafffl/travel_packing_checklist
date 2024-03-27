@@ -5,6 +5,9 @@ import { ItemsContext } from '../context'; // Assuming this is the correct path 
 
 const mockContextValue = {
   listsObj: {},
+  listIsShown: jest.fn(),
+  showList: jest.fn(),
+  hideList: jest.fn(),
   packedItemsAsObj: jest.fn(),
   unpackedItemsAsObj: jest.fn(),
   addItemAsObj: jest.fn(),
