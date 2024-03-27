@@ -29,11 +29,11 @@ const List = ({ title }: { title: string }) => {
   const displayMessage = () => {
     if (packed) {
       return countItemsInTotal() > 0
-        ? '👜 Pack items to see them here'
+        ? '📦 Pack items to see them here'
         : '👆 First add items to be packed';
     } else {
       return countItemsInTotal() > 0
-        ? '👜 All packed and ready to travel! 🙌'
+        ? '📦 All packed and ready to travel! 🙌'
         : '🏁 Start a checklist from items above';
     }
   };
@@ -98,7 +98,7 @@ const List = ({ title }: { title: string }) => {
           className="my-4 mb-0 w-full sm:mb-2"
           onClick={() => (packed ? unpackAllItemsAsObj() : packAllItemsAsObj())}
         >
-          <span>{packed ? '🧺' : '👜'}</span>
+          <span>{packed ? '🧺' : '📦'}</span>
           <span className="ml-1">{packed ? 'Unpack all items' : 'Pack all items'}</span>
         </button>
       )}

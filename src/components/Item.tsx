@@ -31,7 +31,7 @@ const Item = ({ item }: { item: Item }) => {
         value={item.name}
         id={`checkbox-editing-${item.id}`}
         className={clsx(
-          'overflow-scroll pl-0 focus:pl-2',
+          'w-full overflow-scroll pl-0 focus:pl-2',
           editing ? ' pl-2' : 'border-white bg-white',
           visible ? 'opacity-100' : 'opacity-0',
         )}
