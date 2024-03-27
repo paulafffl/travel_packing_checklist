@@ -57,7 +57,7 @@ const List = ({ title }: { title: string }) => {
               <Icon symbol={listIsShown(listName) ? 'collapse' : 'expand'} />
             </button>
             <Emoji name={listName} />
-            <span className="m-0.5 font-bold text-violet-500 sm:m-1">
+            <span className="m-0.5 font-bold text-slate-400 sm:m-1">
               {listName.substring(4).toUpperCase()}
             </span>
           </div>
