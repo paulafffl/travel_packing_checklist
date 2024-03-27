@@ -20,7 +20,7 @@ const listEmojis: EmojiList = {
 
 const Emoji = ({ name }: { name: string }) => {
   return (
-    <span role="img" aria-label={name} className={'ml-1 p-0'}>
+    <span role="img" aria-label={name} className={'m-0 ml-1 p-0'}>
       {listEmojis[name]}
     </span>
   );

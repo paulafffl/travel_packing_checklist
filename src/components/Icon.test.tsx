@@ -3,18 +3,22 @@ import { render } from '@testing-library/react';
 import Icon from './Icon';
 
 describe('Icon component', () => {
-  test('renders add icon by default', () => {
-    const { container } = render(<Icon />);
-    const addIcon = container.querySelector('span');
-    expect(addIcon).toBeInTheDocument();
-    addIcon ? expect(addIcon.textContent).toBe('+') : fail('Add icon not found');
+  test('renders icon - close', () => {
+    const { container } = render(<Icon symbol="close" />);
+    const svgIcon = container.querySelector('svg');
+    expect(svgIcon).toBeInTheDocument();
   });
 
-  test('renders icon - remove', () => {
-    const { container } = render(<Icon symbol="remove" />);
-    const removeIcon = container.querySelector('span');
-    expect(removeIcon).toBeInTheDocument();
-    removeIcon ? expect(removeIcon.textContent).toBe('-') : fail('Add icon not found');
+  test('renders icon - collapse', () => {
+    const { container } = render(<Icon symbol="collapse" />);
+    const svgIcon = container.querySelector('svg');
+    expect(svgIcon).toBeInTheDocument();
+  });
+
+  test('renders icon - delete', () => {
+    const { container } = render(<Icon symbol="delete" />);
+    const svgIcon = container.querySelector('svg');
+    expect(svgIcon).toBeInTheDocument();
   });
 
   test('renders icon - edit', () => {
@@ -23,8 +27,8 @@ describe('Icon component', () => {
     expect(svgIcon).toBeInTheDocument();
   });
 
-  test('renders icon - delete', () => {
-    const { container } = render(<Icon symbol="delete" />);
+  test('renders icon - expand', () => {
+    const { container } = render(<Icon symbol="expand" />);
     const svgIcon = container.querySelector('svg');
     expect(svgIcon).toBeInTheDocument();
   });
