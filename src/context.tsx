@@ -7,8 +7,9 @@ import {
   deleteItemsAsObj,
 } from './lib/items';
 import toast, { Toaster } from 'react-hot-toast';
+import { listsAsObj } from './lib/listsAsObj';
 
-type ItemsState = {
+export type ItemsState = {
   listsObj: ItemAsObj;
   listIsShown: (listName: string) => boolean;
   showList: (listName: string) => void;
@@ -16,7 +17,7 @@ type ItemsState = {
   packedItemsAsObj: (list: string) => Item[];
   unpackedItemsAsObj: (list: string) => Item[];
   addItemAsObj: (name: string, listName?: string) => void;
-  addListAsObj: (names: string[], listName: string) => void;
+  addListAsObj: (listName: string) => void;
   removeItemAsObj: (id: string) => void;
   removeListAsObj: (listName: string) => void;
   addedListAsObj: (listName: string) => boolean;
@@ -48,7 +49,8 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     }));
   };
 
-  const addListAsObj = (names: string[], listName: string) => {
+  const addListAsObj = (listName: string) => {
+    const names = listsAsObj[listName as keyof ListsAsObj];
     const newItemsAsObj = names.map((item) => createItemAsObj(item, listName));
     setListsObj({ [listName]: newItemsAsObj, ...listsObj });
     setListsShown([...listsShown, listName]);
