@@ -49,7 +49,7 @@ export const deleteItemAsObj = (items: ItemAsObj, id: string) => {
   return updatedItems;
 };
 
-export const deleteItemsAsObj = (items: ItemAsObj, listName: string) => {
+export const deleteItemsAsObj = async (items: ItemAsObj, listName: string) => {
   const updatedItems: ItemAsObj = { ...items };
   if (listName in updatedItems) {
     delete updatedItems[listName];

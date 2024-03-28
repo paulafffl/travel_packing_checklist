@@ -17,7 +17,8 @@ export type ItemsState = {
   packedItemsAsObj: (list: string) => Item[];
   unpackedItemsAsObj: (list: string) => Item[];
   addItemAsObj: (name: string, listName?: string) => void;
-  addListAsObj: (listName: string) => void;
+  addListAsObj: (listName: string, listObject?: {}) => void;
+  resetListAsObj: (listName: string) => void;
   removeItemAsObj: (id: string) => void;
   removeListAsObj: (listName: string) => void;
   addedListAsObj: (listName: string) => boolean;
@@ -49,10 +50,10 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     }));
   };
 
-  const addListAsObj = (listName: string) => {
+  const addListAsObj = (listName: string, listsObject = listsObj) => {
     const names = listsAsObj[listName as keyof ListsAsObj];
     const newItemsAsObj = names.map((item) => createItemAsObj(item, listName));
-    setListsObj({ [listName]: newItemsAsObj, ...listsObj });
+    setListsObj({ [listName]: newItemsAsObj, ...listsObject });
     setListsShown([...listsShown, listName]);
   };
 
@@ -76,8 +77,15 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setListsObj(deleteItemAsObj(listsObj, id));
   };
 
-  const removeListAsObj = (listName: string) => {
-    setListsObj(deleteItemsAsObj(listsObj, listName));
+  const removeListAsObj = async (listName: string) => {
+    const updatedListsObj = await deleteItemsAsObj(listsObj, listName);
+    setListsObj(updatedListsObj);
+  };
+
+  const resetListAsObj = async (listName: string) => {
+    const updatedListsObj = await deleteItemsAsObj(listsObj, listName);
+    setListsObj(updatedListsObj);
+    addListAsObj(listName, updatedListsObj);
   };
 
   const updateAsObj = (id: string, updates: WithoutId) => {
@@ -111,6 +119,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     addListAsObj,
     removeItemAsObj,
     removeListAsObj,
+    resetListAsObj,
     addedListAsObj,
     updateAsObj,
     packAllItemsAsObj,

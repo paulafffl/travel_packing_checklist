@@ -15,6 +15,7 @@ export const mockContextValue = {
   addListAsObj: jest.fn(),
   removeItemAsObj: jest.fn(),
   removeListAsObj: jest.fn(),
+  resetListAsObj: jest.fn(),
   addedListAsObj: jest.fn(),
   updateAsObj: jest.fn(),
   packAllItemsAsObj: jest.fn(),
