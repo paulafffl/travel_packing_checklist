@@ -36,7 +36,7 @@ p {
 }
 
 input {
-  @apply rounded-sm border-2 border-primary-300 bg-white py-1 pl-2 pr-0 placeholder-slate-500 accent-primary-600 outline-none transition-all transition-opacity duration-200 ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 hover:bg-primary-200 hover:accent-primary-700 focus:bg-primary-50 disabled:border-slate-500 disabled:bg-slate-100 disabled:placeholder-slate-400;
+  @apply rounded-sm border-2 border-primary-300 bg-white py-1 pl-2 pr-0 placeholder-slate-500 accent-primary-600 outline-none transition-all transition-opacity duration-200 ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 focus:bg-primary-50 disabled:border-slate-500 disabled:bg-slate-100 disabled:placeholder-slate-400 md:hover:accent-primary-700;
 }
 
 input[type='checkbox'] {
@@ -51,7 +51,7 @@ button,
 button[type='button'],
 button[type='reset'],
 button[type='submit'] {
-  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-3 py-1 font-semibold uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-500 active:bg-primary-300 disabled:bg-slate-500 disabled:bg-opacity-60 disabled:text-white disabled:opacity-50 sm:px-5;
+  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-3 py-1 font-semibold uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-400 active:bg-primary-300 disabled:bg-slate-500 disabled:bg-opacity-60 disabled:text-white disabled:opacity-50 sm:px-5 md:hover:bg-primary-500;
 }
 
 section {
@@ -59,15 +59,15 @@ section {
 }
 
 .color-palette-green {
-  @apply bg-teal-400 hover:bg-teal-500;
+  @apply bg-teal-400 hover:bg-teal-400 md:hover:bg-teal-500;
 }
 
 .color-palette-violet {
-  @apply bg-violet-400 hover:bg-violet-500;
+  @apply bg-violet-400 hover:bg-violet-400 md:hover:bg-violet-500;
 }
 
 .color-palette-red {
-  @apply bg-rose-400 hover:bg-rose-500;
+  @apply bg-rose-400 hover:bg-rose-400 md:hover:bg-rose-500;
 }
 
 .outer-margin {
