@@ -2,23 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { ItemsContext } from '../context';
 import AddList from './AddList';
-
-const mockContextValue = {
-  listsObj: {},
-  listIsShown: jest.fn(),
-  showList: jest.fn(),
-  hideList: jest.fn(),
-  packedItemsAsObj: jest.fn(),
-  unpackedItemsAsObj: jest.fn(),
-  addItemAsObj: jest.fn(),
-  addListAsObj: jest.fn(),
-  removeItemAsObj: jest.fn(),
-  removeListAsObj: jest.fn(),
-  addedListAsObj: jest.fn(),
-  updateAsObj: jest.fn(),
-  packAllItemsAsObj: jest.fn(),
-  unpackAllItemsAsObj: jest.fn(),
-};
+import { mockContextValue } from '../setupTests';
 
 describe('AddList component', () => {
   test('renders correctly', () => {
@@ -28,7 +12,6 @@ describe('AddList component', () => {
       </ItemsContext.Provider>,
     );
 
-    // Ensure that the button is rendered with the correct name
     expect(getByText('Test List')).toBeInTheDocument();
   });
 
@@ -39,10 +22,8 @@ describe('AddList component', () => {
       </ItemsContext.Provider>,
     );
 
-    // Click the button
     fireEvent.click(getByText('Test List'));
 
-    // Ensure that addListAsObj is called with the correct arguments
     expect(mockContextValue.addListAsObj).toHaveBeenCalledWith(['item1', 'item2'], 'listName');
   });
 });

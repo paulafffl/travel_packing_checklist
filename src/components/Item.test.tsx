@@ -1,25 +1,17 @@
 import React from 'react';
-import { render, fireEvent, waitFor, getByRole } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import Item from './Item';
+import { mockContextValue } from '../setupTests';
 
-// Mock the useContext hook and the ItemsContext
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useContext: jest.fn(),
 }));
 
-const mockContextValue = {
-  listIsShown: jest.fn(),
-  showList: jest.fn(),
-  hideList: jest.fn(),
-  updateAsObj: jest.fn(),
-  removeItemAsObj: jest.fn(),
-};
-
 describe('Item component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (React.useContext as jest.Mock).mockReturnValue(mockContextValue); // Type assertion
+    (React.useContext as jest.Mock).mockReturnValue(mockContextValue);
   });
 
   test('renders item correctly', () => {
@@ -27,7 +19,7 @@ describe('Item component', () => {
     const { getByRole, getByText } = render(<Item item={item} />);
 
     expect(getByText(item.name)).toBeInTheDocument();
-    expect(getByRole('checkbox', { name: item.name })).toBeInTheDocument(); // Use getByRole
+    expect(getByRole('checkbox', { name: item.name })).toBeInTheDocument();
   });
 
   test('handles checkbox change', async () => {
@@ -35,6 +27,7 @@ describe('Item component', () => {
     const { getByRole } = render(<Item item={item} />);
 
     fireEvent.click(getByRole('checkbox', { name: item.name }));
+
     await waitFor(() => {
       expect(mockContextValue.updateAsObj).toHaveBeenCalledWith(item.id, { packed: true });
     });
@@ -49,6 +42,7 @@ describe('Item component', () => {
     expect(inputElement).toHaveValue(item.name);
 
     fireEvent.change(inputElement, { target: { value: 'New Item Name' } });
+
     expect(mockContextValue.updateAsObj).toHaveBeenCalledWith(item.id, { name: 'New Item Name' });
   });
 
@@ -57,6 +51,7 @@ describe('Item component', () => {
     const { getByLabelText } = render(<Item item={item} />);
 
     fireEvent.click(getByLabelText(`Delete "${item.name}"`));
+
     expect(mockContextValue.removeItemAsObj).toHaveBeenCalledWith(item.id);
   });
 });

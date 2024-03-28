@@ -2,30 +2,19 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import List from './List';
 import { ItemsContext } from '../context';
+import { mockContextValue } from '../setupTests';
 
-const mockContextValue = {
+const mockContextValueWithLists = {
+  ...mockContextValue,
   listsObj: {
     list1: [{ id: '1', name: 'Item 1', packed: true }],
     list2: [{ id: '2', name: 'Item 2', packed: false }],
   },
-  listIsShown: jest.fn(),
-  showList: jest.fn(),
-  hideList: jest.fn(),
-  packedItemsAsObj: jest.fn(),
-  unpackedItemsAsObj: jest.fn(),
-  addItemAsObj: jest.fn(),
-  addListAsObj: jest.fn(),
-  removeItemAsObj: jest.fn(),
-  removeListAsObj: jest.fn(),
-  addedListAsObj: jest.fn(),
-  updateAsObj: jest.fn(),
-  packAllItemsAsObj: jest.fn(),
-  unpackAllItemsAsObj: jest.fn(),
 };
 
 test('counts items correctly', () => {
   render(
-    <ItemsContext.Provider value={mockContextValue}>
+    <ItemsContext.Provider value={mockContextValueWithLists}>
       <List title="Packed Items" />
     </ItemsContext.Provider>,
   );
@@ -35,7 +24,7 @@ test('counts items correctly', () => {
 
 test('button "Pack all items" correctly', () => {
   render(
-    <ItemsContext.Provider value={mockContextValue}>
+    <ItemsContext.Provider value={mockContextValueWithLists}>
       <List title="Unpacked Items" />
     </ItemsContext.Provider>,
   );
@@ -48,7 +37,7 @@ test('button "Pack all items" correctly', () => {
 
 test('button "Unpack all items" correctly', () => {
   render(
-    <ItemsContext.Provider value={mockContextValue}>
+    <ItemsContext.Provider value={mockContextValueWithLists}>
       <List title="Packed Items" />
     </ItemsContext.Provider>,
   );

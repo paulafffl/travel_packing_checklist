@@ -2,23 +2,7 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import AddItem from './AddItem';
 import { ItemsContext } from '../context';
-
-const mockContextValue = {
-  listsObj: {},
-  listIsShown: jest.fn(),
-  showList: jest.fn(),
-  hideList: jest.fn(),
-  packedItemsAsObj: jest.fn(),
-  unpackedItemsAsObj: jest.fn(),
-  addItemAsObj: jest.fn(),
-  addListAsObj: jest.fn(),
-  removeItemAsObj: jest.fn(),
-  removeListAsObj: jest.fn(),
-  addedListAsObj: jest.fn(),
-  updateAsObj: jest.fn(),
-  packAllItemsAsObj: jest.fn(),
-  unpackAllItemsAsObj: jest.fn(),
-};
+import { mockContextValue } from '../setupTests';
 
 describe('AddItem component', () => {
   test('renders correctly', () => {
@@ -28,7 +12,6 @@ describe('AddItem component', () => {
       </ItemsContext.Provider>,
     );
 
-    // Ensure that the input and submit button are rendered
     expect(getByPlaceholderText('Or create new item here')).toBeInTheDocument();
     expect(getByLabelText(/Add Item/)).toBeInTheDocument();
   });
@@ -42,10 +25,8 @@ describe('AddItem component', () => {
 
     const input = getByPlaceholderText('Or create new item here');
 
-    // Simulate typing in the input
     fireEvent.change(input, { target: { value: 'Test item' } });
 
-    // Ensure that the input value is updated correctly
     expect(input).toHaveValue('Test item');
   });
 
@@ -59,13 +40,9 @@ describe('AddItem component', () => {
     const input = getByPlaceholderText('Or create new item here');
     const submitButton = getByLabelText(/Add Item/);
 
-    // Simulate typing in the input
     fireEvent.change(input, { target: { value: 'Test item' } });
-
-    // Simulate form submission
     fireEvent.click(submitButton);
 
-    // Ensure that addItemAsObj is called with the correct argument
     await waitFor(() => {
       expect(mockContextValue.addItemAsObj).toHaveBeenCalledWith('Test item');
     });
