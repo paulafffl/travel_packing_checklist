@@ -35,7 +35,7 @@ const ListsSection = ({ title }: { title: string }) => {
         )}
       </h2>
       {Object.keys(listsObj).map((list) => (
-        <List list={list} packed={packed} />
+        <List list={list} packed={packed} key={title + list} />
       ))}
       {countItemsInList() === 0 ? (
         <p>{displayMessage()}</p>

@@ -80,19 +80,17 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
   };
 
   return (
-    <>
-      <div>
-        {displaySectionName(list)}
-        {listIsShown(list) && displaySectionName(list) && (
-          <ul className="flex flex-col">
-            {packed
-              ? packedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)
-              : unpackedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)}
-          </ul>
-        )}
-      </div>
+    <div>
+      {displaySectionName(list)}
+      {listIsShown(list) && displaySectionName(list) && (
+        <ul className="flex flex-col">
+          {packed
+            ? packedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)
+            : unpackedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)}
+        </ul>
+      )}
       <Toaster />
-    </>
+    </div>
   );
 };
 
