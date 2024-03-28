@@ -5,7 +5,7 @@ import Emoji from './Emoji';
 import Icon from './Icon';
 import toast, { Toaster } from 'react-hot-toast';
 
-const ListTemp = ({ packed, list }: { packed: boolean; list: string }) => {
+const List = ({ list, packed }: { list: string; packed: boolean }) => {
   const { listIsShown, showList, hideList, packedItemsAsObj, unpackedItemsAsObj, removeListAsObj } =
     useContext(ItemsContext);
 
@@ -81,8 +81,7 @@ const ListTemp = ({ packed, list }: { packed: boolean; list: string }) => {
 
   return (
     <>
-      {/* {Object.keys(listsObj).map((list) => ( */}
-      <div key={list}>
+      <div>
         {displaySectionName(list)}
         {listIsShown(list) && displaySectionName(list) && (
           <ul className="flex flex-col">
@@ -92,10 +91,9 @@ const ListTemp = ({ packed, list }: { packed: boolean; list: string }) => {
           </ul>
         )}
       </div>
-      {/* ))} */}
       <Toaster />
     </>
   );
 };
 
-export default ListTemp;
+export default List;

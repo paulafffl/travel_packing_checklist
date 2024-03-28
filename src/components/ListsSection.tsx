@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ItemsContext } from '../context';
-import ListTemp from './ListTemp';
+import List from './List';
 
 const ListsSection = ({ title }: { title: string }) => {
   const { listsObj, packAllItemsAsObj, unpackAllItemsAsObj } = useContext(ItemsContext);
@@ -35,7 +35,7 @@ const ListsSection = ({ title }: { title: string }) => {
         )}
       </h2>
       {Object.keys(listsObj).map((list) => (
-        <ListTemp list={list} packed={packed} />
+        <List list={list} packed={packed} />
       ))}
       {countItemsInList() === 0 ? (
         <p>{displayMessage()}</p>
