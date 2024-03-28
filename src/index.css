@@ -70,6 +70,10 @@ section {
   @apply bg-rose-400 hover:bg-rose-400 md:hover:bg-rose-500;
 }
 
+.color-button-activated {
+  @apply bg-violet-600 hover:bg-violet-600 md:hover:bg-violet-800;
+}
+
 .outer-margin {
   margin: 10vh 24vw;
   @media (max-width: 1024px) {

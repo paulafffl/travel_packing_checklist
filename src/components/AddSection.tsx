@@ -21,7 +21,7 @@ const AddSection = () => {
   return (
     <section className={'max-h-[60vh] overflow-y-auto sm:h-auto'}>
       <h2> ADD ITEMS </h2>
-      <p>{'📝 Add group of items with lists below:'}</p>
+      <p>{'📝 Add group of items with lists below'}</p>
       <div className="flex flex-wrap gap-x-3 sm:justify-between">
         <AddList
           list={listEssentials}
