@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import List from './List';
+import List from './ListsSection';
 import { ItemsContext } from '../context';
 import { mockContextValue } from '../setupTests';
 

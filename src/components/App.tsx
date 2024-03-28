@@ -1,4 +1,4 @@
-import List from './List';
+import ListsSection from './ListsSection';
 import AddSection from './AddSection';
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
       <main>
         <AddSection />
         <div className="flex flex-col gap-x-10 md:flex-row">
-          <List title="Unpacked Items" />
-          <List title="Packed Items" />
+          <ListsSection title="Unpacked Items" />
+          <ListsSection title="Packed Items" />
         </div>
       </main>
       <footer>

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ItemsContext } from '../context';
 import ListTemp from './ListTemp';
 
-const List = ({ title }: { title: string }) => {
+const ListsSection = ({ title }: { title: string }) => {
   const { listsObj, packAllItemsAsObj, unpackAllItemsAsObj } = useContext(ItemsContext);
   const packed = title === 'Packed Items';
 
@@ -35,7 +35,7 @@ const List = ({ title }: { title: string }) => {
         )}
       </h2>
       {Object.keys(listsObj).map((list) => (
-        <ListTemp packed={packed} list={list} />
+        <ListTemp list={list} packed={packed} />
       ))}
       {countItemsInList() === 0 ? (
         <p>{displayMessage()}</p>
@@ -52,4 +52,4 @@ const List = ({ title }: { title: string }) => {
   );
 };
 
-export default List;
+export default ListsSection;
