@@ -80,7 +80,7 @@ export const listsAsObj = {
     '🔥 Turn off heating',
     '💡 Turn off lights',
     '📝 Review checklist',
-    '🚪 Look door',
+    '🚪 Lock door',
   ],
   listClothes: [
     '👖 Trousers',

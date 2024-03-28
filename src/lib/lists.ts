@@ -84,7 +84,7 @@ export const listLeaving = [
   '🔥 Turn off heating',
   '💡 Turn off lights',
   '📝 Review checklist',
-  '🚪 Look door',
+  '🚪 Lock door',
 ];
 
 export const listClothes = [
