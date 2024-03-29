@@ -7,8 +7,16 @@ import Modal from './Modal';
 
 const List = ({ list, packed }: { list: string; packed: boolean }) => {
   const [modalDeleteAdditionals, setModalDeleteAdditionals] = useState(false);
-  const { listIsShown, showList, hideList, packedItemsAsObj, unpackedItemsAsObj, removeListAsObj } =
-    useContext(ItemsContext);
+  const [modalResetList, setModalResetList] = useState('');
+  const {
+    listIsShown,
+    showList,
+    hideList,
+    packedItemsAsObj,
+    unpackedItemsAsObj,
+    removeListAsObj,
+    resetListAsObj,
+  } = useContext(ItemsContext);
 
   const displaySectionName = (listName: string) => {
     const packedItems = packedItemsAsObj(listName);
@@ -22,26 +30,44 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
                 listIsShown(listName) && 'color-palette-green'
               }`}
               aria-label={`Add List for ${listName}`}
+              title={listIsShown(listName) ? 'Hide items' : 'Show items'}
               onClick={() => (listIsShown(listName) ? hideList(listName) : showList(listName))}
             >
               <Icon symbol={listIsShown(listName) ? 'collapse' : 'expand'} />
             </button>
             <span className="m-0.5 text-slate-400 sm:m-1">{listNameDisplay(listName)}</span>
           </div>
-          <button
-            className={`ml-2 bg-white px-0.5 ${
-              !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
-            }`}
-            aria-label={`Delete "${listName}"`}
-            disabled={!!modalDeleteAdditionals}
-            onClick={() =>
-              listName === 'listAdditionals'
-                ? setModalDeleteAdditionals(true)
-                : removeListAsObj(listName)
-            }
-          >
-            <Icon symbol="close" color={!!modalDeleteAdditionals ? 'grey' : 'red'} />
-          </button>
+          <div>
+            <button
+              className={`ml-2 bg-white px-0.5 ${
+                listName === 'listAdditionals' ? 'disabled:bg-white' : 'hover:bg-indigo-200'
+              }`}
+              aria-label={`Reset "${listName}"`}
+              title={'Reset list'}
+              disabled={listName === 'listAdditionals'}
+              onClick={() => setModalResetList(listName)}
+            >
+              <Icon
+                symbol="reset"
+                color={listName === 'listAdditionals' ? 'lightgrey' : 'cornflowerblue'}
+              />
+            </button>
+            <button
+              className={`ml-2 bg-white px-0.5 ${
+                !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
+              }`}
+              aria-label={`Delete "${listName}"`}
+              title={'Remove list'}
+              disabled={!!modalDeleteAdditionals}
+              onClick={() =>
+                listName === 'listAdditionals'
+                  ? setModalDeleteAdditionals(true)
+                  : removeListAsObj(listName)
+              }
+            >
+              <Icon symbol="close" color={!!modalDeleteAdditionals ? 'grey' : 'red'} />
+            </button>
+          </div>
         </div>
       );
     }
@@ -59,7 +85,26 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
         closeAction={() => setModalDeleteAdditionals(false)}
         confirmAction={() => removeListAsObj('listAdditionals')}
         confirmButton="Delete"
+        confirmColor="color-palette-red"
         confirmIcon={<Icon symbol="delete" />}
+      />
+    );
+  };
+
+  const confirmListReset = () => {
+    return (
+      <Modal
+        message={
+          <p>
+            This will replace any deleted or renamed items with the default ones. Do you still want
+            to reset the list {listNameDisplay(modalResetList)} ?
+          </p>
+        }
+        closeAction={() => setModalResetList('')}
+        confirmAction={() => resetListAsObj(modalResetList)}
+        confirmButton="Reset"
+        confirmColor="color-palette-blue"
+        confirmIcon={<Icon symbol="reset" />}
       />
     );
   };
@@ -67,6 +112,7 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
   return (
     <div>
       {modalDeleteAdditionals && confirmAdditionalsDeletion()}
+      {modalResetList && confirmListReset()}
       {displaySectionName(list)}
       {listIsShown(list) && displaySectionName(list) && (
         <ul className="flex flex-col">

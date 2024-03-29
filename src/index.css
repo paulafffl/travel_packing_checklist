@@ -55,7 +55,7 @@ button,
 button[type='button'],
 button[type='reset'],
 button[type='submit'] {
-  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-3 py-1 font-semibold uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-400 active:bg-primary-300 disabled:bg-slate-500 disabled:bg-opacity-60 disabled:text-white disabled:opacity-50 disabled:hover:bg-transparent sm:px-5 md:hover:bg-primary-500;
+  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-3 py-1 font-semibold uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-400 active:bg-primary-300 disabled:bg-slate-300 disabled:text-white disabled:hover:bg-slate-300 sm:px-5 md:hover:bg-primary-500;
 }
 
 section {
@@ -72,6 +72,10 @@ section {
 
 .color-palette-red {
   @apply bg-rose-400 hover:bg-rose-400 md:hover:bg-rose-500;
+}
+
+.color-palette-blue {
+  @apply bg-blue-400 hover:bg-blue-400 md:hover:bg-blue-500;
 }
 
 .color-button-activated {

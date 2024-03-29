@@ -9,6 +9,7 @@ const modalProps = {
   message: 'Are you sure you want to proceed?',
   confirmButton: 'Confirm',
   confirmIcon: <span>✅</span>,
+  confirmColor: 'blue',
   confirmAction: mockConfirmAction,
   closeAction: mockCloseAction,
 };
