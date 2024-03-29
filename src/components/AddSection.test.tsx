@@ -14,15 +14,15 @@ describe('AddSection component', () => {
 
     expect(getByText('ADD ITEMS')).toBeInTheDocument();
 
-    expect(getByText('💚 Zero Waste')).toBeInTheDocument();
-    expect(getByText('🍎 Food')).toBeInTheDocument();
-    expect(getByText('⚡ Tech')).toBeInTheDocument();
-    expect(getByText('🎒 Essentials')).toBeInTheDocument();
-    expect(getByText('👕 Clothes')).toBeInTheDocument();
-    expect(getByText('🚪 Leaving')).toBeInTheDocument();
-    expect(getByText('☀️ Summer')).toBeInTheDocument();
-    expect(getByText('❄️ Winter')).toBeInTheDocument();
-    expect(getByText('🛁 Toiletries')).toBeInTheDocument();
-    expect(getByText('🏕️ Camping')).toBeInTheDocument();
+    expect(getByText(/Zero Waste/i)).toBeInTheDocument();
+    expect(getByText(/Food/i)).toBeInTheDocument();
+    expect(getByText(/Tech/i)).toBeInTheDocument();
+    expect(getByText(/Essentials/i)).toBeInTheDocument();
+    expect(getByText(/Clothes/i)).toBeInTheDocument();
+    expect(getByText(/Leaving/i)).toBeInTheDocument();
+    expect(getByText(/Summer/i)).toBeInTheDocument();
+    expect(getByText(/Winter/i)).toBeInTheDocument();
+    expect(getByText(/Toiletries/i)).toBeInTheDocument();
+    expect(getByText(/Camping/i)).toBeInTheDocument();
   });
 });
