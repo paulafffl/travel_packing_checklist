@@ -11,9 +11,9 @@ import { listsAsObj } from './lib/listsAsObj';
 
 export type ItemsState = {
   listsObj: ItemAsObj;
-  listIsShown: (listName: string) => boolean;
-  showList: (listName: string) => void;
-  hideList: (listName: string) => void;
+  listItemsShown: (listName: string) => boolean;
+  showListItems: (listName: string) => void;
+  hideListItems: (listName: string) => void;
   packedItemsAsObj: (list: string) => Item[];
   unpackedItemsAsObj: (list: string) => Item[];
   addItemAsObj: (name: string, listName?: string) => void;
@@ -61,15 +61,15 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     return listsObj.hasOwnProperty(listName);
   };
 
-  const listIsShown = (listName: string) => {
+  const listItemsShown = (listName: string) => {
     return listsShown.includes(listName);
   };
 
-  const showList = (listName: string) => {
+  const showListItems = (listName: string) => {
     setListsShown([...listsShown, listName]);
   };
 
-  const hideList = (listName: string) => {
+  const hideListItems = (listName: string) => {
     setListsShown(listsShown.filter((name) => name !== listName));
   };
 
@@ -110,9 +110,9 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const value: ItemsState = {
     listsObj,
-    listIsShown,
-    showList,
-    hideList,
+    listItemsShown,
+    showListItems,
+    hideListItems,
     unpackedItemsAsObj,
     packedItemsAsObj,
     addItemAsObj,

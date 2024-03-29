@@ -9,9 +9,9 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
   const [modalDeleteAdditionals, setModalDeleteAdditionals] = useState(false);
   const [modalResetList, setModalResetList] = useState('');
   const {
-    listIsShown,
-    showList,
-    hideList,
+    listItemsShown,
+    showListItems,
+    hideListItems,
     packedItemsAsObj,
     unpackedItemsAsObj,
     removeListAsObj,
@@ -27,13 +27,15 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
           <div className="flex items-center">
             <button
               className={`m-0 mr-1 h-5 w-5 p-0.5 px-0.5 sm:mb-0.5 ${
-                listIsShown(listName) && 'color-palette-green'
+                listItemsShown(listName) && 'color-palette-green'
               }`}
               aria-label={`Add List for ${listName}`}
-              title={listIsShown(listName) ? 'Hide items' : 'Show items'}
-              onClick={() => (listIsShown(listName) ? hideList(listName) : showList(listName))}
+              title={listItemsShown(listName) ? 'Hide items' : 'Show items'}
+              onClick={() =>
+                listItemsShown(listName) ? hideListItems(listName) : showListItems(listName)
+              }
             >
-              <Icon symbol={listIsShown(listName) ? 'collapse' : 'expand'} />
+              <Icon symbol={listItemsShown(listName) ? 'collapse' : 'expand'} />
             </button>
             <span className="m-0.5 text-slate-400 sm:m-1">{listNameDisplay(listName)}</span>
           </div>
@@ -114,7 +116,7 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
       {modalDeleteAdditionals && confirmAdditionalsDeletion()}
       {modalResetList && confirmListReset()}
       {displaySectionName(list)}
-      {listIsShown(list) && displaySectionName(list) && (
+      {listItemsShown(list) && displaySectionName(list) && (
         <ul className="flex flex-col">
           {packed
             ? packedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)
