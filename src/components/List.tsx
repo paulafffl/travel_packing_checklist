@@ -38,7 +38,14 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
             >
               <Icon symbol={listItemsShown(listName) ? 'collapse' : 'expand'} />
             </button>
-            <span className="m-0.5 text-slate-400 sm:m-1">{listNameDisplay(listName)}</span>
+            <span
+              className="m-0.5 cursor-pointer text-slate-400 sm:m-1"
+              onClick={() =>
+                listItemsShown(listName) ? hideListItems(listName) : showListItems(listName)
+              }
+            >
+              {listNameDisplay(listName)}
+            </span>
           </div>
           <div>
             <button

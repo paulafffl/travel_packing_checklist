@@ -17,7 +17,7 @@ const Item = ({ item }: { item: Item }) => {
     <li className="flex items-center gap-2">
       <input
         type="checkbox"
-        checked={item.packed}
+        checked={item.packed || !visible}
         id={`checkbox-item-${item.id}`}
         className={visible ? 'opacity-100' : 'opacity-0'}
         onKeyDown={(e) => e.key === 'Enter' && handleCheckboxChange()}
