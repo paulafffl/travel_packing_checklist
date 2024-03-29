@@ -6,6 +6,7 @@ import '@testing-library/jest-dom';
 
 export const mockContextValue = {
   listsObj: {},
+  listsShown: [],
   listItemsShown: jest.fn(),
   showListItems: jest.fn(),
   hideListItems: jest.fn(),

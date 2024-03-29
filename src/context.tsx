@@ -11,6 +11,7 @@ import { listsAsObj } from './lib/listsAsObj';
 
 export type ItemsState = {
   listsObj: ItemAsObj;
+  listsShown: string[];
   listItemsShown: (listName: string) => boolean;
   showListItems: (listName: string) => void;
   hideListItems: (listName: string) => void;
@@ -34,6 +35,7 @@ export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [listsObj, setListsObj] = useState(getInitialItemsAsObj());
+  const [listsShown, setListsShown] = useState<string[]>([]);
   const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
 
   const packedItemsAsObj = (list: string) => listsObj[list]?.filter((item) => item.packed);
@@ -54,11 +56,12 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     const names = listsAsObj[listName as keyof ListsAsObj];
     const newItemsAsObj = names.map((item) => createItemAsObj(item, listName));
     setListsObj({ [listName]: newItemsAsObj, ...listsObject });
+    setListsShown([...listsShown, listName]);
     setListsWithItemsShown([...listsWithItemsShown, listName]);
   };
 
   const addedListAsObj = (listName: string) => {
-    return listsObj.hasOwnProperty(listName);
+    return listsShown.includes(listName);
   };
 
   const listItemsShown = (listName: string) => {
@@ -77,9 +80,8 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setListsObj(deleteItemAsObj(listsObj, id));
   };
 
-  const removeListAsObj = async (listName: string) => {
-    const updatedListsObj = await deleteItemsAsObj(listsObj, listName);
-    setListsObj(updatedListsObj);
+  const removeListAsObj = (listName: string) => {
+    setListsShown(listsShown.filter((name) => name !== listName));
   };
 
   const resetListAsObj = async (listName: string) => {
@@ -110,6 +112,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const value: ItemsState = {
     listsObj,
+    listsShown,
     listItemsShown,
     showListItems,
     hideListItems,
