@@ -1,11 +1,12 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
 import Item from './Item';
 import Emoji from './Emoji';
 import Icon from './Icon';
-import toast, { Toaster } from 'react-hot-toast';
+import Modal from './Modal';
 
 const List = ({ list, packed }: { list: string; packed: boolean }) => {
+  const [modalDeleteAdditionals, setModalDeleteAdditionals] = useState(false);
   const { listIsShown, showList, hideList, packedItemsAsObj, unpackedItemsAsObj, removeListAsObj } =
     useContext(ItemsContext);
 
@@ -31,56 +32,44 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
             </span>
           </div>
           <button
-            className="ml-2 bg-white px-0.5 hover:bg-rose-200"
+            className={`ml-2 bg-white px-0.5 ${
+              !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
+            }`}
             aria-label={`Delete "${listName}"`}
+            disabled={!!modalDeleteAdditionals}
             onClick={() =>
               listName === 'listAdditionals'
-                ? toast(
-                    (t) => (
-                      <div className="text-center">
-                        <p>
-                          Items you created <b>can't be restored</b> like the ones in the default
-                          lists. Do you still want to delete {`📝\u00A0Additionals`}?
-                        </p>
-                        <br />
-                        <div className="mb-2 flex w-full gap-4">
-                          <button
-                            className="color-palette-green flex-grow"
-                            onClick={() => {
-                              toast.dismiss(t.id);
-                            }}
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            className="color-palette-red flex-grow"
-                            onClick={() => {
-                              removeListAsObj(listName);
-                              toast.dismiss(t.id);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                    ),
-                    {
-                      duration: 9000,
-                      position: 'bottom-center',
-                    },
-                  )
+                ? setModalDeleteAdditionals(true)
                 : removeListAsObj(listName)
             }
           >
-            <Icon symbol="close" color={'red'} />
+            <Icon symbol="close" color={!!modalDeleteAdditionals ? 'grey' : 'red'} />
           </button>
         </div>
       );
     }
   };
 
+  const confirmAdditionalsDeletion = () => {
+    return (
+      <Modal
+        message={
+          <span>
+            Items you created <strong>can't be restored</strong> like the ones in the default lists.
+            Do you still want to delete 📝&nbsp;Additionals?
+          </span>
+        }
+        closeAction={() => setModalDeleteAdditionals(false)}
+        confirmAction={() => removeListAsObj('listAdditionals')}
+        confirmButton="Delete"
+        confirmIcon={<Icon symbol="delete" />}
+      />
+    );
+  };
+
   return (
     <div>
+      {modalDeleteAdditionals && confirmAdditionalsDeletion()}
       {displaySectionName(list)}
       {listIsShown(list) && displaySectionName(list) && (
         <ul className="flex flex-col">
@@ -89,7 +78,6 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
             : unpackedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)}
         </ul>
       )}
-      <Toaster />
     </div>
   );
 };
