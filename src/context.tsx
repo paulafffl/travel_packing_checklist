@@ -34,7 +34,7 @@ export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [listsObj, setListsObj] = useState(getInitialItemsAsObj());
-  const [listsAdded, setListsAdded] = useState<string[]>([]);
+  const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
 
   const packedItemsAsObj = (list: string) => listsObj[list]?.filter((item) => item.packed);
   const unpackedItemsAsObj = (list: string) => listsObj[list]?.filter((item) => !item.packed);
@@ -54,23 +54,23 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     const names = listsAsObj[listName as keyof ListsAsObj];
     const newItemsAsObj = names.map((item) => createItemAsObj(item, listName));
     setListsObj({ [listName]: newItemsAsObj, ...listsObject });
-    setListsAdded([...listsAdded, listName]);
+    setListsWithItemsShown([...listsWithItemsShown, listName]);
   };
 
   const addedListAsObj = (listName: string) => {
-    return listsAdded.includes(listName);
+    return listsObj.hasOwnProperty(listName);
   };
 
   const listItemsShown = (listName: string) => {
-    return listsAdded.includes(listName);
+    return listsWithItemsShown.includes(listName);
   };
 
   const showListItems = (listName: string) => {
-    setListsAdded([...listsAdded, listName]);
+    setListsWithItemsShown([...listsWithItemsShown, listName]);
   };
 
   const hideListItems = (listName: string) => {
-    setListsAdded(listsAdded.filter((name) => name !== listName));
+    setListsWithItemsShown(listsWithItemsShown.filter((name) => name !== listName));
   };
 
   const removeItemAsObj = (id: string) => {
