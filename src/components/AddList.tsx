@@ -2,13 +2,9 @@ import { useContext } from 'react';
 import { ItemsContext } from '../context';
 import { listNameDisplay } from '../utils/listNameDisplayed';
 
-type ItemProps = {
-  listName: string;
-  listedState: boolean;
-};
-
-const AddList = ({ listName = 'listName', listedState }: ItemProps) => {
-  const { addListAsObj, removeListAsObj } = useContext(ItemsContext);
+const AddList = ({ listName = 'listName' }: { listName: string }) => {
+  const { addListAsObj, listsShown, removeListAsObj } = useContext(ItemsContext);
+  let listedState = listsShown.includes(listName);
   return (
     <button
       className={`mt-3 flex-grow px-1 py-0.5 sm:mt-4 ${listedState && 'color-button-activated'}`}

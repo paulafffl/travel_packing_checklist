@@ -22,7 +22,6 @@ export type ItemsState = {
   resetListAsObj: (listName: string) => void;
   removeItemAsObj: (id: string) => void;
   removeListAsObj: (listName: string) => void;
-  addedListAsObj: (listName: string) => boolean;
   updateAsObj: (id: string, updates: WithoutId) => void;
   packAllItemsAsObj: () => void;
   unpackAllItemsAsObj: () => void;
@@ -58,10 +57,6 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setListsObj({ [listName]: newItemsAsObj, ...listsObject });
     setListsShown([...listsShown, listName]);
     setListsWithItemsShown([...listsWithItemsShown, listName]);
-  };
-
-  const addedListAsObj = (listName: string) => {
-    return listsShown.includes(listName);
   };
 
   const listItemsShown = (listName: string) => {
@@ -123,7 +118,6 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     removeItemAsObj,
     removeListAsObj,
     resetListAsObj,
-    addedListAsObj,
     updateAsObj,
     packAllItemsAsObj,
     unpackAllItemsAsObj,

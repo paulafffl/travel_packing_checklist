@@ -3,16 +3,19 @@ import { ItemsContext } from '../context';
 import List from './List';
 
 const ListsSection = ({ title }: { title: string }) => {
-  const { listsObj, packAllItemsAsObj, unpackAllItemsAsObj } = useContext(ItemsContext);
+  const { listsObj, listsShown, packAllItemsAsObj, unpackAllItemsAsObj } = useContext(ItemsContext);
   const packed = title === 'Packed Items';
 
-  const countItemsInList = () =>
-    Object.values(listsObj).flatMap((list) =>
-      list.filter((item) => item.packed === (packed === true)),
-    ).length;
+  const listsShowing = listsShown.map((listKey) => listsObj[listKey] || []);
 
-  const countItemsInTotal = () =>
-    Object.values(listsObj).reduce((sum, list) => sum + list.length, 0);
+  const countItemsInSection = () => {
+    return listsShowing.flatMap((list) => list.filter((item) => item.packed === (packed === true)))
+      .length;
+  };
+
+  const countItemsInTotal = () => {
+    return listsShowing.reduce((sum, list) => sum + list.length, 0);
+  };
 
   const displayMessage = () => {
     if (packed) {
@@ -31,13 +34,14 @@ const ListsSection = ({ title }: { title: string }) => {
       <h2>
         {title}
         {countItemsInTotal() > 0 && (
-          <span className="lowercase text-slate-400">{` ( ${countItemsInList()} out of ${countItemsInTotal()} )`}</span>
+          <span className="lowercase text-slate-400">{` ( ${countItemsInSection()} out of ${countItemsInTotal()} )`}</span>
         )}
       </h2>
-      {Object.keys(listsObj).map((list) => (
-        <List list={list} packed={packed} key={title + list} />
-      ))}
-      {countItemsInList() === 0 ? (
+      {Object.keys(listsObj).map(
+        (list) =>
+          listsShown.includes(list) && <List list={list} packed={packed} key={title + list} />,
+      )}
+      {countItemsInSection() === 0 ? (
         <p>{displayMessage()}</p>
       ) : (
         <button
