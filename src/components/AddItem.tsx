@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
-import toast, { Toaster } from 'react-hot-toast';
 import {
   listCamping,
   listClothes,
@@ -13,10 +12,12 @@ import {
   listWinter,
   listZeroWaste,
 } from '../lib/lists';
-import { listEmojis } from './Emoji';
+import { listNameDisplay } from '../utils/listNameDisplayed';
+import toast from '../utils/toast';
 
 const AddItem = () => {
   const { addItemAsObj, listsObj } = useContext(ItemsContext);
+  const [toastOpen, setToastOpen] = useState('');
   const [newItem, setNewItem] = useState('');
 
   const existingInList = () => {
@@ -44,16 +45,9 @@ const AddItem = () => {
         return nameToBeMatched.startsWith(trimmedInput);
       });
       if (match) {
-        const listNameOnly = listName.substring(4).toUpperCase(); // Name of the array without "list"
-        toast(
-          `👋 Item already exists in ${listEmojis[listName]}\u00A0${listNameOnly} ${
-            !Object.keys(listsObj).length ? '\nOpen that  list to see it and more! 👀' : ''
-          }`,
-          {
-            position: 'bottom-center',
-          },
-        );
-        return listNameOnly;
+        setToastOpen(listName);
+        setTimeout(() => setToastOpen(''), 3000);
+        return listName;
       }
     }
     return false;
@@ -71,7 +65,14 @@ const AddItem = () => {
         }
       }}
     >
-      <Toaster />
+      {toastOpen &&
+        toast(
+          <p>
+            👋 Item already exists in {listNameDisplay(toastOpen)}
+            <br />
+            {!Object.keys(listsObj).length ? 'Open that  list to see it and more! 👀' : ''}
+          </p>,
+        )}
       <input
         id="new-item-name"
         className="flex-grow overflow-scroll"
