@@ -49,6 +49,8 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
       ...prevObj,
       [listName]: [...(prevObj[listName] || []), newItem],
     }));
+    setListsShown([...listsShown, 'listAdditionals']);
+    setListsWithItemsShown([...listsWithItemsShown, 'listAdditionals']);
   };
 
   const addListAsObj = (listName: string, listsObject = listsObj) => {
