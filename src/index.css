@@ -18,6 +18,10 @@ body {
   @apply text-sm sm:text-base;
 }
 
+footer {
+  @apply relative mt-10 flex items-center justify-center space-y-4 text-sm text-slate-500;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
@@ -51,7 +55,7 @@ button,
 button[type='button'],
 button[type='reset'],
 button[type='submit'] {
-  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-3 py-1 font-semibold uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-400 active:bg-primary-300 disabled:bg-slate-500 disabled:bg-opacity-60 disabled:text-white disabled:opacity-50 sm:px-5 md:hover:bg-primary-500;
+  @apply inline-flex items-center justify-center rounded-md bg-primary-400 px-3 py-1 font-semibold uppercase text-white transition-all transition-colors ease-in ease-in hover:bg-primary-400 active:bg-primary-300 disabled:bg-slate-500 disabled:bg-opacity-60 disabled:text-white disabled:opacity-50 disabled:hover:bg-transparent sm:px-5 md:hover:bg-primary-500;
 }
 
 section {
@@ -87,14 +91,32 @@ section {
   }
 }
 
+.modal-style {
+  @apply fixed bottom-0 left-1/2 z-50 mb-4 -translate-x-1/2 -translate-y-1/2 transform rounded-lg bg-white p-8 text-center shadow-md;
+  animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards running appearing;
+  will-change: transform;
+  overflow: auto;
+  width: 25vw;
+  @media (max-width: 1024px) {
+    width: 75vw;
+  }
+}
+
+@keyframes appearing {
+  0% {
+    transform: translate3d(-50%, 200%, 0) scale(0.6);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
 ::-webkit-scrollbar {
   @apply w-1.5 bg-slate-300 sm:w-2;
 }
 
 ::-webkit-scrollbar-thumb {
   @apply rounded-full bg-teal-400;
-}
-
-footer {
-  @apply relative mt-10 flex items-center justify-center space-y-4 text-sm text-slate-500;
 }

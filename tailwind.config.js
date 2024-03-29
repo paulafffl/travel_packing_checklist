@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: { ...colors, primary: colors.violet },
+      spacing: { 0.2: '0.06rem' },
     },
   },
   plugins: [],
