@@ -102,6 +102,16 @@ section {
   }
 }
 
+.toast-style {
+  @apply fixed bottom-0 left-1/2 z-50 mb-4 flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded-lg bg-white px-4 py-3 pt-1 text-center shadow-md;
+  animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards appearing,
+    0.5s cubic-bezier(0.21, 1.02, 0.73, 1) 2s 1 reverse forwards appearing;
+  will-change: transform;
+  @media (max-max-width: 1024px) {
+    max-width: 75vw;
+  }
+}
+
 @keyframes appearing {
   0% {
     transform: translate3d(-50%, 200%, 0) scale(0.6);
