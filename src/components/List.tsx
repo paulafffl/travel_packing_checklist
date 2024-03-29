@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
+import { listNameDisplay } from '../utils/listNameDisplayed';
 import Item from './Item';
-import Emoji from './Emoji';
 import Icon from './Icon';
 import Modal from './Modal';
 
@@ -26,10 +26,7 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
             >
               <Icon symbol={listIsShown(listName) ? 'collapse' : 'expand'} />
             </button>
-            <Emoji name={listName} />
-            <span className="m-0.5 font-bold text-slate-400 sm:m-1">
-              {listName.substring(4).toUpperCase()}
-            </span>
+            <span className="m-0.5 text-slate-400 sm:m-1">{listNameDisplay(listName)}</span>
           </div>
           <button
             className={`ml-2 bg-white px-0.5 ${
@@ -54,10 +51,10 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
     return (
       <Modal
         message={
-          <span>
-            Items you created <strong>can't be restored</strong> like the ones in the default lists.
-            Do you still want to delete 📝&nbsp;Additionals?
-          </span>
+          <p>
+            Items you created <strong>cannot be restored</strong>, unlike those in the default
+            lists. Do you still want to delete {listNameDisplay('listAdditionals')} ?
+          </p>
         }
         closeAction={() => setModalDeleteAdditionals(false)}
         confirmAction={() => removeListAsObj('listAdditionals')}
