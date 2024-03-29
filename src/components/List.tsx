@@ -14,6 +14,7 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
     hideListItems,
     packedItemsAsObj,
     unpackedItemsAsObj,
+    hideList,
     removeListAsObj,
     resetListAsObj,
   } = useContext(ItemsContext);
@@ -59,12 +60,12 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
                 !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
               }`}
               aria-label={`Delete "${listName}"`}
-              title={'Remove list'}
+              title={'Close list'}
               disabled={!!modalDeleteAdditionals}
               onClick={() =>
                 listName === 'listAdditionals'
                   ? setModalDeleteAdditionals(true)
-                  : removeListAsObj(listName)
+                  : hideList(listName)
               }
             >
               <Icon symbol="close" color={!!modalDeleteAdditionals ? 'grey' : 'red'} />
