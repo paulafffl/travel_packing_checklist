@@ -96,23 +96,30 @@ section {
 }
 
 .modal-style {
-  @apply fixed bottom-0 left-1/2 z-50 mb-4 -translate-x-1/2 -translate-y-1/2 transform rounded-lg bg-white p-8 text-center shadow-md;
-  animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards running appearing;
+  @apply fixed bottom-5 left-1/2 z-50 mb-4 -translate-x-1/2 -translate-y-1/2 transform rounded-lg bg-white p-8 text-center shadow-3xl;
   will-change: transform;
+  animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards running appearing;
   overflow: auto;
   width: 25vw;
   @media (max-width: 1024px) {
     width: 75vw;
   }
+  p {
+    @apply text-black;
+  }
 }
 
 .toast-style {
-  @apply fixed bottom-0 left-1/2 z-50 mb-4 flex -translate-x-1/2 -translate-y-1/2 transform items-center rounded-lg bg-white px-4 py-3 pt-1 text-center shadow-md;
+  @apply fixed bottom-5 left-1/2 z-50 mb-4 flex -translate-x-1/2 -translate-y-1/2 transform justify-center rounded-lg bg-white px-6 py-5 pt-4 text-center shadow-3xl;
+  will-change: transform;
   animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards appearing,
     0.5s cubic-bezier(0.21, 1.02, 0.73, 1) 2s 1 reverse forwards appearing;
-  will-change: transform;
-  @media (max-max-width: 1024px) {
-    max-width: 75vw;
+  @media (max-width: 1024px) {
+    min-width: 60vw;
+    max-width: 85vw;
+  }
+  p {
+    @apply text-black;
   }
 }
 
