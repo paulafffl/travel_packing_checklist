@@ -5,7 +5,10 @@ function App() {
   return (
     <div className="outer-margin">
       <header>
-        <h1>{`🧳Travel Packing\u00A0Checklist`}</h1>
+        <h1>
+          <img src="./logo192.png" alt="Logo" className="mb-1.5 mr-2 inline-block h-9 w-9" />
+          {`Travel Packing\u00A0Checklist`}
+        </h1>
       </header>
       <main>
         <AddSection />
