@@ -35,7 +35,7 @@ export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [listsObj, setListsObj] = useState(getInitialItemsAsObj());
-  const [listsShown, setListsShown] = useState<string[]>([]);
+  const [listsShown, setListsShown] = useState<string[]>(['listAdditionals']);
   const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
 
   const packedItemsAsObj = (list: string) => listsObj[list]?.filter((item) => item.packed);
@@ -46,10 +46,16 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     toast('👍 Item added to your Additionals List', {
       position: 'bottom-center',
     });
-    setListsObj((prevObj) => ({
-      [listName]: [...(prevObj[listName] || []), newItem],
-      ...prevObj,
-    }));
+    setListsObj((prevObj) => {
+      const updatedList = [...(prevObj[listName] || []), newItem];
+      const reorderedObj = {
+        [listName]: updatedList,
+        ...Object.entries(prevObj)
+          .filter(([key]) => key !== listName)
+          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
+      };
+      return reorderedObj;
+    });
     setListsShown([...listsShown, 'listAdditionals']);
     setListsWithItemsShown([...listsWithItemsShown, 'listAdditionals']);
   };
