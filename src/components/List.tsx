@@ -127,8 +127,12 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
       {listItemsShown(list) && displaySectionName(list) && (
         <ul className="flex flex-col">
           {packed
-            ? packedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)
-            : unpackedItemsAsObj(list)?.map((item) => <Item key={item.id} item={item} />)}
+            ? packedItemsAsObj(list)?.map((item) => (
+                <Item key={item.id} item={item} listName={list} />
+              ))
+            : unpackedItemsAsObj(list)?.map((item) => (
+                <Item key={item.id} item={item} listName={list} />
+              ))}
         </ul>
       )}
     </div>

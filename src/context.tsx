@@ -21,7 +21,7 @@ export type ItemsState = {
   addItemAsObj: (name: string, listName?: string) => void;
   addListAsObj: (listName: string, listObject?: {}) => void;
   resetListAsObj: (listName: string) => void;
-  removeItemAsObj: (id: string) => void;
+  removeItemAsObj: (id: string, listName: string) => void;
   removeListAsObj: (id: string) => void;
   updateAsObj: (id: string, updates: WithoutId) => void;
   packAllItemsAsObj: () => void;
@@ -78,8 +78,15 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setListsShown(listsShown.filter((name) => name !== listName));
   };
 
-  const removeItemAsObj = (id: string) => {
-    setListsObj(deleteItemAsObj(listsObj, id));
+  const removeItemAsObj = async (id: string, listName: string) => {
+    let updatedListsObj = {};
+    if (listsObj[listName].length === 1) {
+      setListsShown(listsShown.filter((name) => name !== listName));
+      updatedListsObj = await deleteItemsAsObj(listsObj, listName);
+    } else {
+      updatedListsObj = deleteItemAsObj(listsObj, id);
+    }
+    setListsObj(updatedListsObj);
   };
 
   const removeListAsObj = async (listName: string) => {

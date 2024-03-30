@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
 import Icon from './Icon';
 
-const Item = ({ item }: { item: Item }) => {
+const Item = ({ item, listName }: { item: Item; listName: string }) => {
   const [editing, setEditing] = useState(false);
   const { updateAsObj, removeItemAsObj } = useContext(ItemsContext);
   const [visible, setVisible] = useState(true);
@@ -50,7 +50,7 @@ const Item = ({ item }: { item: Item }) => {
         <button
           className="color-palette-red ml-2 px-1 text-xs"
           aria-label={`Delete "${item.name}"`}
-          onClick={() => removeItemAsObj(item.id)}
+          onClick={() => removeItemAsObj(item.id, listName)}
         >
           <Icon symbol="delete" />
         </button>
