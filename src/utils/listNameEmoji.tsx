@@ -1,8 +1,8 @@
-type listNameEmoji = {
+type listNameEmojiType = {
   [key: string]: string;
 };
 
-export const listNameEmoji: listNameEmoji = {
+export const listNameEmoji: listNameEmojiType = {
   listZeroWaste: '💚',
   listFood: '🍎',
   listTech: '⚡',
