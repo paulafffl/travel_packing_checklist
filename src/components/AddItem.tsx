@@ -1,17 +1,6 @@
 import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
-import {
-  listCamping,
-  listClothes,
-  listEssentials,
-  listFood,
-  listLeaving,
-  listSummer,
-  listTech,
-  listToiletries,
-  listWinter,
-  listZeroWaste,
-} from '../lib/lists';
+import { listsAsObj } from '../lib/listsAsObj';
 import { listNameDisplay } from '../utils/listNameDisplayed';
 import toast from '../utils/toast';
 
@@ -23,20 +12,7 @@ const AddItem = () => {
 
   const existingInList = () => {
     const listAdditionals = listsObj['listAdditionals']?.map((item) => item.name);
-    const lists = {
-      listCamping,
-      listClothes,
-      listEssentials,
-      listFood,
-      listLeaving,
-      listSummer,
-      listTech,
-      listToiletries,
-      listWinter,
-      listZeroWaste,
-      listAdditionals,
-    };
-    for (const [listName, list] of Object.entries(lists)) {
+    for (const [listName, list] of Object.entries({ ...listsAsObj, listAdditionals })) {
       const match = list?.find((item) => {
         const nameToBeMatched =
           listName === 'listAdditionals'
