@@ -21,6 +21,7 @@ export const listsAsObj = {
     '🔘 Condoms',
   ],
   listZeroWaste: [
+    '🍶 Water bottle',
     '🍴 Cutlery',
     '🍱 Lunch box',
     '🥤 Straw',
@@ -28,9 +29,7 @@ export const listsAsObj = {
     '🧽 Sponge',
     '🧼 Dish soap',
     '🔶 Cloth',
-    '🍵 Mug',
     '😷 Face mask',
-    '🧂 Seasonings',
   ],
   listFood: [
     '🍌 Fruits',
@@ -63,7 +62,6 @@ export const listsAsObj = {
     '😎 Sunglasses',
     '🥽 Eye mask',
     '👂 Earplugs',
-    '🍶 Water bottle',
     '🧥 Raincoat',
     '🌂 Umbrella',
     '👝 Fanny pack',
