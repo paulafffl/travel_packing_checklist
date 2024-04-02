@@ -5,7 +5,7 @@ const getStoredItemsAsObj = (): ItemAsObj => {
   return storedItems ? JSON.parse(storedItems) : {};
 };
 
-export const createItemAsObj = (name: string, listName: string): Item => {
+export const createItem = (name: string, listName: string): Item => {
   const newItem = {
     id: id(),
     name,
@@ -23,7 +23,7 @@ export const createItemAsObj = (name: string, listName: string): Item => {
   return newItem;
 };
 
-export const getInitialItemsAsObj = (): ItemAsObj => {
+export const getInitialItems = (): ItemAsObj => {
   return getStoredItemsAsObj();
 };
 
@@ -31,7 +31,7 @@ const saveItemsToLocalStorageAsObj = (items: ItemAsObj) => {
   localStorage.setItem('itemsAsObj', JSON.stringify(items));
 };
 
-export const updateItemAsObj = (items: ItemAsObj, id: string, updates: Partial<Item>) => {
+export const updateItem = (items: ItemAsObj, id: string, updates: Partial<Item>) => {
   const updatedItems: ItemAsObj = {};
   Object.entries(items).forEach(([list, itemList]) => {
     updatedItems[list] = itemList.map((item) => (item.id === id ? { ...item, ...updates } : item));
@@ -40,7 +40,7 @@ export const updateItemAsObj = (items: ItemAsObj, id: string, updates: Partial<I
   return updatedItems;
 };
 
-export const deleteItemAsObj = (items: ItemAsObj, id: string) => {
+export const deleteItem = (items: ItemAsObj, id: string) => {
   const updatedItems: ItemAsObj = {};
   Object.entries(items).forEach(([list, itemList]) => {
     updatedItems[list] = itemList.filter((item) => item.id !== id);
@@ -49,7 +49,7 @@ export const deleteItemAsObj = (items: ItemAsObj, id: string) => {
   return updatedItems;
 };
 
-export const deleteItemsAsObj = async (items: ItemAsObj, listName: string) => {
+export const deleteItems = async (items: ItemAsObj, listName: string) => {
   const updatedItems: ItemAsObj = { ...items };
   if (listName in updatedItems) {
     delete updatedItems[listName];

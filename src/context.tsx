@@ -1,11 +1,5 @@
 import { PropsWithChildren, createContext, useState } from 'react';
-import {
-  createItemAsObj,
-  getInitialItemsAsObj,
-  updateItemAsObj,
-  deleteItemAsObj,
-  deleteItemsAsObj,
-} from './lib/items';
+import { createItem, getInitialItems, updateItem, deleteItem, deleteItems } from './lib/items';
 import { listsAsObj } from './lib/listsAsObj';
 
 export type ItemsState = {
@@ -36,7 +30,7 @@ type WithoutId = Omit<PartialItem, 'id'>;
 export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
-  const [listsObj, setListsObj] = useState(getInitialItemsAsObj());
+  const [listsObj, setListsObj] = useState(getInitialItems());
   const [listsShown, setListsShown] = useState<string[]>(['listAdditionals']);
   const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
 
@@ -44,7 +38,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const unpackedItemsAsObj = (list: string) => listsObj[list]?.filter((item) => !item.packed);
 
   const addItemAsObj = (name: string, listName = 'listAdditionals') => {
-    const newItem = createItemAsObj(name, listName);
+    const newItem = createItem(name, listName);
     setListsObj((prevObj) => {
       const updatedList = [...(prevObj[listName] || []), newItem];
       const reorderedObj = {
@@ -61,7 +55,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const addListAsObj = (listName: string, listsObject = listsObj) => {
     const names = listsAsObj[listName as keyof ListsAsObj];
-    const newItemsAsObj = names.map((item) => createItemAsObj(item, listName));
+    const newItemsAsObj = names.map((item) => createItem(item, listName));
     setListsObj({ [listName]: newItemsAsObj, ...listsObject });
     showList(listName);
   };
@@ -99,26 +93,26 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     let updatedListsObj = {};
     if (listsObj[listName].length === 1) {
       setListsShown(listsShown.filter((name) => name !== listName));
-      updatedListsObj = await deleteItemsAsObj(listsObj, listName);
+      updatedListsObj = await deleteItems(listsObj, listName);
     } else {
-      updatedListsObj = deleteItemAsObj(listsObj, id);
+      updatedListsObj = deleteItem(listsObj, id);
     }
     setListsObj(updatedListsObj);
   };
 
   const removeListAsObj = async (listName: string) => {
-    const updatedListsObj = await deleteItemsAsObj(listsObj, listName);
+    const updatedListsObj = await deleteItems(listsObj, listName);
     setListsObj(updatedListsObj);
   };
 
   const resetListAsObj = async (listName: string) => {
-    const updatedListsObj = await deleteItemsAsObj(listsObj, listName);
+    const updatedListsObj = await deleteItems(listsObj, listName);
     setListsObj(updatedListsObj);
     addListAsObj(listName, updatedListsObj);
   };
 
   const updateAsObj = (id: string, updates: WithoutId) => {
-    setListsObj(updateItemAsObj(listsObj, id, updates));
+    setListsObj(updateItem(listsObj, id, updates));
   };
 
   const packAllItemsAsObj = () => {
