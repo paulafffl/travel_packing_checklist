@@ -14,11 +14,14 @@ export type ItemsState = {
   listItemsShown: (listName: string) => boolean;
   showListItems: (listName: string) => void;
   hideListItems: (listName: string) => void;
+  listShown: (listName: string) => boolean;
+  showList: (listName: string) => void;
   hideList: (listName: string) => void;
   packedItemsAsObj: (list: string) => Item[];
   unpackedItemsAsObj: (list: string) => Item[];
   addItemAsObj: (name: string, listName?: string) => void;
   addListAsObj: (listName: string, listObject?: {}) => void;
+  listAdded: (listName: string) => boolean;
   resetListAsObj: (listName: string) => void;
   removeItemAsObj: (id: string, listName: string) => void;
   removeListAsObj: (id: string) => void;
@@ -60,8 +63,11 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     const names = listsAsObj[listName as keyof ListsAsObj];
     const newItemsAsObj = names.map((item) => createItemAsObj(item, listName));
     setListsObj({ [listName]: newItemsAsObj, ...listsObject });
-    setListsShown([...listsShown, listName]);
-    setListsWithItemsShown([...listsWithItemsShown, listName]);
+    showList(listName);
+  };
+
+  const listAdded = (listName: string) => {
+    return listsObj.hasOwnProperty(listName);
   };
 
   const listItemsShown = (listName: string) => {
@@ -74,6 +80,15 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const hideListItems = (listName: string) => {
     setListsWithItemsShown(listsWithItemsShown.filter((name) => name !== listName));
+  };
+
+  const listShown = (listName: string) => {
+    return listsShown.includes(listName);
+  };
+
+  const showList = (listName: string) => {
+    setListsShown([...listsShown, listName]);
+    setListsWithItemsShown([...listsWithItemsShown, listName]);
   };
 
   const hideList = (listName: string) => {
@@ -128,11 +143,14 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     listItemsShown,
     showListItems,
     hideListItems,
+    listShown,
+    showList,
     hideList,
     unpackedItemsAsObj,
     packedItemsAsObj,
     addItemAsObj,
     addListAsObj,
+    listAdded,
     removeItemAsObj,
     removeListAsObj,
     resetListAsObj,

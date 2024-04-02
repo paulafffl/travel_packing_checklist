@@ -3,15 +3,23 @@ import { ItemsContext } from '../context';
 import { listNameDisplay } from '../utils/listNameDisplayed';
 
 const AddList = ({ listName = 'listName' }: { listName: string }) => {
-  const { addListAsObj, listsShown, hideList } = useContext(ItemsContext);
-  let listedState = listsShown.includes(listName);
+  const { addListAsObj, listAdded, showList, hideList, listShown } = useContext(ItemsContext);
+  const handleClick = () => {
+    if (listShown(listName)) {
+      hideList(listName);
+    } else {
+      listAdded(listName) ? showList(listName) : addListAsObj(listName);
+    }
+  };
   return (
     <button
-      className={`mt-3 flex-grow px-2 py-0.5 sm:mt-4 ${listedState && 'color-button-activated'}`}
+      className={`mt-3 flex-grow px-2 py-0.5 sm:mt-4 ${
+        listShown(listName) && 'color-button-activated'
+      }`}
       aria-label={`Add ${listName}`}
-      onClick={() => (!listedState ? addListAsObj(listName) : hideList(listName))}
+      onClick={handleClick}
     >
-      {listedState ? '-' : '+'}
+      {listShown(listName) ? '-' : '+'}
       <span className="m-0.5 sm:m-1"> {listNameDisplay(listName)}</span>
     </button>
   );
