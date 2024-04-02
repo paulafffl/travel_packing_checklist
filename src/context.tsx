@@ -6,7 +6,6 @@ import {
   deleteItemAsObj,
   deleteItemsAsObj,
 } from './lib/items';
-import toast, { Toaster } from 'react-hot-toast';
 import { listsAsObj } from './lib/listsAsObj';
 
 export type ItemsState = {
@@ -43,9 +42,6 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const addItemAsObj = (name: string, listName = 'listAdditionals') => {
     const newItem = createItemAsObj(name, listName);
-    toast('👍 Item added to your Additionals List', {
-      position: 'bottom-center',
-    });
     setListsObj((prevObj) => {
       const updatedList = [...(prevObj[listName] || []), newItem];
       const reorderedObj = {
@@ -144,11 +140,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     packAllItemsAsObj,
     unpackAllItemsAsObj,
   };
-  return (
-    <ItemsContext.Provider value={value}>
-      {children} <Toaster />
-    </ItemsContext.Provider>
-  );
+  return <ItemsContext.Provider value={value}>{children}</ItemsContext.Provider>;
 };
 
 export default ItemsProvider;

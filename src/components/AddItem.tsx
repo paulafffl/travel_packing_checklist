@@ -17,7 +17,8 @@ import toast from '../utils/toast';
 
 const AddItem = () => {
   const { addItemAsObj, listsObj } = useContext(ItemsContext);
-  const [toastOpen, setToastOpen] = useState('');
+  const [toastFoundExistingItem, setToastFoundExistingItem] = useState('');
+  const [toastAddedItemConfirmation, setToastAddedItemConfirmation] = useState('');
   const [newItem, setNewItem] = useState('');
 
   const existingInList = () => {
@@ -45,8 +46,8 @@ const AddItem = () => {
         return nameToBeMatched.startsWith(trimmedInput);
       });
       if (match) {
-        setToastOpen(listName);
-        setTimeout(() => setToastOpen(''), 3000);
+        setToastFoundExistingItem(listName);
+        setTimeout(() => setToastFoundExistingItem(''), 3000);
         return listName;
       }
     }
@@ -61,18 +62,22 @@ const AddItem = () => {
         e.preventDefault();
         if (!existingInList()) {
           addItemAsObj(newItem);
+          setToastAddedItemConfirmation('listAdditionals');
+          setTimeout(() => setToastAddedItemConfirmation(''), 3000);
           setNewItem('');
         }
       }}
     >
-      {toastOpen &&
+      {toastFoundExistingItem &&
         toast(
           <p>
-            👋 Item already exists in {listNameDisplay(toastOpen)}
+            👋 Item already exists in {listNameDisplay(toastFoundExistingItem)}
             <br />
             {!Object.keys(listsObj).length ? 'Open that  list to see it and more! 👀' : ''}
           </p>,
         )}
+      {toastAddedItemConfirmation &&
+        toast(<p>👍 Item added to {listNameDisplay(toastAddedItemConfirmation)}</p>)}
       <input
         id="new-item-name"
         className="flex-grow overflow-scroll"
