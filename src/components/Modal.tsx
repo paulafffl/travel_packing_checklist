@@ -24,6 +24,7 @@ const Modal = ({
           Cancel
         </button>
         <button
+          title="Confirm modal action"
           className={`${confirmColor} align-center flex flex-grow`}
           onClick={() => {
             confirmAction();

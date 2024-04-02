@@ -1,21 +1,22 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import List from './ListsSection';
 import { ItemsContext } from '../context';
 import { mockContextValue } from '../setupTests';
+import ListsSection from './ListsSection';
 
 const mockContextValueWithLists = {
   ...mockContextValue,
   listsObj: {
-    list1: [{ id: '1', name: 'Item 1', packed: true }],
-    list2: [{ id: '2', name: 'Item 2', packed: false }],
+    listFood: [{ id: '1', name: 'Item 1', packed: true }],
+    listTech: [{ id: '2', name: 'Item 2', packed: false }],
   },
+  listsShown: ['listFood', 'listTech'],
 };
 
 test('counts items correctly', () => {
   render(
     <ItemsContext.Provider value={mockContextValueWithLists}>
-      <List title="Packed Items" />
+      <ListsSection title="Packed Items" />
     </ItemsContext.Provider>,
   );
 
@@ -25,7 +26,7 @@ test('counts items correctly', () => {
 test('button "Pack all items" correctly', () => {
   render(
     <ItemsContext.Provider value={mockContextValueWithLists}>
-      <List title="Unpacked Items" />
+      <ListsSection title="Unpacked Items" />
     </ItemsContext.Provider>,
   );
 
@@ -38,7 +39,7 @@ test('button "Pack all items" correctly', () => {
 test('button "Unpack all items" correctly', () => {
   render(
     <ItemsContext.Provider value={mockContextValueWithLists}>
-      <List title="Packed Items" />
+      <ListsSection title="Packed Items" />
     </ItemsContext.Provider>,
   );
 

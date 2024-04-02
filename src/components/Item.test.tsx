@@ -52,6 +52,6 @@ describe('Item component', () => {
 
     fireEvent.click(getByLabelText(`Delete "${item.name}"`));
 
-    expect(mockContextValue.removeItemAsObj).toHaveBeenCalledWith(item.id);
+    expect(mockContextValue.removeItemAsObj).toHaveBeenCalledWith(item.id, 'listName');
   });
 });
