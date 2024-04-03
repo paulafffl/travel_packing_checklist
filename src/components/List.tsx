@@ -5,7 +5,7 @@ import Item from './Item';
 import Icon from './Icon';
 import Modal from './Modal';
 
-const List = ({ list, packed }: { list: string; packed: boolean }) => {
+const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
   const [modalDeleteAdditionals, setModalDeleteAdditionals] = useState(false);
   const [modalResetList, setModalResetList] = useState('');
   const {
@@ -18,12 +18,12 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
     resetListAsObj,
   } = useContext(ItemsContext);
 
-  const itemsShown = listsWithItemsShown.includes(list);
-  const packedItems = listsObj[list]?.filter((item) => item.packed);
-  const unpackedItems = listsObj[list]?.filter((item) => !item.packed);
+  const itemsShown = listsWithItemsShown.includes(listName);
+  const packedItems = listsObj[listName]?.filter((item) => item.packed);
+  const unpackedItems = listsObj[listName]?.filter((item) => !item.packed);
   const listShown = (packed && packedItems?.length > 0) || (!packed && unpackedItems?.length > 0);
 
-  const listHeading = (listName: string) => {
+  const listHeading = () => {
     return (
       <div className="mb-1 mt-2 flex items-center justify-between border-b-2 border-slate-300 pb-2">
         <div className="flex items-center">
@@ -117,12 +117,12 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
     <div>
       {modalDeleteAdditionals && confirmAdditionalsDeletion()}
       {modalResetList && confirmListReset()}
-      {listShown && listHeading(list)}
+      {listShown && listHeading()}
       {listShown && itemsShown && (
         <ul className="flex flex-col">
           {packed
-            ? packedItems?.map((item) => <Item key={item.id} item={item} listName={list} />)
-            : unpackedItems?.map((item) => <Item key={item.id} item={item} listName={list} />)}
+            ? packedItems?.map((item) => <Item key={item.id} item={item} listName={listName} />)
+            : unpackedItems?.map((item) => <Item key={item.id} item={item} listName={listName} />)}
         </ul>
       )}
     </div>

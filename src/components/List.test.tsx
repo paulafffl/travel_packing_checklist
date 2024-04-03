@@ -27,7 +27,7 @@ describe('List component', () => {
   test('renders section name correctly when items are shown', () => {
     const { getByText, getByTitle } = render(
       <ItemsContext.Provider value={mockContextValueWithListShown}>
-        <List list="listName" packed={true} />
+        <List listName="listName" packed={true} />
       </ItemsContext.Provider>,
     );
 
@@ -38,7 +38,7 @@ describe('List component', () => {
   test('renders section name correctly when items are hidden', () => {
     const { getByText, getByTitle } = render(
       <ItemsContext.Provider value={mockContextValueWithLists}>
-        <List list="listName" packed={true} />
+        <List listName="listName" packed={true} />
       </ItemsContext.Provider>,
     );
 
@@ -49,7 +49,7 @@ describe('List component', () => {
   test('calls hideListItems when collapse button is clicked', () => {
     const { getByTitle } = render(
       <ItemsContext.Provider value={mockContextValueWithListShown}>
-        <List list="listName" packed={true} />
+        <List listName="listName" packed={true} />
       </ItemsContext.Provider>,
     );
 
@@ -60,7 +60,7 @@ describe('List component', () => {
   test('calls resetListAsObj when reset button is clicked', () => {
     const { getByTitle } = render(
       <ItemsContext.Provider value={mockContextValueWithLists}>
-        <List list="listName" packed={true} />
+        <List listName="listName" packed={true} />
       </ItemsContext.Provider>,
     );
 
@@ -72,7 +72,7 @@ describe('List component', () => {
   test('calls hideList when close button is clicked and its not listAdditionals', () => {
     const { getByTitle } = render(
       <ItemsContext.Provider value={mockContextValueWithLists}>
-        <List list="listName" packed={true} />
+        <List listName="listName" packed={true} />
       </ItemsContext.Provider>,
     );
 
@@ -83,7 +83,7 @@ describe('List component', () => {
   test('calls removeListAsObj when close button is clicked and it is listAdditionals', () => {
     const { getByTitle } = render(
       <ItemsContext.Provider value={mockContextValueWithLists}>
-        <List list="listAdditionals" packed={true} />
+        <List listName="listAdditionals" packed={true} />
       </ItemsContext.Provider>,
     );
 
