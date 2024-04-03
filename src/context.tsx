@@ -10,7 +10,7 @@ export type ItemsState = {
   hideItems: (listName: string) => void;
   showList: (listName: string) => void;
   hideList: (listName: string) => void;
-  addItem: (name: string, listName?: string) => void;
+  addItem: (itemName: string, listName?: string) => void;
   addList: (listName: string, listObject?: {}) => void;
   listAdded: (listName: string) => boolean;
   resetList: (listName: string) => void;
@@ -31,27 +31,28 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [listsShown, setListsShown] = useState<string[]>(['listAdditionals']);
   const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
 
-  const addItem = (name: string, listName = 'listAdditionals') => {
-    const newItem = createItem(name, listName);
-    setListsObj((prevObj) => {
-      const updatedList = [...(prevObj[listName] || []), newItem];
-      const reorderedObj = {
-        [listName]: updatedList,
-        ...Object.entries(prevObj)
-          .filter(([key]) => key !== listName)
-          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
-      };
-      return reorderedObj;
-    });
-    setListsShown([...listsShown, 'listAdditionals']);
-    setListsWithItemsShown([...listsWithItemsShown, 'listAdditionals']);
+  const addListToObj = (listName: string, updatedList: Item[], listsObject = listsObj) => {
+    const showAddedListOnTop = {
+      [listName]: updatedList,
+      ...Object.entries(listsObject)
+        .filter(([key]) => key !== listName)
+        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
+    };
+    setListsObj(showAddedListOnTop);
+    showList(listName);
+    showItems(listName);
   };
 
   const addList = (listName: string, listsObject = listsObj) => {
-    const names = listsAsObj[listName as keyof ListsNames];
-    const newItemsAsObj = names.map((item) => createItem(item, listName));
-    setListsObj({ [listName]: newItemsAsObj, ...listsObject });
-    showList(listName);
+    const itemsNames = listsAsObj[listName as keyof ListsNames];
+    const newList = itemsNames.map((item) => createItem(item, listName));
+    addListToObj(listName, newList, listsObject);
+  };
+
+  const addItem = (itemName: string, listName = 'listAdditionals') => {
+    const newItem = createItem(itemName, listName);
+    const updatedList = [...(listsObj[listName] || []), newItem];
+    addListToObj(listName, updatedList);
   };
 
   const listAdded = (listName: string) => {
