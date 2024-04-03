@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useState } from 'react';
-import { createItem, getInitialItems, updateItem, deleteItem, deleteItems } from './lib/items';
+import { createItem, readLists, updateItem, deleteItem, deleteList } from './lib/items';
 import { listsAsObj } from './lib/listsAsObj';
 
 export type ItemsState = {
@@ -27,7 +27,7 @@ type WithoutId = Omit<PartialItem, 'id'>;
 export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
-  const [listsObj, setListsObj] = useState(getInitialItems());
+  const [listsObj, setListsObj] = useState(readLists());
   const [listsShown, setListsShown] = useState<string[]>(['listAdditionals']);
   const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
 
@@ -79,7 +79,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     let updatedListsObj = {};
     if (listsObj[listName].length === 1) {
       setListsShown(listsShown.filter((name) => name !== listName));
-      updatedListsObj = await deleteItems(listsObj, listName);
+      updatedListsObj = await deleteList(listsObj, listName);
     } else {
       updatedListsObj = deleteItem(listsObj, id);
     }
@@ -87,12 +87,12 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   };
 
   const removeList = async (listName: string) => {
-    const updatedListsObj = await deleteItems(listsObj, listName);
+    const updatedListsObj = await deleteList(listsObj, listName);
     setListsObj(updatedListsObj);
   };
 
   const resetList = async (listName: string) => {
-    const updatedListsObj = await deleteItems(listsObj, listName);
+    const updatedListsObj = await deleteList(listsObj, listName);
     setListsObj(updatedListsObj);
     addList(listName, updatedListsObj);
   };
