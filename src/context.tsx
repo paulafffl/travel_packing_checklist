@@ -1,5 +1,13 @@
 import { PropsWithChildren, createContext, useState } from 'react';
-import { createItem, readLists, updateItem, deleteItem, deleteList } from './lib/items';
+import {
+  createItem,
+  readLists,
+  readListsShown,
+  updateItem,
+  deleteItem,
+  deleteList,
+} from './lib/items';
+import { storeLists, storeListsShown } from './lib/storage';
 import { listsAsObj } from './lib/listsAsObj';
 
 export type ItemsState = {
@@ -27,33 +35,38 @@ type WithoutId = Omit<PartialItem, 'id'>;
 export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
-  const [listsObj, setListsObj] = useState(readLists());
-  const [listsShown, setListsShown] = useState<string[]>(Object.keys(listsObj));
+  const [listsObj, setListsObj] = useState(() => readLists());
+  const [listsShown, setListsShown] = useState<string[]>(() => readListsShown());
   const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
   const listsAdded = Object.keys(listsObj);
 
-  const addListToObj = (listName: string, updatedList: Item[], listsObject = listsObj) => {
-    const showAddedListOnTop = {
-      [listName]: updatedList,
+  const updateObjWithList = (listName: string, updatedList?: Item[], listsObject = listsObj) => {
+    const list = updatedList ? updatedList : listsObject[listName];
+    const objWithListOnTop = {
+      [listName]: list,
       ...Object.entries(listsObject)
         .filter(([key]) => key !== listName)
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
     };
-    setListsObj(showAddedListOnTop);
-    showList(listName);
-    showItems(listName);
+    setListsObj(objWithListOnTop);
+    storeLists(objWithListOnTop);
+
+    const updatedListsShown = [...listsShown, listName];
+    setListsShown(updatedListsShown);
+    storeListsShown(updatedListsShown as []);
+    setListsWithItemsShown([...listsWithItemsShown, listName]);
   };
 
   const addList = (listName: string, listsObject = listsObj) => {
     const itemsNames = listsAsObj[listName as keyof ListsNames];
     const newList = itemsNames.map((item) => createItem(item, listName));
-    addListToObj(listName, newList, listsObject);
+    updateObjWithList(listName, newList, listsObject);
   };
 
   const addItem = (itemName: string, listName = 'listAdditionals') => {
     const newItem = createItem(itemName, listName);
     const updatedList = [...(listsObj[listName] || []), newItem];
-    addListToObj(listName, updatedList);
+    updateObjWithList(listName, updatedList);
   };
 
   const showItems = (listName: string) => {
@@ -65,12 +78,18 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   };
 
   const showList = (listName: string) => {
-    setListsShown([...listsShown, listName]);
-    setListsWithItemsShown([...listsWithItemsShown, listName]);
+    updateObjWithList(listName);
+    const updatedList = [...listsShown, listName];
+    storeListsShown(updatedList as []);
+    setListsShown(updatedList);
+    showItems(listName);
   };
 
   const hideList = (listName: string) => {
-    setListsShown(listsShown.filter((name) => name !== listName));
+    const updatedList = listsShown.filter((name: string) => name !== listName);
+    storeListsShown(updatedList as []);
+    setListsShown(updatedList);
+    hideItems(listName);
   };
 
   const removeItem = async (id: string, listName: string) => {
