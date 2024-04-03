@@ -33,7 +33,7 @@ test('button "Pack all items" correctly', () => {
   const packButton = screen.getByText('Pack all items');
   fireEvent.click(packButton);
 
-  expect(mockContextValue.packAllItemsAsObj).toHaveBeenCalledTimes(1);
+  expect(mockContextValue.packAllItems).toHaveBeenCalledTimes(1);
 });
 
 test('button "Unpack all items" correctly', () => {
@@ -46,5 +46,5 @@ test('button "Unpack all items" correctly', () => {
   const unpackButton = screen.getByText('Unpack all items');
   fireEvent.click(unpackButton);
 
-  expect(mockContextValue.unpackAllItemsAsObj).toHaveBeenCalledTimes(1);
+  expect(mockContextValue.unpackAllItems).toHaveBeenCalledTimes(1);
 });

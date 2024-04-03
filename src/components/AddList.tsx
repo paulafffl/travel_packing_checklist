@@ -3,13 +3,13 @@ import { ItemsContext } from '../context';
 import { listNameDisplay } from '../utils/listNameDisplayed';
 
 const AddList = ({ listName = 'listName' }: { listName: string }) => {
-  const { addListAsObj, listAdded, showList, hideList, listsShown } = useContext(ItemsContext);
+  const { addList, listAdded, showList, hideList, listsShown } = useContext(ItemsContext);
   const listShown = () => listsShown.includes(listName);
   const handleClick = () => {
     if (listShown()) {
       hideList(listName);
     } else {
-      listAdded(listName) ? showList(listName) : addListAsObj(listName);
+      listAdded(listName) ? showList(listName) : addList(listName);
     }
   };
   return (

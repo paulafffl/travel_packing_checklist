@@ -41,7 +41,7 @@ describe('AddList component', () => {
     expect(mockContextValue.hideList).toHaveBeenCalledWith('listFood');
   });
 
-  test('calls addListAsObj when list is hidden and not added yet', () => {
+  test('calls addList when list is hidden and not added yet', () => {
     const { getByText } = render(
       <ItemsContext.Provider value={mockContextValue}>
         <AddList listName="listFood" />
@@ -50,7 +50,7 @@ describe('AddList component', () => {
 
     fireEvent.click(getByText('+'));
 
-    expect(mockContextValue.addListAsObj).toHaveBeenCalledWith('listFood');
+    expect(mockContextValue.addList).toHaveBeenCalledWith('listFood');
   });
 
   test('calls showList when list is hidden but already added', () => {

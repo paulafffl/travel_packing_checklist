@@ -5,7 +5,7 @@ import { listNameDisplay } from '../utils/listNameDisplayed';
 import toast from '../utils/toast';
 
 const AddItem = () => {
-  const { addItemAsObj, listsObj } = useContext(ItemsContext);
+  const { addItem, listsObj } = useContext(ItemsContext);
   const [toastFoundExistingItem, setToastFoundExistingItem] = useState('');
   const [toastAddedItemConfirmation, setToastAddedItemConfirmation] = useState('');
   const [newItem, setNewItem] = useState('');
@@ -37,7 +37,7 @@ const AddItem = () => {
       onSubmit={(e) => {
         e.preventDefault();
         if (!existingInList()) {
-          addItemAsObj(newItem);
+          addItem(newItem);
           setToastAddedItemConfirmation('listAdditionals');
           setTimeout(() => setToastAddedItemConfirmation(''), 3000);
           setNewItem('');

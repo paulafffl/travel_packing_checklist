@@ -29,7 +29,7 @@ describe('Item component', () => {
     fireEvent.click(getByRole('checkbox', { name: item.name }));
 
     await waitFor(() => {
-      expect(mockContextValue.updateAsObj).toHaveBeenCalledWith(item.id, { packed: true });
+      expect(mockContextValue.changeItem).toHaveBeenCalledWith(item.id, { packed: true });
     });
   });
 
@@ -43,7 +43,7 @@ describe('Item component', () => {
 
     fireEvent.change(inputElement, { target: { value: 'New Item Name' } });
 
-    expect(mockContextValue.updateAsObj).toHaveBeenCalledWith(item.id, { name: 'New Item Name' });
+    expect(mockContextValue.changeItem).toHaveBeenCalledWith(item.id, { name: 'New Item Name' });
   });
 
   test('handles item removal', () => {
@@ -52,6 +52,6 @@ describe('Item component', () => {
 
     fireEvent.click(getByLabelText(`Delete "${item.name}"`));
 
-    expect(mockContextValue.removeItemAsObj).toHaveBeenCalledWith(item.id, 'listName');
+    expect(mockContextValue.removeItem).toHaveBeenCalledWith(item.id, 'listName');
   });
 });

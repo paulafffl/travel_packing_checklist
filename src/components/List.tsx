@@ -8,15 +8,8 @@ import Modal from './Modal';
 const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
   const [modalDeleteAdditionals, setModalDeleteAdditionals] = useState(false);
   const [modalResetList, setModalResetList] = useState('');
-  const {
-    listsObj,
-    listsWithItemsShown,
-    showListItems,
-    hideListItems,
-    hideList,
-    removeListAsObj,
-    resetListAsObj,
-  } = useContext(ItemsContext);
+  const { listsObj, listsWithItemsShown, showItems, hideItems, hideList, removeList, resetList } =
+    useContext(ItemsContext);
 
   const itemsShown = listsWithItemsShown.includes(listName);
   const packedItems = listsObj[listName]?.filter((item) => item.packed);
@@ -33,13 +26,13 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
             }`}
             aria-label={`Add List for ${listName}`}
             title={itemsShown ? 'Hide items' : 'Show items'}
-            onClick={() => (itemsShown ? hideListItems(listName) : showListItems(listName))}
+            onClick={() => (itemsShown ? hideItems(listName) : showItems(listName))}
           >
             <Icon symbol={itemsShown ? 'collapse' : 'expand'} />
           </button>
           <span
             className="m-0.5 cursor-pointer text-slate-400 sm:m-1"
-            onClick={() => (itemsShown ? hideListItems(listName) : showListItems(listName))}
+            onClick={() => (itemsShown ? hideItems(listName) : showItems(listName))}
           >
             {listNameDisplay(listName)}
           </span>
@@ -87,7 +80,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
           </p>
         }
         closeAction={() => setModalDeleteAdditionals(false)}
-        confirmAction={() => removeListAsObj('listAdditionals')}
+        confirmAction={() => removeList('listAdditionals')}
         confirmButton="Delete"
         confirmColor="color-palette-red"
         confirmIcon={<Icon symbol="delete" />}
@@ -105,7 +98,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
           </p>
         }
         closeAction={() => setModalResetList('')}
-        confirmAction={() => resetListAsObj(modalResetList)}
+        confirmAction={() => resetList(modalResetList)}
         confirmButton="Reset"
         confirmColor="color-palette-blue"
         confirmIcon={<Icon symbol="reset" />}

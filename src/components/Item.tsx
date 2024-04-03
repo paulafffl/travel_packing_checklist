@@ -5,12 +5,12 @@ import Icon from './Icon';
 
 const Item = ({ item, listName }: { item: Item; listName: string }) => {
   const [editing, setEditing] = useState(false);
-  const { updateAsObj, removeItemAsObj } = useContext(ItemsContext);
+  const { changeItem, removeItem } = useContext(ItemsContext);
   const [visible, setVisible] = useState(true);
 
   const handleCheckboxChange = () => {
     setVisible(false);
-    setTimeout(() => updateAsObj(item.id, { packed: !item.packed }), 300);
+    setTimeout(() => changeItem(item.id, { packed: !item.packed }), 300);
   };
 
   return (
@@ -37,7 +37,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
         )}
         size={item.name.length}
         onKeyDown={(e) => e.key === 'Enter' && setEditing(!editing)}
-        onChange={(event) => updateAsObj(item.id, { name: event.target.value })}
+        onChange={(event) => changeItem(item.id, { name: event.target.value })}
       />
       <div className="ml-auto flex gap-y-0">
         <button
@@ -50,7 +50,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
         <button
           className="color-palette-red ml-2 px-1 text-xs"
           aria-label={`Delete "${item.name}"`}
-          onClick={() => removeItemAsObj(item.id, listName)}
+          onClick={() => removeItem(item.id, listName)}
         >
           <Icon symbol="delete" />
         </button>

@@ -3,7 +3,7 @@ import { ItemsContext } from '../context';
 import List from './List';
 
 const ListsSection = ({ title }: { title: string }) => {
-  const { listsObj, listsShown, packAllItemsAsObj, unpackAllItemsAsObj } = useContext(ItemsContext);
+  const { listsObj, listsShown, packAllItems, unpackAllItems } = useContext(ItemsContext);
   const packed = title === 'Packed Items';
 
   const listsShowing = listsShown.map((listKey) => listsObj[listKey] || []);
@@ -46,7 +46,7 @@ const ListsSection = ({ title }: { title: string }) => {
       ) : (
         <button
           className="my-4 mb-0 w-full sm:mb-2"
-          onClick={() => (packed ? unpackAllItemsAsObj() : packAllItemsAsObj())}
+          onClick={() => (packed ? unpackAllItems() : packAllItems())}
         >
           <span>{packed ? '🧺' : '📦'}</span>
           <span className="ml-1">{packed ? 'Unpack all items' : 'Pack all items'}</span>

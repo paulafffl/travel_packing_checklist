@@ -46,7 +46,7 @@ describe('List component', () => {
     expect(getByTitle('Show items')).toBeInTheDocument();
   });
 
-  test('calls hideListItems when collapse button is clicked', () => {
+  test('calls hideItems when collapse button is clicked', () => {
     const { getByTitle } = render(
       <ItemsContext.Provider value={mockContextValueWithListShown}>
         <List listName="listName" packed={true} />
@@ -54,10 +54,10 @@ describe('List component', () => {
     );
 
     fireEvent.click(getByTitle('Hide items'));
-    expect(mockContextValueWithLists.hideListItems).toHaveBeenCalledWith('listName');
+    expect(mockContextValueWithLists.hideItems).toHaveBeenCalledWith('listName');
   });
 
-  test('calls resetListAsObj when reset button is clicked', () => {
+  test('calls resetList when reset button is clicked', () => {
     const { getByTitle } = render(
       <ItemsContext.Provider value={mockContextValueWithLists}>
         <List listName="listName" packed={true} />
@@ -66,7 +66,7 @@ describe('List component', () => {
 
     fireEvent.click(getByTitle('Reset list'));
     fireEvent.click(getByTitle('Confirm modal action'));
-    expect(mockContextValueWithLists.resetListAsObj).toHaveBeenCalledWith('listName');
+    expect(mockContextValueWithLists.resetList).toHaveBeenCalledWith('listName');
   });
 
   test('calls hideList when close button is clicked and its not listAdditionals', () => {
@@ -80,7 +80,7 @@ describe('List component', () => {
     expect(mockContextValueWithLists.hideList).toHaveBeenCalledWith('listName');
   });
 
-  test('calls removeListAsObj when close button is clicked and it is listAdditionals', () => {
+  test('calls removeList when close button is clicked and it is listAdditionals', () => {
     const { getByTitle } = render(
       <ItemsContext.Provider value={mockContextValueWithLists}>
         <List listName="listAdditionals" packed={true} />
@@ -89,6 +89,6 @@ describe('List component', () => {
 
     fireEvent.click(getByTitle('Close list'));
     fireEvent.click(getByTitle('Confirm modal action'));
-    expect(mockContextValueWithLists.removeListAsObj).toHaveBeenCalledWith('listAdditionals');
+    expect(mockContextValueWithLists.removeList).toHaveBeenCalledWith('listAdditionals');
   });
 });

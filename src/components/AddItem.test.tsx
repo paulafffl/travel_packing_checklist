@@ -30,7 +30,7 @@ describe('AddItem component', () => {
     expect(input).toHaveValue('Test item');
   });
 
-  test('invokes addItemAsObj when form is submitted with new item', async () => {
+  test('invokes addItem when form is submitted with new item', async () => {
     const { getByPlaceholderText, getByLabelText } = render(
       <ItemsContext.Provider value={mockContextValue}>
         <AddItem />
@@ -44,7 +44,7 @@ describe('AddItem component', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(mockContextValue.addItemAsObj).toHaveBeenCalledWith('Test item');
+      expect(mockContextValue.addItem).toHaveBeenCalledWith('Test item');
     });
   });
 });
