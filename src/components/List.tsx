@@ -10,7 +10,7 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
   const [modalResetList, setModalResetList] = useState('');
   const {
     listsObj,
-    listItemsShown,
+    listsWithItemsShown,
     showListItems,
     hideListItems,
     hideList,
@@ -18,31 +18,28 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
     resetListAsObj,
   } = useContext(ItemsContext);
 
-  const packedItems = () => listsObj[list]?.filter((item) => item.packed);
-  const unpackedItems = () => listsObj[list]?.filter((item) => !item.packed);
+  const itemsShown = listsWithItemsShown.includes(list);
+  const packedItems = listsObj[list]?.filter((item) => item.packed);
+  const unpackedItems = listsObj[list]?.filter((item) => !item.packed);
 
   const displaySectionName = (listName: string) => {
-    if ((packed && packedItems()?.length > 0) || (!packed && unpackedItems()?.length > 0)) {
+    if ((packed && packedItems?.length > 0) || (!packed && unpackedItems?.length > 0)) {
       return (
         <div className="mb-1 mt-2 flex items-center justify-between border-b-2 border-slate-300 pb-2">
           <div className="flex items-center">
             <button
               className={`m-0 mr-1 h-5 w-5 p-0.5 px-0.5 sm:mb-0.5 ${
-                listItemsShown(listName) && 'color-palette-green'
+                itemsShown && 'color-palette-green'
               }`}
               aria-label={`Add List for ${listName}`}
-              title={listItemsShown(listName) ? 'Hide items' : 'Show items'}
-              onClick={() =>
-                listItemsShown(listName) ? hideListItems(listName) : showListItems(listName)
-              }
+              title={itemsShown ? 'Hide items' : 'Show items'}
+              onClick={() => (itemsShown ? hideListItems(listName) : showListItems(listName))}
             >
-              <Icon symbol={listItemsShown(listName) ? 'collapse' : 'expand'} />
+              <Icon symbol={itemsShown ? 'collapse' : 'expand'} />
             </button>
             <span
               className="m-0.5 cursor-pointer text-slate-400 sm:m-1"
-              onClick={() =>
-                listItemsShown(listName) ? hideListItems(listName) : showListItems(listName)
-              }
+              onClick={() => (itemsShown ? hideListItems(listName) : showListItems(listName))}
             >
               {listNameDisplay(listName)}
             </span>
@@ -124,11 +121,11 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
       {modalDeleteAdditionals && confirmAdditionalsDeletion()}
       {modalResetList && confirmListReset()}
       {displaySectionName(list)}
-      {listItemsShown(list) && displaySectionName(list) && (
+      {itemsShown && displaySectionName(list) && (
         <ul className="flex flex-col">
           {packed
-            ? packedItems()?.map((item) => <Item key={item.id} item={item} listName={list} />)
-            : unpackedItems()?.map((item) => <Item key={item.id} item={item} listName={list} />)}
+            ? packedItems?.map((item) => <Item key={item.id} item={item} listName={list} />)
+            : unpackedItems?.map((item) => <Item key={item.id} item={item} listName={list} />)}
         </ul>
       )}
     </div>

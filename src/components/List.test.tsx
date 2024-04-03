@@ -20,12 +20,7 @@ const mockContextValueWithLists = {
 
 const mockContextValueWithListShown = {
   ...mockContextValueWithLists,
-  listItemsShown: () => true,
-};
-
-const mockContextValueWithListHidden = {
-  ...mockContextValueWithLists,
-  listItemsShown: () => false,
+  listsWithItemsShown: ['listName', 'listAdditionals'],
 };
 
 describe('List component', () => {
@@ -42,7 +37,7 @@ describe('List component', () => {
 
   test('renders section name correctly when items are hidden', () => {
     const { getByText, getByTitle } = render(
-      <ItemsContext.Provider value={mockContextValueWithListHidden}>
+      <ItemsContext.Provider value={mockContextValueWithLists}>
         <List list="listName" packed={true} />
       </ItemsContext.Provider>,
     );

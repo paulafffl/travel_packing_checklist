@@ -5,7 +5,7 @@ import { listsAsObj } from './lib/listsAsObj';
 export type ItemsState = {
   listsObj: ItemAsObj;
   listsShown: string[];
-  listItemsShown: (listName: string) => boolean;
+  listsWithItemsShown: string[];
   showListItems: (listName: string) => void;
   hideListItems: (listName: string) => void;
   showList: (listName: string) => void;
@@ -56,10 +56,6 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
 
   const listAdded = (listName: string) => {
     return listsObj.hasOwnProperty(listName);
-  };
-
-  const listItemsShown = (listName: string) => {
-    return listsWithItemsShown.includes(listName);
   };
 
   const showListItems = (listName: string) => {
@@ -124,7 +120,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const value: ItemsState = {
     listsObj,
     listsShown,
-    listItemsShown,
+    listsWithItemsShown,
     showListItems,
     hideListItems,
     showList,
