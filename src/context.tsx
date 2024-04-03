@@ -6,13 +6,13 @@ export type ItemsState = {
   listsObj: ListsObj;
   listsShown: string[];
   listsWithItemsShown: string[];
+  listsAdded: string[];
   showItems: (listName: string) => void;
   hideItems: (listName: string) => void;
   showList: (listName: string) => void;
   hideList: (listName: string) => void;
   addItem: (itemName: string, listName?: string) => void;
   addList: (listName: string, listObject?: {}) => void;
-  listAdded: (listName: string) => boolean;
   resetList: (listName: string) => void;
   removeItem: (id: string, listName: string) => void;
   removeList: (id: string) => void;
@@ -28,8 +28,9 @@ export const ItemsContext = createContext({} as ItemsState);
 
 const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [listsObj, setListsObj] = useState(readLists());
-  const [listsShown, setListsShown] = useState<string[]>(['listAdditionals']);
+  const [listsShown, setListsShown] = useState<string[]>(Object.keys(listsObj));
   const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
+  const listsAdded = Object.keys(listsObj);
 
   const addListToObj = (listName: string, updatedList: Item[], listsObject = listsObj) => {
     const showAddedListOnTop = {
@@ -53,10 +54,6 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     const newItem = createItem(itemName, listName);
     const updatedList = [...(listsObj[listName] || []), newItem];
     addListToObj(listName, updatedList);
-  };
-
-  const listAdded = (listName: string) => {
-    return listsObj.hasOwnProperty(listName);
   };
 
   const showItems = (listName: string) => {
@@ -122,13 +119,13 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     listsObj,
     listsShown,
     listsWithItemsShown,
+    listsAdded,
     showItems,
     hideItems,
     showList,
     hideList,
     addItem,
     addList,
-    listAdded,
     removeItem,
     removeList,
     resetList,

@@ -11,7 +11,7 @@ const mockContextValueWithListShown = {
 
 const mockContextValueWithListAdded = {
   ...mockContextValue,
-  listAdded: () => true,
+  listsAdded: ['listFood'],
 };
 
 describe('AddList component', () => {
