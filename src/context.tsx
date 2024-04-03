@@ -11,8 +11,6 @@ export type ItemsState = {
   listShown: (listName: string) => boolean;
   showList: (listName: string) => void;
   hideList: (listName: string) => void;
-  packedItemsAsObj: (list: string) => Item[];
-  unpackedItemsAsObj: (list: string) => Item[];
   addItemAsObj: (name: string, listName?: string) => void;
   addListAsObj: (listName: string, listObject?: {}) => void;
   listAdded: (listName: string) => boolean;
@@ -33,9 +31,6 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [listsObj, setListsObj] = useState(getInitialItems());
   const [listsShown, setListsShown] = useState<string[]>(['listAdditionals']);
   const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
-
-  const packedItemsAsObj = (list: string) => listsObj[list]?.filter((item) => item.packed);
-  const unpackedItemsAsObj = (list: string) => listsObj[list]?.filter((item) => !item.packed);
 
   const addItemAsObj = (name: string, listName = 'listAdditionals') => {
     const newItem = createItem(name, listName);
@@ -140,8 +135,6 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     listShown,
     showList,
     hideList,
-    unpackedItemsAsObj,
-    packedItemsAsObj,
     addItemAsObj,
     addListAsObj,
     listAdded,

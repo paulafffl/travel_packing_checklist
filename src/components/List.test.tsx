@@ -6,8 +6,16 @@ import List from './List';
 
 const mockContextValueWithLists = {
   ...mockContextValue,
-  packedItemsAsObj: () => [{ id: '1', name: 'Item 1', packed: true }],
-  unpackedItemsAsObj: () => [{ id: '2', name: 'Item 2', packed: true }],
+  listsObj: {
+    listName: [
+      { id: '1', name: 'Item 1', packed: true },
+      { id: '2', name: 'Item 2', packed: false },
+    ],
+    listAdditionals: [
+      { id: '1', name: 'Item 1', packed: true },
+      { id: '2', name: 'Item 2', packed: false },
+    ],
+  },
 };
 
 const mockContextValueWithListShown = {

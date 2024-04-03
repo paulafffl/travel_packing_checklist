@@ -9,20 +9,20 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
   const [modalDeleteAdditionals, setModalDeleteAdditionals] = useState(false);
   const [modalResetList, setModalResetList] = useState('');
   const {
+    listsObj,
     listItemsShown,
     showListItems,
     hideListItems,
-    packedItemsAsObj,
-    unpackedItemsAsObj,
     hideList,
     removeListAsObj,
     resetListAsObj,
   } = useContext(ItemsContext);
 
+  const packedItems = () => listsObj[list]?.filter((item) => item.packed);
+  const unpackedItems = () => listsObj[list]?.filter((item) => !item.packed);
+
   const displaySectionName = (listName: string) => {
-    const packedItems = packedItemsAsObj(listName);
-    const unpackedItems = unpackedItemsAsObj(listName);
-    if ((packed && packedItems?.length > 0) || (!packed && unpackedItems?.length > 0)) {
+    if ((packed && packedItems()?.length > 0) || (!packed && unpackedItems()?.length > 0)) {
       return (
         <div className="mb-1 mt-2 flex items-center justify-between border-b-2 border-slate-300 pb-2">
           <div className="flex items-center">
@@ -66,7 +66,7 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
               className={`ml-2 bg-white px-0.5 ${
                 !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
               }`}
-              aria-label={`Delete "${listName}"`}
+              aria-label={`Close "${listName}"`}
               title={'Close list'}
               disabled={!!modalDeleteAdditionals}
               onClick={() =>
@@ -127,12 +127,8 @@ const List = ({ list, packed }: { list: string; packed: boolean }) => {
       {listItemsShown(list) && displaySectionName(list) && (
         <ul className="flex flex-col">
           {packed
-            ? packedItemsAsObj(list)?.map((item) => (
-                <Item key={item.id} item={item} listName={list} />
-              ))
-            : unpackedItemsAsObj(list)?.map((item) => (
-                <Item key={item.id} item={item} listName={list} />
-              ))}
+            ? packedItems()?.map((item) => <Item key={item.id} item={item} listName={list} />)
+            : unpackedItems()?.map((item) => <Item key={item.id} item={item} listName={list} />)}
         </ul>
       )}
     </div>
