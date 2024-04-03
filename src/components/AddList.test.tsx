@@ -6,7 +6,7 @@ import { mockContextValue } from '../setupTests';
 
 const mockContextValueWithListShown = {
   ...mockContextValue,
-  listShown: () => true,
+  listsShown: ['listFood'],
 };
 
 const mockContextValueWithListAdded = {

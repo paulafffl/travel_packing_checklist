@@ -8,7 +8,6 @@ export type ItemsState = {
   listItemsShown: (listName: string) => boolean;
   showListItems: (listName: string) => void;
   hideListItems: (listName: string) => void;
-  listShown: (listName: string) => boolean;
   showList: (listName: string) => void;
   hideList: (listName: string) => void;
   addItemAsObj: (name: string, listName?: string) => void;
@@ -71,10 +70,6 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setListsWithItemsShown(listsWithItemsShown.filter((name) => name !== listName));
   };
 
-  const listShown = (listName: string) => {
-    return listsShown.includes(listName);
-  };
-
   const showList = (listName: string) => {
     setListsShown([...listsShown, listName]);
     setListsWithItemsShown([...listsWithItemsShown, listName]);
@@ -132,7 +127,6 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     listItemsShown,
     showListItems,
     hideListItems,
-    listShown,
     showList,
     hideList,
     addItemAsObj,

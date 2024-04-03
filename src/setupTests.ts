@@ -10,7 +10,6 @@ export const mockContextValue = {
   listItemsShown: jest.fn(),
   showListItems: jest.fn(),
   hideListItems: jest.fn(),
-  listShown: jest.fn(),
   showList: jest.fn(),
   hideList: jest.fn(),
   addItemAsObj: jest.fn(),
