@@ -4,11 +4,11 @@ type Item = {
   packed: boolean;
 };
 
-type ItemAsObj = {
+type ListsObj = {
   [key: string]: Item[];
 };
 
-type ListsAsObj = {
+type ListsNames = {
   listToiletries: string[];
   listZeroWaste: string[];
   listFood: string[];

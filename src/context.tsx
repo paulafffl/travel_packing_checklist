@@ -3,7 +3,7 @@ import { createItem, readLists, updateItem, deleteItem, deleteList } from './lib
 import { listsAsObj } from './lib/listsAsObj';
 
 export type ItemsState = {
-  listsObj: ItemAsObj;
+  listsObj: ListsObj;
   listsShown: string[];
   listsWithItemsShown: string[];
   showItems: (listName: string) => void;
@@ -48,7 +48,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   };
 
   const addList = (listName: string, listsObject = listsObj) => {
-    const names = listsAsObj[listName as keyof ListsAsObj];
+    const names = listsAsObj[listName as keyof ListsNames];
     const newItemsAsObj = names.map((item) => createItem(item, listName));
     setListsObj({ [listName]: newItemsAsObj, ...listsObject });
     showList(listName);
@@ -102,7 +102,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   };
 
   const packAllItems = () => {
-    const updatedItems: ItemAsObj = {};
+    const updatedItems: ListsObj = {};
     Object.entries(listsObj).forEach(([list, itemList]) => {
       updatedItems[list] = itemList.map((item) => ({ ...item, packed: true }));
     });
@@ -110,7 +110,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   };
 
   const unpackAllItems = () => {
-    const updatedItems: ItemAsObj = {};
+    const updatedItems: ListsObj = {};
     Object.entries(listsObj).forEach(([list, itemList]) => {
       updatedItems[list] = itemList.map((item) => ({ ...item, packed: false }));
     });
