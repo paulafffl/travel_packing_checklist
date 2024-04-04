@@ -16,7 +16,7 @@ export const listsAsObj = {
     '💊 Vitamins / Pills',
     '🩹 Bandage',
     '🪒 Razor',
-    '💅 Nail File / Clipper',
+    '✂️ Nail File / Clipper',
     '🩸 Period Cup / Pants',
     '🔘 Condoms',
   ],
@@ -50,6 +50,7 @@ export const listsAsObj = {
     '📷 Camera + charger',
     '🔥 Sex toys + charger',
     '🎮 Games + charger',
+    '📙 E-reader + charger',
     '💨 Vape + charger',
   ],
   listEssentials: [

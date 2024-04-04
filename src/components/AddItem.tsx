@@ -60,7 +60,7 @@ const AddItem = () => {
         type="search"
         placeholder="Or create new item here"
         value={newItem}
-        autoFocus
+        autoFocus={false}
         onChange={(e) => setNewItem(e.target.value)}
       />
       <button
