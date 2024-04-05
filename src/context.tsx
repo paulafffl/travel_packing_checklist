@@ -121,7 +121,9 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const packAllItems = () => {
     const updatedItems: ListsObj = {};
     Object.entries(listsObj).forEach(([list, itemList]) => {
-      updatedItems[list] = itemList.map((item) => ({ ...item, packed: true }));
+      if (listsShown.includes(list)) {
+        updatedItems[list] = itemList.map((item) => ({ ...item, packed: true }));
+      }
     });
     storeLists(updatedItems);
     setListsObj(updatedItems);
@@ -130,7 +132,9 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const unpackAllItems = () => {
     const updatedItems: ListsObj = {};
     Object.entries(listsObj).forEach(([list, itemList]) => {
-      updatedItems[list] = itemList.map((item) => ({ ...item, packed: false }));
+      if (listsShown.includes(list)) {
+        updatedItems[list] = itemList.map((item) => ({ ...item, packed: false }));
+      }
     });
     storeLists(updatedItems);
     setListsObj(updatedItems);
