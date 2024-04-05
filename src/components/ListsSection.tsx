@@ -34,7 +34,7 @@ const ListsSection = ({ title }: { title: string }) => {
       <h2>
         {title}
         {countItemsInTotal() > 0 && (
-          <span className="lowercase text-slate-400">{` ( ${countItemsInSection()} out of ${countItemsInTotal()} )`}</span>
+          <span className="font-normal lowercase text-slate-500">{` (${countItemsInSection()} out of ${countItemsInTotal()})`}</span>
         )}
       </h2>
       {Object.keys(listsObj).map(
