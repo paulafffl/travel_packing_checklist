@@ -63,7 +63,7 @@ section {
 }
 
 .color-palette-green {
-  @apply bg-teal-400 hover:bg-teal-400 md:hover:bg-teal-500;
+  @apply bg-teal-500 hover:bg-teal-500 md:hover:bg-teal-600;
 }
 
 .color-palette-violet {

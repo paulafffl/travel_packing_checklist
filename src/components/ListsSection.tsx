@@ -17,15 +17,27 @@ const ListsSection = ({ title }: { title: string }) => {
     return listsShowing.reduce((sum, list) => sum + list.length, 0);
   };
 
+  const suitcaseEmoji = (
+    <img
+      src="./logoEmoji.png"
+      alt="Packing Icon"
+      className="inline-block h-auto max-h-5 pb-0.5 pr-0.5 pt-0.2"
+    />
+  );
+
   const displayMessage = () => {
     if (packed) {
-      return countItemsInTotal() > 0
-        ? '📦 Pack items to see them here'
-        : '👆 First add items to be packed';
+      return countItemsInTotal() > 0 ? (
+        <>{suitcaseEmoji} Pack items to see them here</>
+      ) : (
+        '👆 First add items to be packed'
+      );
     } else {
-      return countItemsInTotal() > 0
-        ? '📦 All packed and ready to travel! 🙌'
-        : '🏁 Start a checklist from items above';
+      return countItemsInTotal() > 0 ? (
+        <>{suitcaseEmoji} All packed and ready to travel! 🙌</>
+      ) : (
+        '🏁 Start a checklist from items above'
+      );
     }
   };
 
@@ -45,10 +57,10 @@ const ListsSection = ({ title }: { title: string }) => {
         <p>{displayMessage()}</p>
       ) : (
         <button
-          className="my-4 mb-0 w-full sm:mb-2"
+          className="color-palette-green my-4 mb-0 w-full sm:mb-2"
           onClick={() => (packed ? unpackAllItems() : packAllItems())}
         >
-          <span>{packed ? '🧺' : '📦'}</span>
+          <span>{packed ? '🧺' : suitcaseEmoji}</span>
           <span className="ml-1">{packed ? 'Unpack all items' : 'Pack all items'}</span>
         </button>
       )}

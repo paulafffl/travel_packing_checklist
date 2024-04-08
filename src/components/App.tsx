@@ -6,7 +6,7 @@ function App() {
     <div className="outer-margin">
       <header>
         <h1>
-          <img src="./logo192.png" alt="Logo" className="mb-1.5 mr-2 inline-block h-9 w-9" />
+          <img src="./logo.png" alt="Logo" className="mb-1.5 mr-2 inline-block h-9 w-9" />
           {`Travel Packing\u00A0Checklist`}
         </h1>
       </header>
@@ -18,7 +18,7 @@ function App() {
         </div>
       </main>
       <footer>
-        Built by
+        🌈 Built by
         <a
           className="ml-1 underline"
           href="https://www.linkedin.com/in/paulafernandeslima/"
