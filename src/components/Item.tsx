@@ -24,12 +24,12 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
         onChange={handleCheckboxChange}
         tabIndex={0}
       />
-      <label htmlFor={`checkbox-item-${item.id}`} className={'hidden'}>
-        {item.name}
+      <label htmlFor={`checkbox-item-${item.id}`} className={'screen-readers-only'}>
+        {`checkbox-item-${item.id}`}
       </label>
       <input
         value={item.name}
-        id={`checkbox-editing-${item.id}`}
+        id={`label-item-${item.id}`}
         className={clsx(
           'w-full overflow-scroll pl-0 focus:pl-2',
           editing ? ' pl-2' : 'border-white bg-white',
@@ -39,6 +39,9 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
         onKeyDown={(e) => e.key === 'Enter' && setEditing(!editing)}
         onChange={(event) => changeItem(item.id, { name: event.target.value })}
       />
+      <label htmlFor={`label-item-${item.id}`} className={'screen-readers-only'}>
+        {`label-item-${item.id}`}
+      </label>
       <div className="ml-auto flex gap-y-0">
         <button
           className={`px-1 text-xs ${!editing && 'color-palette-green'}`}
