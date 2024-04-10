@@ -18,11 +18,7 @@ const ListsSection = ({ title }: { title: string }) => {
   };
 
   const suitcaseEmoji = (
-    <img
-      src="./logoEmoji.png"
-      alt="Packing Icon"
-      className="inline-block h-auto max-h-5 pb-0.5 pr-0.5 pt-0.2"
-    />
+    <img src="./logoEmoji.png" alt="Packing Icon" className="inline-block h-auto max-h-5 pr-0.5" />
   );
 
   const displayMessage = () => {
