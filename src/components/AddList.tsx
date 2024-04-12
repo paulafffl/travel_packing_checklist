@@ -19,8 +19,9 @@ const AddList = ({ listName = 'listName' }: { listName: string }) => {
       aria-label={`Add ${listName}`}
       onClick={handleClick}
     >
-      {listShown ? '-' : '+'}
-      <span className="m-0.5 sm:m-1"> {listNameDisplay(listName)}</span>
+      <span className="m-0.5 sm:m-1">
+        {listShown ? '-' : '+'}&nbsp;{listNameDisplay(listName)}
+      </span>
     </button>
   );
 };

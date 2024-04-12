@@ -76,7 +76,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
         message={
           <p>
             Items you created <strong>cannot be restored</strong>, unlike those in the default
-            lists. Do you still want to delete {listNameDisplay('listAdditionals')} ?
+            lists. Do you still want to delete {listNameDisplay('listAdditionals')}&nbsp;?
           </p>
         }
         closeAction={() => setModalDeleteAdditionals(false)}
@@ -94,7 +94,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
         message={
           <p>
             This will replace any deleted or renamed items with the default ones. Do you still want
-            to reset the list {listNameDisplay(modalResetList)} ?
+            to reset the list {listNameDisplay(modalResetList)}&nbsp;?
           </p>
         }
         closeAction={() => setModalResetList('')}
