@@ -10,7 +10,7 @@ type ListsObj = {
 
 type ListsNames = {
   listToiletries: string[];
-  listZeroWaste: string[];
+  listReusables: string[];
   listSnacks: string[];
   listDevices: string[];
   listEssentials: string[];

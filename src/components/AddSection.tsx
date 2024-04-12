@@ -9,7 +9,7 @@ const AddSection = () => {
       <div className="flex flex-wrap gap-x-3 sm:justify-between">
         <AddList listName={'listEssentials'} />
         <AddList listName={'listDevices'} />
-        <AddList listName={'listZeroWaste'} />
+        <AddList listName={'listReusables'} />
         <AddList listName={'listSnacks'} />
         <AddList listName={'listClothes'} />
         <AddList listName={'listToiletries'} />

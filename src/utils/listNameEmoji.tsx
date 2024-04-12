@@ -3,7 +3,7 @@ type listNameEmojiType = {
 };
 
 export const listNameEmoji: listNameEmojiType = {
-  listZeroWaste: '💚',
+  listReusables: '💚',
   listSnacks: '🍎',
   listDevices: '⚡',
   listEssentials: '🎒',
