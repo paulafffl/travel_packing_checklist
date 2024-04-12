@@ -8,7 +8,7 @@ const AddSection = () => {
       <p>{'📝 Add group of items with lists below'}</p>
       <div className="flex flex-wrap gap-x-3 sm:justify-between">
         <AddList listName={'listEssentials'} />
-        <AddList listName={'listTech'} />
+        <AddList listName={'listDevices'} />
         <AddList listName={'listZeroWaste'} />
         <AddList listName={'listFood'} />
         <AddList listName={'listClothes'} />

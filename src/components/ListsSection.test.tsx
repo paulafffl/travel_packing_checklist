@@ -8,9 +8,9 @@ const mockContextValueWithLists = {
   ...mockContextValue,
   listsObj: {
     listFood: [{ id: '1', name: 'Item 1', packed: true }],
-    listTech: [{ id: '2', name: 'Item 2', packed: false }],
+    listDevices: [{ id: '2', name: 'Item 2', packed: false }],
   },
-  listsShown: ['listFood', 'listTech'],
+  listsShown: ['listFood', 'listDevices'],
 };
 
 test('counts items correctly', () => {

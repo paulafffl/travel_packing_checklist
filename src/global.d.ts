@@ -12,7 +12,7 @@ type ListsNames = {
   listToiletries: string[];
   listZeroWaste: string[];
   listFood: string[];
-  listTech: string[];
+  listDevices: string[];
   listEssentials: string[];
   listLeaving: string[];
   listClothes: string[];

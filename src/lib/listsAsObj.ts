@@ -39,7 +39,7 @@ export const listsAsObj = {
     '🥐 Breakfast',
     '🥪 Sandwich',
   ],
-  listTech: [
+  listDevices: [
     '📱 Phone + charger',
     '🔋 Power bank + USB',
     '💻 Laptop + charger',
