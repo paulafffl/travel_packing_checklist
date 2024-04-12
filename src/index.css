@@ -63,11 +63,11 @@ section {
 }
 
 .color-palette-green {
-  @apply bg-teal-500 hover:bg-teal-500 md:hover:bg-teal-600;
+  @apply bg-teal-500 shadow-teal-900/10 text-shadow hover:bg-teal-500 md:hover:bg-teal-600;
 }
 
 .color-palette-violet {
-  @apply bg-violet-600 hover:bg-violet-600 md:hover:bg-violet-700;
+  @apply bg-violet-600 shadow-violet-900/10 text-shadow hover:bg-violet-600 md:hover:bg-violet-700;
 }
 
 .color-palette-red {
