@@ -7,10 +7,10 @@ import ListsSection from './ListsSection';
 const mockContextValueWithLists = {
   ...mockContextValue,
   listsObj: {
-    listFood: [{ id: '1', name: 'Item 1', packed: true }],
+    listSnacks: [{ id: '1', name: 'Item 1', packed: true }],
     listDevices: [{ id: '2', name: 'Item 2', packed: false }],
   },
-  listsShown: ['listFood', 'listDevices'],
+  listsShown: ['listSnacks', 'listDevices'],
 };
 
 test('counts items correctly', () => {

@@ -10,7 +10,7 @@ const AddSection = () => {
         <AddList listName={'listEssentials'} />
         <AddList listName={'listDevices'} />
         <AddList listName={'listZeroWaste'} />
-        <AddList listName={'listFood'} />
+        <AddList listName={'listSnacks'} />
         <AddList listName={'listClothes'} />
         <AddList listName={'listToiletries'} />
         <AddList listName={'listLeaving'} />

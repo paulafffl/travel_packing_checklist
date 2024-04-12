@@ -31,7 +31,7 @@ export const listsAsObj = {
     '🔶 Cloth',
     '😷 Face mask',
   ],
-  listFood: [
+  listSnacks: [
     '🍌 Fruits',
     '🍫 Protein bar',
     '🍿 Savouries',
@@ -80,7 +80,7 @@ export const listsAsObj = {
     '🪴 Water plants',
     '🗑️ Take out trash',
     '🪟 Close windows',
-    '🧊 Get chilled food',
+    '🧊 Get chilled snacks',
     '🔥 Turn off heating',
     '💡 Turn off lights',
     '📝 Review checklist',

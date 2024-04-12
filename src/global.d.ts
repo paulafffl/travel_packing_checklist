@@ -11,7 +11,7 @@ type ListsObj = {
 type ListsNames = {
   listToiletries: string[];
   listZeroWaste: string[];
-  listFood: string[];
+  listSnacks: string[];
   listDevices: string[];
   listEssentials: string[];
   listLeaving: string[];
