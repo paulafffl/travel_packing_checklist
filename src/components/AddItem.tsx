@@ -65,7 +65,6 @@ const AddItem = () => {
       />
       <button
         id="new-item-submit"
-        style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
         aria-label={`Add Item ${newItem}`}
         type="submit"
         disabled={!newItem}

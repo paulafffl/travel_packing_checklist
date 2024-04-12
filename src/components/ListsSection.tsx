@@ -56,8 +56,9 @@ const ListsSection = ({ title }: { title: string }) => {
           className="color-palette-green my-4 mb-0 w-full sm:mb-2"
           onClick={() => (packed ? unpackAllItems() : packAllItems())}
         >
-          <span>{packed ? '🧺' : suitcaseEmoji}</span>
-          <span className="ml-1">{packed ? 'Unpack all items' : 'Pack all items'}</span>
+          <span>
+            {packed ? '🧺' : suitcaseEmoji} {packed ? 'Unpack all items' : 'Pack all items'}
+          </span>
         </button>
       )}
     </section>

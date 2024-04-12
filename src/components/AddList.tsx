@@ -15,11 +15,11 @@ const AddList = ({ listName = 'listName' }: { listName: string }) => {
   };
   return (
     <button
-      className={`mt-3 flex-grow px-2 py-0.5 sm:mt-4 ${listShown && 'color-button-activated'}`}
+      className={`mt-3 flex-grow sm:mt-4 ${listShown && 'color-button-activated'}`}
       aria-label={`Add ${listName}`}
       onClick={handleClick}
     >
-      <span className="m-0.5 sm:m-1">
+      <span>
         {listShown ? '-' : '+'}&nbsp;{listNameDisplay(listName)}
       </span>
     </button>
