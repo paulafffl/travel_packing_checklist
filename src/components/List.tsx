@@ -40,7 +40,9 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
         <div>
           <button
             className={`ml-2 bg-white px-0.5 ${
-              listName === 'listAdditionals' ? 'disabled:bg-white' : 'hover:bg-indigo-200'
+              listName === 'listAdditionals'
+                ? 'disabled:bg-white disabled:hover:bg-white'
+                : 'hover:bg-indigo-200'
             }`}
             aria-label={`Reset "${listName}"`}
             title={'Reset list'}
