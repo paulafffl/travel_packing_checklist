@@ -14,7 +14,7 @@ describe('AddSection component', () => {
 
     expect(getByText('ADD ITEMS')).toBeInTheDocument();
 
-    expect(getByText(/Zero Waste/i)).toBeInTheDocument();
+    expect(getByText(/Reusables/i)).toBeInTheDocument();
     expect(getByText(/Snacks/i)).toBeInTheDocument();
     expect(getByText(/Devices/i)).toBeInTheDocument();
     expect(getByText(/Essentials/i)).toBeInTheDocument();
