@@ -16,6 +16,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(237, 238, 245);
   @apply text-sm sm:text-base;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 footer {
@@ -55,7 +58,7 @@ button,
 button[type='button'],
 button[type='reset'],
 button[type='submit'] {
-  @apply color-palette-violet inline-flex items-center justify-center rounded-md px-3 py-1 font-bold uppercase text-white transition-all transition-colors ease-in ease-in active:bg-primary-300 disabled:bg-slate-300 disabled:text-white disabled:hover:bg-slate-300 sm:px-5;
+  @apply color-palette-violet inline-flex items-center justify-center overflow-hidden rounded-md px-3 py-1 font-bold uppercase text-white transition-all transition-colors ease-in ease-in active:bg-primary-300 disabled:bg-slate-300 disabled:text-white disabled:hover:bg-slate-300 sm:px-5;
   span {
     @apply py-0.5;
   }
@@ -91,10 +94,14 @@ section {
   @apply bg-primary-400 hover:bg-primary-400 md:hover:bg-primary-500;
 }
 
-.outer-margin {
-  margin: 10vh 22vw;
+.main {
+  @media (min-width: 1024px) {
+    padding: 10vh 0;
+    width: 55rem;
+  }
   @media (max-width: 1024px) {
-    margin: 7vh 8vw;
+    padding: 7vh 8vw;
+    width: 100vw;
   }
 }
 

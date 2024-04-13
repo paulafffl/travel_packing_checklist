@@ -3,7 +3,7 @@ import AddSection from './AddSection';
 
 function App() {
   return (
-    <div className="outer-margin">
+    <div className="main">
       <header>
         <h1>
           <img src="./logo.png" alt="Logo" className="mb-1.5 mr-2 inline-block h-9 w-9" />
