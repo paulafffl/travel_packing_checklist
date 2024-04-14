@@ -8,8 +8,8 @@ const AddSection = () => {
       <p>{'📝 Add group of items with lists below'}</p>
       <div className="grid grid-cols-2 gap-x-3 md:grid-cols-5">
         <AddList listName={'listEssentials'} />
-        <AddList listName={'listDevices'} />
         <AddList listName={'listReusables'} />
+        <AddList listName={'listDevices'} />
         <AddList listName={'listSnacks'} />
         <AddList listName={'listClothes'} />
         <AddList listName={'listToiletries'} />
