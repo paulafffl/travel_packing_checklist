@@ -50,6 +50,13 @@ input[type='checkbox'] {
   @apply z-10 ml-1 mr-0.5 scale-125 ring-primary-400 focus:outline-primary-400 focus-visible:ring-2;
 }
 
+input[type='search'] {
+  /* Override Safari's border radius */
+  -webkit-appearance: none;
+  -webkit-border-radius: 0.125rem;
+  border-radius: 0.125rem;
+}
+
 label {
   @apply border-2 border-transparent p-1;
 }
@@ -58,9 +65,9 @@ button,
 button[type='button'],
 button[type='reset'],
 button[type='submit'] {
-  @apply color-palette-violet inline-flex items-center justify-center overflow-hidden rounded-md px-3 py-1 font-bold uppercase text-white transition-all transition-colors ease-in ease-in active:bg-primary-300 disabled:bg-slate-300 disabled:text-white disabled:hover:bg-slate-300 sm:px-5;
+  @apply color-palette-violet inline-flex items-center justify-center overflow-hidden rounded-md px-3 py-1 font-bold uppercase text-white transition-all transition-colors ease-in ease-in active:bg-primary-300 disabled:bg-slate-300 disabled:text-white disabled:shadow-slate-300/10 disabled:hover:bg-slate-300 sm:px-5;
   span {
-    @apply py-0.5;
+    @apply text-nowrap py-0.5;
   }
 }
 
