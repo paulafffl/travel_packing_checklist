@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { useContext, useState } from 'react';
 import { ItemsContext } from '../context';
 import Icon from './Icon';
@@ -30,11 +29,9 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
       <input
         value={item.name}
         id={`label-item-${item.id}`}
-        className={clsx(
-          'w-full overflow-scroll pl-0 focus:pl-2',
-          editing ? ' pl-2' : 'border-white bg-white',
-          visible ? 'opacity-100' : 'opacity-0',
-        )}
+        className={`w-full pl-0 focus:pl-2
+          ${editing ? ' pl-2' : 'border-white bg-white'},
+          ${visible ? 'opacity-100' : 'opacity-0'}`}
         size={item.name.length}
         onKeyDown={(e) => e.key === 'Enter' && setEditing(!editing)}
         onChange={(event) => changeItem(item.id, { name: event.target.value })}
@@ -44,14 +41,14 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
       </label>
       <div className="ml-auto flex gap-y-0">
         <button
-          className={`px-1 text-xs ${!editing && 'color-palette-green'}`}
+          className={`h-6 px-1 text-xs ${!editing && 'color-palette-green'}`}
           aria-label={`Edit "${item.name}"`}
           onClick={() => setEditing(!editing)}
         >
           <Icon symbol={editing ? 'save' : 'edit'} />
         </button>
         <button
-          className="color-palette-red ml-2 px-1 text-xs"
+          className="color-palette-red ml-2 h-6 px-1 text-xs"
           aria-label={`Delete "${item.name}"`}
           onClick={() => removeItem(item.id, listName)}
         >
