@@ -18,7 +18,7 @@ const ListsSection = ({ title }: { title: string }) => {
   };
 
   const suitcaseEmoji = (
-    <img src="./logoEmoji.png" alt="Packing Icon" className="inline-block h-auto max-h-5 pr-0.5" />
+    <img src="./logoEmoji.png" alt="Packing Icon" className="inline-block h-4 pr-0.5 sm:h-5" />
   );
 
   const displayMessage = () => {
@@ -29,11 +29,9 @@ const ListsSection = ({ title }: { title: string }) => {
         '👆 First add items to be packed'
       );
     } else {
-      return countItemsInTotal() > 0 ? (
-        <>{suitcaseEmoji} All packed and ready to travel! 🙌</>
-      ) : (
-        '🏁 Start a checklist from items above'
-      );
+      return countItemsInTotal() > 0
+        ? '🎉 All packed and ready to travel!'
+        : '🏁 Start a checklist from items above';
     }
   };
 
@@ -50,15 +48,14 @@ const ListsSection = ({ title }: { title: string }) => {
           listsShown.includes(list) && <List listName={list} packed={packed} key={title + list} />,
       )}
       {countItemsInSection() === 0 ? (
-        <p>{displayMessage()}</p>
+        <p className="textWithEmoji">{displayMessage()}</p>
       ) : (
         <button
           className="color-palette-green my-4 mb-0 w-full sm:mb-2"
           onClick={() => (packed ? unpackAllItems() : packAllItems())}
         >
-          <span>
-            {packed ? '🧺' : suitcaseEmoji} {packed ? 'Unpack all items' : 'Pack all items'}
-          </span>
+          <span className="emojiStyle mr-1">{packed ? '🧺' : suitcaseEmoji}</span>
+          {packed ? 'Unpack all items' : 'Pack all items'}
         </button>
       )}
     </section>

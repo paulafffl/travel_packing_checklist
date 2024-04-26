@@ -18,16 +18,20 @@ function App() {
         </div>
       </main>
       <footer>
-        🌈 Built by
-        <a
-          className="ml-1 underline"
-          href="https://www.linkedin.com/in/paulafernandeslima/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Paula Lima
-        </a>
-        , with ❤️
+        <p className="flex align-middle">
+          <span className="emojiStyle mr-1">🌈</span>
+          Built by
+          <a
+            className="ml-1 underline"
+            href="https://www.linkedin.com/in/paulafernandeslima/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Paula Lima
+          </a>
+          , with
+          <span className="emojiStyle ml-1">❤️</span>
+        </p>
       </footer>
     </div>
   );
