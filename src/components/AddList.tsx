@@ -15,7 +15,7 @@ const AddList = ({ listName = 'listName' }: { listName: string }) => {
   };
   return (
     <button
-      className={`mt-3 sm:mt-4 ${listShown && 'color-button-activated'}`}
+      className={`mt-3 sm:mt-4 ${!listShown ? 'color-palette-violet' : 'color-button-activated'}`}
       aria-label={`Add ${listName}`}
       onClick={handleClick}
     >

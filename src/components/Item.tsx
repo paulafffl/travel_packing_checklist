@@ -41,7 +41,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
       </label>
       <div className="ml-auto flex gap-y-0">
         <button
-          className={`h-6 px-1 text-xs ${!editing && 'color-palette-green'}`}
+          className={`h-6 px-1 text-xs ${editing ? 'color-palette-violet' : 'color-palette-green'}`}
           aria-label={`Edit "${item.name}"`}
           onClick={() => setEditing(!editing)}
         >

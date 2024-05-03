@@ -22,7 +22,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
         <div className="flex items-center">
           <button
             className={`m-0 mr-1 h-5 w-5 p-0.5 px-0.5 sm:mb-0.5 ${
-              itemsShown && 'color-palette-green'
+              itemsShown ? 'color-palette-violet' : 'color-palette-green'
             }`}
             aria-label={`Add List for ${listName}`}
             title={itemsShown ? 'Hide items' : 'Show items'}
