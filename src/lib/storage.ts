@@ -1,6 +1,6 @@
 export const getStoredShownList = (): [] => {
   const storedItems = localStorage.getItem('listsShown');
-  return storedItems ? JSON.parse(storedItems) : ['listAdditionals'];
+  return storedItems ? JSON.parse(storedItems) : [];
 };
 
 export const getStoredLists = (): ListsObj => {

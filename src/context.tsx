@@ -50,11 +50,12 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     };
     setListsObj(objWithListOnTop);
     storeLists(objWithListOnTop);
-
-    const updatedListsShown = [...listsShown, listName];
-    setListsShown(updatedListsShown);
-    storeListsShown(updatedListsShown as []);
-    setListsWithItemsShown([...listsWithItemsShown, listName]);
+    if (!listsShown.includes(listName)) {
+      const updatedListsShown = [...listsShown, listName];
+      setListsShown(updatedListsShown);
+      storeListsShown(updatedListsShown as []);
+      setListsWithItemsShown([...listsWithItemsShown, listName]);
+    }
   };
 
   const addList = (listName: string, listsObject = listsObj) => {
