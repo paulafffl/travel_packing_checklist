@@ -16,10 +16,9 @@ const AddList = ({ listName = 'listName' }: { listName: string }) => {
   return (
     <button
       className={`mt-3 sm:mt-4 ${!listShown ? 'color-palette-violet' : 'color-button-activated'}`}
-      aria-label={`Add ${listName}`}
       onClick={handleClick}
     >
-      <span>
+      <span aria-label={`${listShown ? 'Remove' : 'Add'}`}>
         {listShown ? '-' : '+'}&nbsp;{listNameDisplay(listName)}
       </span>
     </button>

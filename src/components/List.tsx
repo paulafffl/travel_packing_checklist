@@ -24,8 +24,8 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
             className={`m-0 mr-1 h-5 w-5 p-0.5 px-0.5 sm:mb-0.5 ${
               itemsShown ? 'color-palette-violet' : 'color-palette-green'
             }`}
-            aria-label={`Add List for ${listName}`}
             title={itemsShown ? 'Hide items' : 'Show items'}
+            aria-label={`${itemsShown ? 'Hide' : 'Show'} ${listName}`}
             onClick={() => (itemsShown ? hideItems(listName) : showItems(listName))}
           >
             <Icon symbol={itemsShown ? 'collapse' : 'expand'} />
@@ -62,8 +62,8 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
             className={`ml-2 bg-white px-0.5 ${
               !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
             }`}
-            aria-label={`Close "${listName}"`}
             title={'Close list'}
+            aria-label={`Close "${listName}"`}
             onClick={() =>
               listName === 'listAdditionals' ? setModalDeleteAdditionals(true) : hideList(listName)
             }

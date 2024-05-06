@@ -42,13 +42,15 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
       <div className="ml-auto flex gap-y-0">
         <button
           className={`h-6 px-1 text-xs ${editing ? 'color-palette-violet' : 'color-palette-green'}`}
-          aria-label={`Edit "${item.name}"`}
+          title={`${editing ? 'Save' : 'Edit'}`}
+          aria-label={`${editing ? 'Save' : 'Edit'} "${item.name}"`}
           onClick={() => setEditing(!editing)}
         >
           <Icon symbol={editing ? 'save' : 'edit'} />
         </button>
         <button
           className="color-palette-red ml-2 h-6 px-1 text-xs"
+          title={'Delete'}
           aria-label={`Delete "${item.name}"`}
           onClick={() => removeItem(item.id, listName)}
         >
