@@ -39,9 +39,11 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
         </div>
         <div>
           <button
-            title={`Reset ${listName != 'listAdditionals' ? 'list' : 'not allowed in Additionals'}`}
+            title={`Reset ${
+              listName !== 'listAdditionals' ? 'list' : 'not allowed in Additionals'
+            }`}
             aria-label={`Reset ${
-              listName != 'listAdditionals' ? listName : 'not allowed in Additionals'
+              listName !== 'listAdditionals' ? listName : 'not allowed in Additionals'
             }`}
             aria-disabled={listName === 'listAdditionals'}
             className={`ml-2 bg-white px-0.5 ${
@@ -49,7 +51,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
                 ? ' cursor-default bg-white hover:bg-white'
                 : 'hover:bg-indigo-200'
             }`}
-            onClick={() => listName != 'listAdditionals' && setModalResetList(listName)}
+            onClick={() => listName !== 'listAdditionals' && setModalResetList(listName)}
           >
             <Icon
               symbol="reset"
