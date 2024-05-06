@@ -43,7 +43,7 @@ p {
 }
 
 input {
-  @apply h-8 rounded-sm border-2 border-primary-300 bg-white py-1 pl-2 pr-0 placeholder-slate-600 accent-primary-600 outline-none transition-all transition-opacity duration-200 ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 focus:bg-primary-50 disabled:border-slate-500 disabled:bg-slate-100 disabled:placeholder-slate-400 sm:h-9 md:hover:accent-primary-700;
+  @apply h-8 rounded-sm border-2 border-primary-300 bg-white py-1 pl-2 pr-0 placeholder-slate-600 accent-primary-600 outline-none transition-all transition-opacity duration-200 ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 focus:bg-primary-50 sm:h-9 md:hover:accent-primary-700;
 }
 
 input[type='checkbox'] {
@@ -65,14 +65,13 @@ button,
 button[type='button'],
 button[type='reset'],
 button[type='submit'] {
-  @apply inline-flex h-8 items-center justify-center overflow-hidden rounded-md px-3 py-1 font-bold uppercase text-white transition-all transition-colors ease-in ease-in active:bg-primary-300 disabled:bg-slate-300 disabled:text-white disabled:shadow-slate-300/10 disabled:hover:bg-slate-300 sm:h-9 sm:px-5;
+  @apply inline-flex h-8 items-center justify-center overflow-hidden rounded-md px-3 py-1 font-bold uppercase text-white transition-all transition-colors ease-in ease-in active:bg-primary-300  sm:h-9 sm:px-5;
   span {
     @apply text-nowrap py-0.5;
   }
 }
 
 button[type='submit'] {
-  @apply color-palette-green;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -99,6 +98,10 @@ section {
 
 .color-button-activated {
   @apply bg-primary-400 hover:bg-primary-400 md:hover:bg-primary-500;
+}
+
+.color-palette-disabled {
+  @apply bg-slate-300 text-white shadow-slate-300/10 hover:bg-slate-300;
 }
 
 .main {

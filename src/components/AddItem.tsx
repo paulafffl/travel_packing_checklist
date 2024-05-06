@@ -6,6 +6,7 @@ import toast from '../utils/toast';
 
 const AddItem = () => {
   const { addItem, listsObj } = useContext(ItemsContext);
+  const [toastEmptyInput, setToastEmptyInput] = useState(false);
   const [toastFoundExistingItem, setToastFoundExistingItem] = useState('');
   const [toastAddedItemConfirmation, setToastAddedItemConfirmation] = useState('');
   const [newItem, setNewItem] = useState('');
@@ -36,6 +37,11 @@ const AddItem = () => {
       className="mb-1 mt-5 flex w-full"
       onSubmit={(e) => {
         e.preventDefault();
+        if (!newItem) {
+          setToastEmptyInput(true);
+          setTimeout(() => setToastEmptyInput(false), 3000);
+          return;
+        }
         if (!existingInList()) {
           addItem(newItem);
           setToastAddedItemConfirmation('listAdditionals');
@@ -44,6 +50,7 @@ const AddItem = () => {
         }
       }}
     >
+      {toastEmptyInput && toast(<p>✍️ First write a new item</p>)}
       {toastFoundExistingItem &&
         toast(
           <p>
@@ -64,10 +71,12 @@ const AddItem = () => {
         onChange={(e) => setNewItem(e.target.value)}
       />
       <button
+        title={`${!newItem ? 'Disabled until you type a new item' : `Add Item ${newItem}`}`}
+        aria-label={`${!newItem ? 'Disabled until you type a new item' : `Add Item ${newItem}`}`}
+        aria-disabled={!newItem}
+        className={`${!newItem ? 'color-palette-disabled' : 'color-palette-green'}`}
         id="new-item-submit"
-        aria-label={`Add Item ${newItem}`}
         type="submit"
-        disabled={!newItem}
       >
         <span>
           {`+\u00A0Add`} <span className="hidden sm:inline">New Item</span>
