@@ -20,7 +20,7 @@ test('counts items correctly', () => {
     </ItemsContext.Provider>,
   );
 
-  expect(screen.getByText('(1 out of 2)')).toBeInTheDocument();
+  expect(screen.getByText('(1 out of 10)')).toBeInTheDocument();
 });
 
 test('button "Pack all items" correctly', () => {

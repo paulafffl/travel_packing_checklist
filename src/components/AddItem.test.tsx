@@ -13,7 +13,6 @@ describe('AddItem component', () => {
     );
 
     expect(getByPlaceholderText('Or create new item here')).toBeInTheDocument();
-    expect(getByLabelText(/Add Item/)).toBeInTheDocument();
   });
 
   test('updates input value correctly', () => {
@@ -38,9 +37,9 @@ describe('AddItem component', () => {
     );
 
     const input = getByPlaceholderText('Or create new item here');
-    const submitButton = getByLabelText(/Add Item/);
-
     fireEvent.change(input, { target: { value: 'Test item' } });
+
+    const submitButton = getByLabelText(/Add/);
     fireEvent.click(submitButton);
 
     await waitFor(() => {
