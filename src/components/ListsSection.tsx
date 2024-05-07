@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { ItemsContext } from '../context';
 import List from './List';
 
@@ -8,10 +8,11 @@ const ListsSection = ({ title, totalItems }: { title: string; totalItems: number
 
   const listsShowing = listsShown.map((listKey) => listsObj[listKey] || []);
 
-  const countItemsInSection = () => {
+  const totalItemsPerSection = useMemo(() => {
+    alert('useMemo');
     return listsShowing.flatMap((list) => list.filter((item) => item.packed === (packed === true)))
       .length;
-  };
+  }, [listsObj, listsShown]);
 
   const suitcaseEmoji = (
     <img src="./logoEmoji.png" alt="Packing Icon" className="inline-block h-4 pr-0.5 sm:h-5" />
@@ -36,14 +37,14 @@ const ListsSection = ({ title, totalItems }: { title: string; totalItems: number
       <h2>
         {title}
         {totalItems > 0 && (
-          <span className="font-normal lowercase text-slate-600">{` (${countItemsInSection()} out of ${totalItems})`}</span>
+          <span className="font-normal lowercase text-slate-600">{` (${totalItemsPerSection} out of ${totalItems})`}</span>
         )}
       </h2>
       {Object.keys(listsObj).map(
         (list) =>
           listsShown.includes(list) && <List listName={list} packed={packed} key={title + list} />,
       )}
-      {countItemsInSection() === 0 ? (
+      {totalItemsPerSection === 0 ? (
         <p className="textWithEmoji">{displayMessage()}</p>
       ) : (
         <button
