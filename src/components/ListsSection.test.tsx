@@ -16,7 +16,7 @@ const mockContextValueWithLists = {
 test('counts items correctly', () => {
   render(
     <ItemsContext.Provider value={mockContextValueWithLists}>
-      <ListsSection title="Packed Items" />
+      <ListsSection title="Packed Items" totalItems={10} />
     </ItemsContext.Provider>,
   );
 
@@ -26,7 +26,7 @@ test('counts items correctly', () => {
 test('button "Pack all items" correctly', () => {
   render(
     <ItemsContext.Provider value={mockContextValueWithLists}>
-      <ListsSection title="Unpacked Items" />
+      <ListsSection title="Unpacked Items" totalItems={10} />
     </ItemsContext.Provider>,
   );
 
@@ -39,7 +39,7 @@ test('button "Pack all items" correctly', () => {
 test('button "Unpack all items" correctly', () => {
   render(
     <ItemsContext.Provider value={mockContextValueWithLists}>
-      <ListsSection title="Packed Items" />
+      <ListsSection title="Packed Items" totalItems={10} />
     </ItemsContext.Provider>,
   );
 

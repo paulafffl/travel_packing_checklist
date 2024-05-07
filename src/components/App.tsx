@@ -1,7 +1,16 @@
 import ListsSection from './ListsSection';
 import AddSection from './AddSection';
+import { useContext, useMemo } from 'react';
+import { ItemsContext } from '../context';
 
 function App() {
+  const { listsObj, listsShown } = useContext(ItemsContext);
+
+  const countItemsInTotal = useMemo(() => {
+    const listsShowing = listsShown.map((listKey) => listsObj[listKey] || []);
+    return listsShowing.reduce((sum, list) => sum + list.length, 0);
+  }, [listsShown]);
+
   return (
     <div className="main">
       <header>
@@ -13,8 +22,8 @@ function App() {
       <main>
         <AddSection />
         <div className="flex flex-col gap-x-10 md:flex-row">
-          <ListsSection title="Unpacked Items" />
-          <ListsSection title="Packed Items" />
+          <ListsSection title="Unpacked Items" totalItems={countItemsInTotal} />
+          <ListsSection title="Packed Items" totalItems={countItemsInTotal} />
         </div>
       </main>
       <footer>

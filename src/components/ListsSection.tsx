@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ItemsContext } from '../context';
 import List from './List';
 
-const ListsSection = ({ title }: { title: string }) => {
+const ListsSection = ({ title, totalItems }: { title: string; totalItems: number }) => {
   const { listsObj, listsShown, packAllItems, unpackAllItems } = useContext(ItemsContext);
   const packed = title === 'Packed Items';
 
@@ -13,23 +13,19 @@ const ListsSection = ({ title }: { title: string }) => {
       .length;
   };
 
-  const countItemsInTotal = () => {
-    return listsShowing.reduce((sum, list) => sum + list.length, 0);
-  };
-
   const suitcaseEmoji = (
     <img src="./logoEmoji.png" alt="Packing Icon" className="inline-block h-4 pr-0.5 sm:h-5" />
   );
 
   const displayMessage = () => {
     if (packed) {
-      return countItemsInTotal() > 0 ? (
+      return totalItems > 0 ? (
         <>{suitcaseEmoji} Pack items to see them here</>
       ) : (
         '👆 First add items to be packed'
       );
     } else {
-      return countItemsInTotal() > 0
+      return totalItems > 0
         ? '🎉 All packed and ready to travel!'
         : '🏁 Start a checklist from items above';
     }
@@ -39,8 +35,8 @@ const ListsSection = ({ title }: { title: string }) => {
     <section className="section-list w-full">
       <h2>
         {title}
-        {countItemsInTotal() > 0 && (
-          <span className="font-normal lowercase text-slate-600">{` (${countItemsInSection()} out of ${countItemsInTotal()})`}</span>
+        {totalItems > 0 && (
+          <span className="font-normal lowercase text-slate-600">{` (${countItemsInSection()} out of ${totalItems})`}</span>
         )}
       </h2>
       {Object.keys(listsObj).map(
