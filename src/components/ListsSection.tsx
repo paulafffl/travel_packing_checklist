@@ -6,10 +6,8 @@ const ListsSection = ({ title, totalItems }: { title: string; totalItems: number
   const { listsObj, listsShown, packAllItems, unpackAllItems } = useContext(ItemsContext);
   const packed = title === 'Packed Items';
 
-  const listsShowing = listsShown.map((listKey) => listsObj[listKey] || []);
-
   const totalItemsPerSection = useMemo(() => {
-    alert('useMemo');
+    const listsShowing = listsShown.map((listKey) => listsObj[listKey] || []);
     return listsShowing.flatMap((list) => list.filter((item) => item.packed === (packed === true)))
       .length;
   }, [listsObj, listsShown]);
