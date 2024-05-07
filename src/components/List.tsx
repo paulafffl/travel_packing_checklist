@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { ItemsContext } from '../context';
 import { listNameDisplay } from '../utils/listNameDisplayed';
 import Item from './Item';
@@ -10,10 +10,15 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
   const [modalResetList, setModalResetList] = useState('');
   const [itemsShown, setItemsShown] = useState(true);
   const { listsObj, hideList, removeList, resetList } = useContext(ItemsContext);
-  useContext(ItemsContext);
 
-  const packedItems = listsObj[listName]?.filter((item) => item.packed);
-  const unpackedItems = listsObj[listName]?.filter((item) => !item.packed);
+  const { packedItems, unpackedItems } = useMemo(() => {
+    const items = listsObj[listName] || [];
+    return {
+      packedItems: items.filter((item) => item.packed),
+      unpackedItems: items.filter((item) => !item.packed),
+    };
+  }, [listsObj, listName]);
+
   const listShown = (packed && packedItems?.length > 0) || (!packed && unpackedItems?.length > 0);
 
   const listHeading = () => {
