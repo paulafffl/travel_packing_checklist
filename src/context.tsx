@@ -18,9 +18,7 @@ export type ItemsState = {
   addList: (listName: string, listObject?: {}) => void;
   addItem: (itemName: string, listName?: string) => void;
   showList: (listName: string) => void;
-  showItems: (listName: string) => void;
   hideList: (listName: string) => void;
-  hideItems: (listName: string) => void;
   removeList: (id: string) => void;
   removeItem: (id: string, listName: string) => void;
   resetList: (listName: string) => void;
@@ -75,22 +73,12 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     const updatedList = [...listsShown, listName];
     storeListsShown(updatedList as []);
     setListsShown(updatedList);
-    showItems(listName);
-  };
-
-  const showItems = (listName: string) => {
-    setListsWithItemsShown([...listsWithItemsShown, listName]);
   };
 
   const hideList = (listName: string) => {
     const updatedList = listsShown.filter((name: string) => name !== listName);
     storeListsShown(updatedList as []);
     setListsShown(updatedList);
-    hideItems(listName);
-  };
-
-  const hideItems = (listName: string) => {
-    setListsWithItemsShown(listsWithItemsShown.filter((name) => name !== listName));
   };
 
   const removeList = async (listName: string) => {
@@ -149,9 +137,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     addList,
     addItem,
     showList,
-    showItems,
     hideList,
-    hideItems,
     removeList,
     removeItem,
     resetList,

@@ -12,27 +12,22 @@ const mockContextValueWithLists = {
       { id: '2', name: 'Item 2', packed: false },
     ],
     listAdditionals: [
-      { id: '1', name: 'Item 1', packed: true },
-      { id: '2', name: 'Item 2', packed: false },
+      { id: '3', name: 'Item 3', packed: true },
+      { id: '4', name: 'Item 4', packed: false },
     ],
   },
-};
-
-const mockContextValueWithListShown = {
-  ...mockContextValueWithLists,
-  listsWithItemsShown: ['listName', 'listAdditionals'],
 };
 
 describe('List component', () => {
   test('renders section name correctly when items are shown', () => {
     const { getByText, getByTitle } = render(
-      <ItemsContext.Provider value={mockContextValueWithListShown}>
+      <ItemsContext.Provider value={mockContextValueWithLists}>
         <List listName="listName" packed={true} />
       </ItemsContext.Provider>,
     );
 
     expect(getByText('NAME')).toBeInTheDocument();
-    expect(getByTitle('Hide items')).toBeInTheDocument();
+    expect(getByTitle(/Hide/)).toBeInTheDocument();
   });
 
   test('renders section name correctly when items are hidden', () => {
@@ -42,19 +37,20 @@ describe('List component', () => {
       </ItemsContext.Provider>,
     );
 
+    fireEvent.click(getByTitle(/Hide/));
     expect(getByText('NAME')).toBeInTheDocument();
-    expect(getByTitle('Show items')).toBeInTheDocument();
+    expect(getByTitle(/Show/)).toBeInTheDocument();
   });
 
   test('calls hideItems when collapse button is clicked', () => {
-    const { getByTitle } = render(
-      <ItemsContext.Provider value={mockContextValueWithListShown}>
+    const { getByTitle, getByLabelText } = render(
+      <ItemsContext.Provider value={mockContextValueWithLists}>
         <List listName="listName" packed={true} />
       </ItemsContext.Provider>,
     );
-
-    fireEvent.click(getByTitle('Hide items'));
-    expect(mockContextValueWithLists.hideItems).toHaveBeenCalledWith('listName');
+    const item1 = getByLabelText('label-item-1');
+    fireEvent.click(getByTitle(/Hide/));
+    expect(item1).not.toBeInTheDocument();
   });
 
   test('calls resetList when reset button is clicked', () => {

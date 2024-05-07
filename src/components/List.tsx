@@ -8,10 +8,10 @@ import Modal from './Modal';
 const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
   const [modalDeleteAdditionals, setModalDeleteAdditionals] = useState(false);
   const [modalResetList, setModalResetList] = useState('');
-  const { listsObj, listsWithItemsShown, showItems, hideItems, hideList, removeList, resetList } =
-    useContext(ItemsContext);
+  const [itemsShown, setItemsShown] = useState(true);
+  const { listsObj, hideList, removeList, resetList } = useContext(ItemsContext);
+  useContext(ItemsContext);
 
-  const itemsShown = listsWithItemsShown.includes(listName);
   const packedItems = listsObj[listName]?.filter((item) => item.packed);
   const unpackedItems = listsObj[listName]?.filter((item) => !item.packed);
   const listShown = (packed && packedItems?.length > 0) || (!packed && unpackedItems?.length > 0);
@@ -26,13 +26,13 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
             }`}
             title={itemsShown ? 'Hide items' : 'Show items'}
             aria-label={`${itemsShown ? 'Hide' : 'Show'} ${listName}`}
-            onClick={() => (itemsShown ? hideItems(listName) : showItems(listName))}
+            onClick={() => (itemsShown ? setItemsShown(false) : setItemsShown(true))}
           >
             <Icon symbol={itemsShown ? 'collapse' : 'expand'} />
           </button>
           <span
             className="list-name"
-            onClick={() => (itemsShown ? hideItems(listName) : showItems(listName))}
+            onClick={() => (itemsShown ? setItemsShown(false) : setItemsShown(true))}
           >
             {listNameDisplay(listName)}
           </span>
