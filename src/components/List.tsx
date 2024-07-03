@@ -51,7 +51,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
               listName !== 'listAdditionals' ? listName : 'not allowed in Additionals'
             }`}
             aria-disabled={listName === 'listAdditionals'}
-            className={`ml-2 bg-white px-0.5 ${
+            className={`ml-2 bg-white px-1 ${
               listName === 'listAdditionals'
                 ? ' cursor-default bg-white hover:bg-white'
                 : 'hover:bg-indigo-200'
@@ -64,7 +64,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
             />
           </button>
           <button
-            className={`ml-2 bg-white px-0.5 ${
+            className={`ml-2 bg-white px-1 ${
               !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
             }`}
             title={'Close list'}
