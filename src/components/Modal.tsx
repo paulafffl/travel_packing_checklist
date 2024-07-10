@@ -20,7 +20,7 @@ const Modal = ({
       {message}
       <br />
       <div className="mb-2 flex gap-4">
-        <button className="color-palette-violet flex-grow" onClick={() => closeAction()}>
+        <button className="color-palette-violet flex-grow" onClick={closeAction}>
           Cancel
         </button>
         <button
