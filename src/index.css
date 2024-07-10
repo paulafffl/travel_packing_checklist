@@ -183,7 +183,7 @@ section {
 }
 
 ::-webkit-scrollbar {
-  @apply w-1.5 bg-slate-300 sm:w-2;
+  @apply h-1.5 w-1.5 bg-slate-300 sm:w-2;
 }
 
 ::-webkit-scrollbar-thumb {
