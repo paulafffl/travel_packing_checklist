@@ -50,17 +50,27 @@ const AddItem = () => {
         }
       }}
     >
-      {toastEmptyInput && toast(<p>✍️ First write a new item</p>)}
+      {toastEmptyInput &&
+        toast(
+          <p>
+            <span aria-hidden>✍️</span> First write a new item
+          </p>,
+        )}
       {toastFoundExistingItem &&
         toast(
           <p>
-            👋 Item already exists in {listNameDisplay(toastFoundExistingItem)}
+            <span aria-hidden>👋</span> Item already exists in{' '}
+            {listNameDisplay(toastFoundExistingItem)}
             <br />
             {!Object.keys(listsObj).length ? 'Open that  list to see it and more! 👀' : ''}
           </p>,
         )}
       {toastAddedItemConfirmation &&
-        toast(<p>👍 Item added to {listNameDisplay(toastAddedItemConfirmation)}</p>)}
+        toast(
+          <p>
+            <span aria-hidden>👍</span> Item added to {listNameDisplay(toastAddedItemConfirmation)}
+          </p>,
+        )}
       <input
         id="new-item-name"
         className="flex-grow overflow-scroll"
@@ -72,7 +82,9 @@ const AddItem = () => {
       />
       <button
         title={`${!newItem ? 'Disabled until you type a new item' : `Add Item ${newItem}`}`}
-        aria-label={`${!newItem ? 'Disabled until you type a new item' : `Add Item ${newItem}`}`}
+        aria-label={`${
+          !newItem ? 'Add new item is disabled until you type a new item' : `Add Item ${newItem}`
+        }`}
         aria-disabled={!newItem}
         className={`${!newItem ? 'color-palette-disabled' : 'color-palette-green'}`}
         id="new-item-submit"

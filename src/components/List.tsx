@@ -68,7 +68,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
               !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
             }`}
             title={'Close list'}
-            aria-label={`Close "${listName}"`}
+            aria-label={`Close ${listName}`}
             onClick={() =>
               listName === 'listAdditionals' ? setModalDeleteAdditionals(true) : hideList(listName)
             }
