@@ -35,6 +35,7 @@ function App() {
             href="https://www.linkedin.com/in/paulafernandeslima/"
             target="_blank"
             rel="noreferrer"
+            aria-label="Credit: Built by Paula Lima, with love - Open author's LinkedIn page in a new window"
           >
             Paula Lima
           </a>
