@@ -27,9 +27,9 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
       <label htmlFor={`checkbox-item-${item.id}`} className={'screen-readers-only'}>
         {item.name}
       </label>
-      {listEmojis[item.name] && (
+      {listEmojis[item.name.toLowerCase()] && (
         <span role="img" aria-hidden="true" className="emojiStyle">
-          {listEmojis[item.name]}
+          {listEmojis[item.name.toLowerCase()]}
         </span>
       )}
       <input

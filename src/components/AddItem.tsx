@@ -15,10 +15,7 @@ const AddItem = () => {
     const listAdditionals = listsObj['listAdditionals']?.map((item) => item.name);
     for (const [listName, list] of Object.entries({ ...listsAsObj, listAdditionals })) {
       const match = list?.find((item) => {
-        const nameToBeMatched =
-          listName === 'listAdditionals'
-            ? item.toLowerCase().trim()
-            : item.toLowerCase().slice(2).trim(); // Removes emojis included in default lists items
+        const nameToBeMatched = item.toLowerCase().trim();
         const trimmedInput = newItem.toLowerCase().trim();
         return nameToBeMatched.startsWith(trimmedInput);
       });
