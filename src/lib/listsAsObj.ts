@@ -22,6 +22,7 @@ export const listsAsObj = {
   ],
   listReusables: [
     'Water bottle',
+    'Tote bag',
     'Cutlery',
     'Lunch box',
     'Straw',

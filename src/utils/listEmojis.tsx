@@ -34,6 +34,7 @@ export const listEmojis: listEmojiType = {
   'period cup / pants': "🩸",
   'condoms': "🔘",
   'water bottle': "🍶",
+  'tote bag': "🛍️", 
   'cutlery': "🍴",
   'lunch box': "🍱",
   'straw': "🥤",
