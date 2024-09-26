@@ -70,7 +70,7 @@ const AddItem = () => {
         )}
       <input
         id="new-item-name"
-        className="flex-grow overflow-scroll"
+        className="w-full overflow-scroll"
         type="search"
         placeholder="Or create new item here"
         value={newItem}
