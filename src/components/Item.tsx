@@ -39,6 +39,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
           ${editing ? 'ml-0 pl-2 focus:pl-2' : 'border-white bg-white'},
           ${visible ? 'opacity-100' : 'opacity-0'}`}
         size={item.name.length}
+        onClick={() => setEditing(true)}
         onKeyDown={(e) => e.key === 'Enter' && setEditing(!editing)}
         onChange={(event) => changeItem(item.id, { name: event.target.value })}
       />
