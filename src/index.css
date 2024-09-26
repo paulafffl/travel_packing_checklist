@@ -47,7 +47,7 @@ input {
 }
 
 input[type='checkbox'] {
-  @apply z-10 ml-1 mr-2 h-auto w-6 scale-150 cursor-pointer ring-primary-400 focus:outline-primary-400 focus-visible:ring-2;
+  @apply z-10 ml-0.5 mr-1 w-10 cursor-pointer accent-orange-300 ring-slate-300 md:w-8 md:focus:h-6 md:focus:outline-slate-300 md:focus-visible:ring-2;
 }
 
 input[type='search'] {
