@@ -14,7 +14,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
   };
 
   return (
-    <li className="flex items-center gap-1">
+    <li className="my-1 flex items-center gap-1">
       <input
         type="checkbox"
         checked={item.packed || !visible}
@@ -35,8 +35,8 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
       <input
         value={item.name}
         id={`label-item-${item.id}`}
-        className={`w-full pl-0 focus:pl-2
-          ${editing ? 'ml-1 pl-2' : 'border-white bg-white'},
+        className={`mr-1 w-full pl-0 focus:pl-2
+          ${editing ? 'ml-0 pl-2 focus:pl-2' : 'border-white bg-white'},
           ${visible ? 'opacity-100' : 'opacity-0'}`}
         size={item.name.length}
         onKeyDown={(e) => e.key === 'Enter' && setEditing(!editing)}
@@ -47,7 +47,9 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
       </label>
       <div className="ml-auto flex gap-y-0">
         <button
-          className={`h-6 px-1 text-xs ${editing ? 'color-palette-violet' : 'color-palette-green'}`}
+          className={`h-7 w-7 px-1 text-xs ${
+            editing ? 'color-palette-violet' : 'color-palette-green'
+          }`}
           title={`${editing ? 'Save' : 'Edit'}`}
           aria-label={`${editing ? 'Save' : 'Edit'} ${item.name}`}
           onClick={() => setEditing(!editing)}
@@ -55,7 +57,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
           <Icon symbol={editing ? 'save' : 'edit'} />
         </button>
         <button
-          className="color-palette-red ml-2 h-6 px-1 text-xs"
+          className="color-palette-red ml-2 h-7 w-7 px-1 text-xs"
           title={'Delete'}
           aria-label={`Delete ${item.name}`}
           onClick={() => removeItem(item.id, listName)}

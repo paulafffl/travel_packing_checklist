@@ -26,7 +26,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
       <div className="mb-1 mt-2 flex items-center justify-between border-b-2 border-slate-300 pb-2">
         <div className="flex items-center">
           <button
-            className={`m-0 mr-1 h-5 w-5 p-0.5 px-0.5 sm:mb-0.5 ${
+            className={`m-0 mr-1 h-6 w-6 p-0.5 px-0.5 sm:mb-0.5 ${
               itemsShown ? 'color-palette-violet' : 'color-palette-green'
             }`}
             title={itemsShown ? 'Hide items' : 'Show items'}
@@ -51,7 +51,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
               listName !== 'listAdditionals' ? listName : 'not allowed in Additionals'
             }`}
             aria-disabled={listName === 'listAdditionals'}
-            className={`ml-2 bg-white px-1 ${
+            className={`ml-2 w-7 bg-white px-1 ${
               listName === 'listAdditionals'
                 ? ' cursor-default bg-white hover:bg-white'
                 : 'hover:bg-indigo-200'
@@ -64,7 +64,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
             />
           </button>
           <button
-            className={`ml-2 bg-white px-1 ${
+            className={`ml-2 w-7 bg-white px-1 ${
               !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
             }`}
             title={'Close list'}
