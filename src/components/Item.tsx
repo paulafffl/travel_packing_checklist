@@ -28,7 +28,11 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
         {item.name}
       </label>
       {listEmojis[item.name.toLowerCase()] && (
-        <span role="img" aria-hidden="true" className="emojiStyle">
+        <span
+          role="img"
+          aria-hidden="true"
+          className={`emojiStyle ${visible ? 'opacity-100' : 'opacity-0'}`}
+        >
           {listEmojis[item.name.toLowerCase()]}
         </span>
       )}
