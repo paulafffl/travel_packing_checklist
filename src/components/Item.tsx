@@ -7,23 +7,31 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
   const [editing, setEditing] = useState(false);
   const { changeItem, removeItem } = useContext(ItemsContext);
   const [visible, setVisible] = useState(true);
+  const [checked, setChecked] = useState(item.packed);
 
   const handleCheckboxChange = () => {
+    setChecked(!checked);
     setVisible(false);
     setTimeout(() => changeItem(item.id, { packed: !item.packed }), 300);
   };
 
   return (
     <li className="my-1 flex items-center gap-1">
-      <input
-        type="checkbox"
-        checked={item.packed || !visible}
+      <button
+        role="checkbox"
         id={`checkbox-item-${item.id}`}
-        className={visible ? 'opacity-100' : 'opacity-0'}
+        className={`mr-2 h-7 min-w-7 px-0 text-xs 
+          ${checked ? 'color-palette-amber' : 'border-2 border-amber-300'}
+          ${visible ? 'opacity-100' : 'opacity-0'}
+        `}
         onKeyDown={(e) => e.key === 'Enter' && handleCheckboxChange()}
-        onChange={handleCheckboxChange}
+        onClick={handleCheckboxChange}
         tabIndex={0}
-      />
+        title={`${checked ? 'Uncheck' : 'Check'}`}
+        aria-label={`${checked ? 'Uncheck' : 'Check'} ${item.name}`}
+      >
+        <Icon symbol="check" />
+      </button>
       <label htmlFor={`checkbox-item-${item.id}`} className={'screen-readers-only'}>
         {item.name}
       </label>

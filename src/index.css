@@ -46,10 +46,6 @@ input {
   @apply h-8 rounded-sm border-2 border-primary-300 bg-white py-1 pl-2 pr-0 placeholder-slate-600 accent-primary-600 outline-none transition-all transition-opacity duration-200 ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 focus:bg-primary-50 sm:h-9 md:hover:accent-primary-700;
 }
 
-input[type='checkbox'] {
-  @apply z-10 ml-0.5 mr-1 w-10 cursor-pointer accent-orange-300 ring-slate-300 md:w-8 md:focus:h-6 md:focus:outline-slate-300 md:focus-visible:ring-2;
-}
-
 input[type='search'] {
   /* Override Safari's border radius */
   -webkit-appearance: none;
@@ -65,7 +61,7 @@ button,
 button[type='button'],
 button[type='reset'],
 button[type='submit'] {
-  @apply inline-flex h-8 items-center justify-center overflow-hidden rounded-md px-3 py-1 font-bold uppercase text-white transition-all transition-colors ease-in ease-in active:bg-primary-300  sm:h-9 sm:px-5;
+  @apply inline-flex h-8 items-center justify-center overflow-hidden rounded-md px-3 py-1 font-bold uppercase text-white transition-all transition-colors ease-in ease-in sm:h-9 sm:px-5;
   span {
     @apply text-nowrap py-0.5;
   }
@@ -76,8 +72,16 @@ button[type='submit'] {
   border-bottom-left-radius: 0;
 }
 
+button[role='checkbox'] {
+  @apply active:bg-amber-400;
+}
+
 section {
   @apply mx-auto mt-6 bg-white p-6 pb-7 sm:mt-8 sm:px-7;
+}
+
+.color-palette-amber {
+  @apply bg-amber-400 hover:bg-amber-400 active:bg-amber-500 md:hover:bg-amber-500;
 }
 
 .color-palette-green {
