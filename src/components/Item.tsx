@@ -45,13 +45,15 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
   return (
     <>
       {modalDeleteItem && confirmItemDeletion()}
-      <li className="my-1 flex items-center gap-1">
+      <li
+        className={`my-1 flex items-center gap-1 
+        ${visible ? 'uncheckingCheckbox' : 'checkingCheckbox'}`}
+      >
         <button
           role="checkbox"
           id={`checkbox-item-${item.id}`}
           className={`mr-2 h-7 min-w-7 px-0 text-xs 
           ${checked ? 'color-palette-amber' : 'border-2 border-amber-300'}
-          ${visible ? 'opacity-100' : 'opacity-0'}
         `}
           onKeyDown={(e) => e.key === 'Enter' && handleCheckboxChange()}
           onClick={handleCheckboxChange}
@@ -65,11 +67,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
           {item.name}
         </label>
         {listEmojis[item.name.toLowerCase()] && (
-          <span
-            role="img"
-            aria-hidden="true"
-            className={`emojiStyle ${visible ? 'opacity-100' : 'opacity-0'}`}
-          >
+          <span role="img" aria-hidden="true">
             {listEmojis[item.name.toLowerCase()]}
           </span>
         )}
@@ -77,8 +75,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
           value={item.name}
           id={`label-item-${item.id}`}
           className={`mr-1 w-full pl-0 focus:pl-2
-          ${editing ? 'ml-0 pl-2 focus:pl-2' : 'border-white bg-white'},
-          ${visible ? 'opacity-100' : 'opacity-0'}`}
+          ${editing ? 'ml-0 pl-2 focus:pl-2' : 'border-white bg-white'}`}
           size={item.name.length}
           onClick={() => setEditing(true)}
           onKeyDown={(e) => e.key === 'Enter' && setEditing(!editing)}
