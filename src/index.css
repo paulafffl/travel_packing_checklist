@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Emoji';
-  src: local('Apple Color Emoji');
-  unicode-range: U+2600-27BF;
-}
-
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
@@ -169,11 +163,15 @@ section {
 
 .emojiStyle {
   font-family: 'Noto Color Emoji', sans-serif;
+  font-weight: 400;
+  font-style: normal;
   vertical-align: middle;
 }
 
 .textWithEmoji::first-letter {
   font-family: 'Noto Color Emoji', sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 @keyframes appearing {
