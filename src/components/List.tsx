@@ -26,9 +26,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
       <div className="mb-1 mt-2 flex items-center justify-between border-b-2 border-slate-300 pb-2">
         <div className="flex items-center">
           <button
-            className={`m-0 mr-1 h-6 w-6 p-0.5 px-0.5 sm:mb-0.5 ${
-              itemsShown ? 'color-palette-violet' : 'color-palette-green'
-            }`}
+            className={'color-palette-violet m-0 mr-2 h-7 min-w-7 p-0 sm:mb-0.5'}
             title={itemsShown ? 'Hide items' : 'Show items'}
             aria-label={`${itemsShown ? 'Hide' : 'Show'} ${listName}`}
             onClick={() => (itemsShown ? setItemsShown(false) : setItemsShown(true))}
