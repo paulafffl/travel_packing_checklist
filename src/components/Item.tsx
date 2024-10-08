@@ -47,7 +47,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
       {modalDeleteItem && confirmItemDeletion()}
       <li
         className={`my-1 flex items-center gap-1 
-        ${visible ? 'uncheckingCheckbox' : 'checkingCheckbox'}`}
+        ${visible ? 'animate-uncheck' : 'animate-check'}`}
       >
         <button
           role="checkbox"
