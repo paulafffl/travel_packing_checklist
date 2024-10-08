@@ -134,7 +134,7 @@ section {
   @apply popup p-8;
   box-shadow: 0 0 0 2038px rgba(0, 0, 0, 0.3);
   width: 25vw;
-  animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards running fadeInUpAndScale;
+  animation: 0.35s ease-in-out 0s 1 normal forwards running fadeInUpAndScale;
   @media (max-width: 1024px) {
     width: 75vw;
   }
@@ -142,8 +142,8 @@ section {
 
 .toast-style {
   @apply popup px-6 py-5 pt-4;
-  animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards fadeInUpAndScale,
-    0.5s cubic-bezier(0.21, 1.02, 0.73, 1) 2s 1 reverse forwards fadeInUpAndScale;
+  animation: 0.35s ease-in-out 0s 1 normal forwards fadeInUpAndScale,
+    0.5s ease-in-out 2s 1 reverse forwards fadeInUpAndScale;
   @media (max-width: 1024px) {
     min-width: 60vw;
     max-width: 85vw;
@@ -175,11 +175,11 @@ section {
 }
 
 .checkingCheckbox {
-  animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards running fadeOutDown;
+  animation: 0.35s ease-in-out 0s 1 normal forwards running fadeOutDown;
 }
 
 .uncheckingCheckbox {
-  animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 reverse backwards running fadeOutUp;
+  animation: 0.35s ease-in-out 0s 1 reverse backwards running fadeOutUp;
 }
 
 @keyframes fadeOutDown {
