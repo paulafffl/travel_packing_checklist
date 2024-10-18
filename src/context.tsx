@@ -15,6 +15,7 @@ export type ItemsState = {
   listsShown: string[];
   listsWithItemsShown: string[];
   listsAdded: string[];
+  listHiding: string;
   addList: (listName: string, listObject?: {}) => void;
   addItem: (itemName: string, listName?: string) => void;
   showList: (listName: string) => void;
@@ -36,6 +37,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   const [listsObj, setListsObj] = useState(() => readLists());
   const [listsShown, setListsShown] = useState<string[]>(() => readListsShown());
   const [listsWithItemsShown, setListsWithItemsShown] = useState<string[]>([]);
+  const [listHiding, setlistHiding] = useState('');
   const listsAdded = Object.keys(listsObj);
 
   const updateObjWithList = (listName: string, updatedList?: Item[], listsObject = listsObj) => {
@@ -76,9 +78,13 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
   };
 
   const hideList = (listName: string) => {
-    const updatedList = listsShown.filter((name: string) => name !== listName);
-    storeListsShown(updatedList as []);
-    setListsShown(updatedList);
+    setlistHiding(listName);
+    setTimeout(() => {
+      const updatedList = listsShown.filter((name: string) => name !== listName);
+      storeListsShown(updatedList as []);
+      setListsShown(updatedList);
+      setlistHiding('');
+    }, 500);
   };
 
   const removeList = async (listName: string) => {
@@ -134,6 +140,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     listsShown,
     listsWithItemsShown,
     listsAdded,
+    listHiding,
     addList,
     addItem,
     showList,

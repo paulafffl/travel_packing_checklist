@@ -182,6 +182,10 @@ section {
   animation: 0.35s ease-in-out 0s 1 reverse backwards running fadeOutUp;
 }
 
+.animate-fadeOutTop {
+  animation: 0.5s ease-in-out 0s 1 forwards fadeOutTop;
+}
+
 @keyframes fadeOutDown {
   0% {
     opacity: 1;
@@ -201,6 +205,17 @@ section {
   100% {
     opacity: 0;
     transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeOutTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
   }
 }
 

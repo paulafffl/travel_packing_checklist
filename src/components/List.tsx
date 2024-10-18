@@ -9,7 +9,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
   const [modalDeleteAdditionals, setModalDeleteAdditionals] = useState(false);
   const [modalResetList, setModalResetList] = useState('');
   const [itemsShown, setItemsShown] = useState(true);
-  const { listsObj, hideList, removeList, resetList } = useContext(ItemsContext);
+  const { listsObj, hideList, removeList, resetList, listHiding } = useContext(ItemsContext);
 
   const { packedItems, unpackedItems } = useMemo(() => {
     const items = listsObj[listName] || [];
@@ -62,8 +62,10 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
             />
           </button>
           <button
-            className={`ml-2 w-7 bg-white px-1 ${
-              !!modalDeleteAdditionals ? 'disabled:bg-white' : 'hover:bg-rose-200'
+            className={`ml-2 w-7 bg-white px-1 hover:bg-white ${
+              !!modalDeleteAdditionals
+                ? 'disabled:bg-white'
+                : 'active:bg-white md:hover:bg-rose-200'
             }`}
             title={'Close list'}
             aria-label={`Close ${listName}`}
@@ -115,7 +117,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
   };
 
   return (
-    <div>
+    <div className={`${listHiding === listName && 'animate-fadeOutTop bg-white'}`}>
       {modalDeleteAdditionals && confirmAdditionalsDeletion()}
       {modalResetList && confirmListReset()}
       {listShown && listHeading()}
