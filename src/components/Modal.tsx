@@ -77,7 +77,7 @@ const Modal = ({
             closeAction();
           }}
         >
-          {confirmIcon}
+          <span className="mr-1">{confirmIcon}</span>
           {confirmButton}
         </button>
       </div>
