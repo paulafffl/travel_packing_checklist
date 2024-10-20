@@ -8,6 +8,7 @@ import Modal from './Modal';
 const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
   const [modalDeleteAdditionals, setModalDeleteAdditionals] = useState(false);
   const [modalResetList, setModalResetList] = useState('');
+  const [modalCloseList, setModalCloseList] = useState('');
   const [itemsShown, setItemsShown] = useState(true);
   const { listsObj, hideList, removeList, resetList, listHiding } = useContext(ItemsContext);
 
@@ -70,7 +71,9 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
             title={'Close list'}
             aria-label={`Close ${listName}`}
             onClick={() =>
-              listName === 'listAdditionals' ? setModalDeleteAdditionals(true) : hideList(listName)
+              listName === 'listAdditionals'
+                ? setModalDeleteAdditionals(true)
+                : setModalCloseList(listName)
             }
           >
             <Icon symbol="close" color={!!modalDeleteAdditionals ? 'grey' : 'red'} />
@@ -116,10 +119,32 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
     );
   };
 
+  const confirmListClose = () => {
+    return (
+      <Modal
+        message={
+          <p>
+            This will hide and uncheck all items from the list &nbsp;
+            {listNameDisplay(modalCloseList)}
+          </p>
+        }
+        closeAction={() => setModalCloseList('')}
+        confirmAction={() => {
+          hideList(modalCloseList);
+          removeList(modalCloseList);
+        }}
+        confirmButton="Close"
+        confirmColor="color-palette-red"
+        confirmIcon={<Icon symbol="close" />}
+      />
+    );
+  };
+
   return (
     <div className={`${listHiding === listName && 'animate-fadeOutTop bg-white'}`}>
       {modalDeleteAdditionals && confirmAdditionalsDeletion()}
       {modalResetList && confirmListReset()}
+      {modalCloseList && confirmListClose()}
       {listShown && listHeading()}
       {listShown && itemsShown && (
         <ul className="flex flex-col">
