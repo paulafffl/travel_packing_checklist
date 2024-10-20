@@ -106,8 +106,8 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
       <Modal
         message={
           <p>
-            This will replace any deleted or renamed items with the default ones. Do you still want
-            to reset the list {listNameDisplay(modalResetList)}&nbsp;?
+            This will reset any deleted or renamed items from the list{' '}
+            {listNameDisplay(modalResetList)}
           </p>
         }
         closeAction={() => setModalResetList('')}
@@ -124,8 +124,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
       <Modal
         message={
           <p>
-            This will hide and uncheck all items from the list &nbsp;
-            {listNameDisplay(modalCloseList)}
+            This will hide and uncheck all items from the list {listNameDisplay(modalCloseList)}
           </p>
         }
         closeAction={() => setModalCloseList('')}
