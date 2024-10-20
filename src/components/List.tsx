@@ -83,7 +83,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
     );
   };
 
-  const confirmAdditionalsDeletion = () => {
+  const confirmDeleteAdditionals = () => {
     return (
       <Modal
         message={
@@ -101,7 +101,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
     );
   };
 
-  const confirmListReset = () => {
+  const confirmResetList = () => {
     return (
       <Modal
         message={
@@ -119,7 +119,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
     );
   };
 
-  const confirmListClose = () => {
+  const confirmCloseList = () => {
     return (
       <Modal
         message={
@@ -142,9 +142,9 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
 
   return (
     <div className={`${listHiding === listName && 'animate-fadeOutTop bg-white'}`}>
-      {modalDeleteAdditionals && confirmAdditionalsDeletion()}
-      {modalResetList && confirmListReset()}
-      {modalCloseList && confirmListClose()}
+      {modalDeleteAdditionals && confirmDeleteAdditionals()}
+      {modalResetList && confirmResetList()}
+      {modalCloseList && confirmCloseList()}
       {listShown && listHeading()}
       {listShown && itemsShown && (
         <ul className="flex flex-col">
