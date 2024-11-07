@@ -77,17 +77,17 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setListsShown(updatedList);
   };
 
-  const hideList = (listName: string) => {
+  const hideList = async (listName: string) => {
     setlistHiding(listName);
-    setTimeout(() => {
-      const updatedList = listsShown.filter((name: string) => name !== listName);
-      storeListsShown(updatedList as []);
-      setListsShown(updatedList);
-      setlistHiding('');
-    }, 500);
+    await new Promise((resolve) => setTimeout(resolve, 500)); // Allow time for animation to finish
+    const updatedList = listsShown.filter((name: string) => name !== listName);
+    storeListsShown(updatedList as []);
+    setListsShown(updatedList);
+    setlistHiding('');
   };
 
   const removeList = async (listName: string) => {
+    await new Promise((resolve) => setTimeout(resolve, 500)); // Allow time for animation to finish
     const updatedListsObj = await deleteList(listsObj, listName);
     setListsObj(updatedListsObj);
   };

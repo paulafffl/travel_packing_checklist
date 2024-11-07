@@ -130,9 +130,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
         closeAction={() => setModalCloseList('')}
         confirmAction={() => {
           hideList(modalCloseList);
-          setTimeout(() => {
-            removeList(modalCloseList);
-          }, 500);
+          removeList(modalCloseList);
         }}
         confirmButton="Close"
         confirmColor="color-palette-red"
