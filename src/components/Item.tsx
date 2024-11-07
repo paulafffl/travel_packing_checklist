@@ -46,7 +46,7 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
     <>
       {modalDeleteItem && confirmItemDeletion()}
       <li
-        className={`my-1 flex items-center gap-1 
+        className={`my-1 flex items-center
         ${visible ? 'animate-uncheck' : 'animate-check'}`}
       >
         <button
@@ -67,14 +67,14 @@ const Item = ({ item, listName }: { item: Item; listName: string }) => {
           {item.name}
         </label>
         {listEmojis[item.name.toLowerCase()] && (
-          <span role="img" aria-hidden="true">
+          <span className={'mr-0.5 pl-0.5'} role="img" aria-hidden="true">
             {listEmojis[item.name.toLowerCase()]}
           </span>
         )}
         <input
           value={item.name}
           id={`label-item-${item.id}`}
-          className={`mr-1 w-full pl-0 focus:pl-2
+          className={`mr-2 w-full pl-0 focus:pl-2
           ${editing ? 'ml-0 pl-2 focus:pl-2' : 'border-white bg-white'}`}
           size={item.name.length}
           onClick={() => setEditing(true)}
