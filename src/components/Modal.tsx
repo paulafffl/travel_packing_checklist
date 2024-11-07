@@ -18,6 +18,7 @@ const Modal = ({
   closeAction,
 }: ModalProps) => {
   const [focusedIndex, setFocusedIndex] = useState(-1);
+  const [modalClosing, setModalClosing] = useState(false);
   useEffect(() => {
     function keyListener(e: KeyboardEvent) {
       const listener = keyListenersMap.get(e.key);
@@ -61,21 +62,39 @@ const Modal = ({
     ['Tab', handleTabKey],
   ]);
 
+  const handleClosingAnimation = async () => {
+    setModalClosing(true);
+    await new Promise((resolve) => setTimeout(resolve, 500)); // Allow time for animation to finish
+  };
+
+  const handleCancel = async () => {
+    await handleClosingAnimation();
+    closeAction();
+  };
+
+  const handleConfirm = async () => {
+    await handleClosingAnimation();
+    confirmAction();
+    closeAction();
+  };
+
   return (
-    <div className="modal-style" ref={modalRef} role="alert" aria-modal="true">
+    <div
+      className={`modal-style ${modalClosing && 'animate-fadeOutDownAndScale'}`}
+      ref={modalRef}
+      role="alert"
+      aria-modal="true"
+    >
       {message}
       <br />
       <div className="mb-2 flex gap-4">
-        <button className="color-palette-violet flex-grow" onClick={closeAction}>
+        <button className="color-palette-violet flex-grow" onClick={handleCancel}>
           Cancel
         </button>
         <button
           title="Confirm modal action"
           className={`${confirmColor} align-center flex flex-grow`}
-          onClick={() => {
-            confirmAction();
-            closeAction();
-          }}
+          onClick={handleConfirm}
         >
           <span className="mr-1">{confirmIcon}</span>
           {confirmButton}
