@@ -103,7 +103,7 @@ section {
   padding: 10vh 0;
   width: 55rem;
   @media (max-width: 1024px) {
-    padding: 7vh 8vw;
+    padding: 5vh 8vw;
     width: 100vw;
   }
 }
