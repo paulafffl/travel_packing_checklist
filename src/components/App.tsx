@@ -9,7 +9,7 @@ function App() {
   const countItemsInTotal = useMemo(() => {
     const listsShowing = listsShown.map((listKey) => listsObj[listKey] || []);
     return listsShowing.reduce((sum, list) => sum + list.length, 0);
-  }, [listsShown]);
+  }, [listsShown, listsObj]);
 
   return (
     <div className="main">
