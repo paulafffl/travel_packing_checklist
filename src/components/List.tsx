@@ -123,9 +123,7 @@ const List = ({ listName, packed }: { listName: string; packed: boolean }) => {
     return (
       <Modal
         message={
-          <p>
-            This will hide and uncheck all items from the list {listNameDisplay(modalCloseList)}
-          </p>
+          <p>This will unpack and hide all items from the list {listNameDisplay(modalCloseList)}</p>
         }
         closeAction={() => setModalCloseList('')}
         confirmAction={() => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-type IconSymbol = 'check' | 'close' | 'collapse' | 'delete' | 'edit' | 'expand' | 'reset' | 'save';
+type IconSymbol = 'check' | 'close' | 'collapse' | 'delete' | 'edit' | 'expand' | 'reset' | 'save' | 'start';
 
 type IconProps = {
   symbol: IconSymbol;
@@ -16,6 +16,7 @@ const iconPaths: Record<IconSymbol, string> = {
   reset: 'M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z',
   save: 'M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z',
   check: 'M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z',
+  start: "M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z",
 };
 
 const Icon = ({ symbol, color = 'white' }: IconProps) => {

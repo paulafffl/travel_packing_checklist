@@ -20,4 +20,5 @@ export const mockContextValue = {
   changeItem: jest.fn(),
   packAllItems: jest.fn(),
   unpackAllItems: jest.fn(),
+  startNewTrip: jest.fn(),
 };

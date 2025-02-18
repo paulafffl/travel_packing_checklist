@@ -26,6 +26,7 @@ export type ItemsState = {
   changeItem: (id: string, updates: WithoutId) => void;
   packAllItems: () => void;
   unpackAllItems: () => void;
+  startNewTrip: () => void;
 };
 
 type PartialItem = Partial<Item>;
@@ -135,6 +136,18 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     setListsObj(updatedItems);
   };
 
+  const hideAllDefaultLists = async () => {
+    for (const listName of [...listsShown]) {
+      await hideList(listName);
+    }
+    setListsShown(['listAdditionals']);
+  };
+
+  const startNewTrip = async () => {
+    await hideAllDefaultLists();
+    unpackAllItems();
+  };
+
   const value: ItemsState = {
     listsObj,
     listsShown,
@@ -151,6 +164,7 @@ const ItemsProvider = ({ children }: PropsWithChildren) => {
     changeItem,
     packAllItems,
     unpackAllItems,
+    startNewTrip,
   };
   return <ItemsContext.Provider value={value}>{children}</ItemsContext.Provider>;
 };

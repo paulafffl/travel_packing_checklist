@@ -7,7 +7,9 @@ import Modal from './Modal';
 const ListsSection = ({ title, totalItems }: { title: string; totalItems: number }) => {
   const [modalPackAll, setModalPackAll] = useState(false);
   const [modalUnpackAll, setModalUnpackAll] = useState(false);
-  const { listsObj, listsShown, packAllItems, unpackAllItems } = useContext(ItemsContext);
+  const [modalStartNewTrip, setModalStartNewTrip] = useState(false);
+  const { listsObj, listsShown, packAllItems, unpackAllItems, startNewTrip } =
+    useContext(ItemsContext);
   const packed = title === 'Packed Items';
 
   const totalItemsPerSection = useMemo(() => {
@@ -60,10 +62,38 @@ const ListsSection = ({ title, totalItems }: { title: string; totalItems: number
     );
   };
 
+  const confirmStartNewTrip = () => {
+    return (
+      <Modal
+        message={
+          <p>
+            This will unpack all items and close the default lists.
+            <br />
+            <br />
+            To reset deleted or renamed items, you must ⟲&nbsp;Reset each list individually.
+          </p>
+        }
+        closeAction={() => setModalStartNewTrip(false)}
+        confirmAction={() => startNewTrip()}
+        confirmButton="Start"
+        confirmColor="color-palette-black"
+        confirmIcon={<Icon symbol="start" />}
+      />
+    );
+  };
+
+  const shouldShowPackAllButton = !packed && totalItemsPerSection !== 0;
+
+  const shouldShowUnpackAllButton =
+    packed && totalItemsPerSection !== 0 && totalItemsPerSection !== totalItems;
+
+  const shouldShowStartNewTripButton =
+    packed && totalItemsPerSection !== 0 && totalItemsPerSection === totalItems;
+
   return (
     <section className="section-list w-full">
       <h2>{title}</h2>
-      {totalItemsPerSection !== 0 && (
+      {(shouldShowPackAllButton || shouldShowUnpackAllButton) && (
         <div className="mb-2.5 flex items-center border-b-2 border-amber-300 bg-white pb-3">
           <button
             className={`mr-2 h-7 min-w-7 px-0 text-xs 
@@ -84,6 +114,20 @@ const ListsSection = ({ title, totalItems }: { title: string; totalItems: number
           )}
         </div>
       )}
+      {shouldShowStartNewTripButton && (
+        <div className="mb-2.5 flex items-center border-b-2 border-black bg-white pb-3">
+          <button
+            className={'mr-2 h-7 min-w-7 bg-black px-0 text-xs'}
+            title="Start your next trip"
+            aria-label="Start your next trip"
+            onClick={() => setModalStartNewTrip(true)}
+          >
+            <Icon symbol="start" />
+          </button>
+          <span className="m-0.5 mr-1">🏁</span>
+          <span className="mr-1 font-bold uppercase text-slate-500">Start your next trip</span>
+        </div>
+      )}
       {Object.keys(listsObj).map(
         (list) =>
           listsShown.includes(list) && <List listName={list} packed={packed} key={title + list} />,
@@ -91,6 +135,7 @@ const ListsSection = ({ title, totalItems }: { title: string; totalItems: number
       {totalItemsPerSection === 0 && <p className="textWithEmoji">{displayMessage()}</p>}
       {modalPackAll && confirmPackAll()}
       {modalUnpackAll && confirmUnpackAll()}
+      {modalStartNewTrip && confirmStartNewTrip()}
     </section>
   );
 };
